@@ -10,11 +10,6 @@ By listing users’ estimated time of departure and destination, other users can
 
 Key features include:
 
-Ride posting - postings from car owners who are ready to provide a ride or people who need one, Users who need a ride also can post information and the system can connect the different users who have the same destination and time to share a ride.
-Private messaging - chat to connect with each other for ride details
-Location tracking - provided map helps showcase the exact location for better communication
-Feedback form - rate your ride experience and leave your comments
-
 - **Ride posting**: postings from car owners who are ready to provide a ride or people who need one, Users who need a ride also can post information and the system can connect the different users who have the same destination and time to share a ride.
 - **Private messaging**: chat to connect with each other for ride details
 - **Location tracking**: provided map helps showcase the exact location for better communication
