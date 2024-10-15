@@ -3,12 +3,12 @@
 ## Gin Park - Project Manager
 - **Role**: Oversees the overall project timeline, ensures that milestones are met, and coordinates the team’s efforts. Gin is responsible for setting meeting agendas and ensuring that the team stays focused on project goals.
 - **Top 3 Commits**:
-  1. [Commit 1]([https://github.com/repo/commit1](https://github.com/ginpks/TRANSPORTATION/commit/c444be9664798335d5dcc1094573699cd841921f)): Created the initial GitHub repository and set up the project structure, including the `team/m2` folder for milestone submissions.
+  1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/c444be9664798335d5dcc1094573699cd841921f): Created the initial GitHub repository and set up the project structure, including the `team/m2` folder for milestone submissions.
 
 ## Lana Vu - Timekeeper
 - **Role**: Manages the timing of all team activities. Lana ensures that meetings start and end on time, keeps track of deadlines, and reminds the team of upcoming due dates.
 - **Top 3 Commits**:
-  1. [Commit 1]([https://github.com/repo/commit3](https://github.com/ginpks/TRANSPORTATION/commit/964831befcb8653c7118f1bf617649fc67e14b28)): Drafted the initial version of the `problem.md` file.
+  1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/964831befcb8653c7118f1bf617649fc67e14b28): Drafted the initial version of the `problem.md` file.
 
 ## Ray Huang - Note-Taker
 - **Role**: Records detailed notes during meetings and ensures that action items are clearly communicated.
