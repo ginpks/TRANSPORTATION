@@ -2,20 +2,22 @@
 
 ## Problem Description
 
-As we are located in the middle of nowhere, whenever breaks come, most of the students want to travel to cities, such as Boston, NewYork, etc. However, not all of them have a car or someone to drive them, while some drive by themselves. Therefore, we propose an idea for these two types of students to share a ride together. 
+Since UMass Amherst is located in an area where transportation to cities such as Boston or New York is limited, many students seek transportation to these destinations during breaks. However, not everyone has a vehicle or someone to drive them, while some students travel alone. We propose an app to connect these two groups, facilitating ride-sharing and ensuring everyone can reach their destinations efficiently.
 
 ## Proposed Solution
 
-By listing users’ estimated time of departure and destination, other users can choose to contact and set up a shared ride together. In this way, user A can earn some extra money while user B can get a cheap ride to the destination with a way better experience than taking the bus. 
+By listing users’ estimated time of departure and destination, other users can choose to contact and set up a shared ride together. In this way, user A can earn some extra money while user B can get a cheap ride to their destination. This provides a much more enjoyable and convenient experience than say, taking public transportation. 
 
 Key features include:
 
-- **Ride posting**: postings from car owners who are ready to provide a ride or people who need one, Users who need a ride also can post information and the system can connect the different users who have the same destination and time to share a ride.
-- **Private messaging**: chat to connect with each other for ride details
-- **Location tracking**: provided map helps showcase the exact location for better communication
-- **Feedback form**: rate your ride experience and leave your comments 
+- **Ride posting**: Car owners and those in need of a ride can post their trip details. The system connects users with matching destinations and schedules for ride-sharing.
+- **Private messaging**: Users can chat to arrange ride details and coordinate plans.
+- **Location tracking**: Provided map helps showcase the exact location for better communication
+- **Feedback form**: Rate your ride experience and leave comments to help others make informed choices.
 
 ## Why This Matters
 
-Helping students in University of Massachusetts, Amherst, using our skill base is our honor, and it can be applied to other schools which are in rural areas as well. The purpose of this project also matches the vision of CICS: computing for the common good. 
+By facilitating transportation for students in need of it, we’re addressing a real need and fostering a sense of community. Not only can this initiative benefit UMass Amherst, but other rural schools as well. The purpose of this project aligns perfectly with the vision of CICS: computing for the common good. 
+
+
 
