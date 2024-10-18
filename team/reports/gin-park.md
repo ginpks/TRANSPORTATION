@@ -15,3 +15,8 @@
 - **Details**: Added a paragraph for "Why These Users Matter".
 - **Link to Commit**: [Commit on users.md](https://github.com/ginpks/TRANSPORTATION/commit/c6177a440f5db61355297ac2e527a18a468e2749)
 
+### October 17, 2024
+  - **Task**: Update `data.md`.
+  - **Details**: Added all information regarding data from the group google document.
+  - **Link to Commit**: [Commit on data.md](https://github.com/repo/commit1](https://github.com/ginpks/TRANSPORTATION/commit/3afc4d850f511cbcc192269aa9d9469caa7c0f53))
+
