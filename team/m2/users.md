@@ -2,7 +2,9 @@
 
 ## Primary Audience
 
+Our web application is designed for UMass undergraduate and graduate students, offering a convenient and budget-friendly rideshare solution. The primary audience includes students who often need transportation during breaks or long weekends, whether they're going home or traveling to nearby cities. Many students face challenges in finding affordable rides, especially if they don’t have a car. This platform bridges that gap by connecting two groups: students with cars willing to offer rides to those traveling in the same direction, and students without cars looking for transportation.
 
+By enabling users to split gas costs, the app makes travel more affordable and reduces the environmental impact through carpooling. Beyond cost-saving, it fosters a stronger campus community by encouraging students to collaborate, connect, and trust one another. The app simplifies the process of organizing shared rides, providing a safe and easy way for students to find and offer transportation, benefiting both drivers and passengers.
 
 ## User Needs
 
