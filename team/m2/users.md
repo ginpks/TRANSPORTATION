@@ -8,7 +8,9 @@ By enabling users to split gas costs, the app makes travel more affordable and r
 
 ## User Needs
 
+Our users are primarily students looking for a more affordable and convenient alternative to their transportation needs. Students without a car might need a ride to specific locations that other students are also traveling to, while those with cars can offer rides to help offset their expenses, such as gas or other ride-related costs. The app connects students to find reliable and economical transportation while providing opportunities for drivers to share their rides and lower overall costs.
 
+This mutually beneficial model allows students carpooling to agree on a set price for a ride, making it more budget-friendly for all parties involved. This arrangement not only reduces costs for passengers but also helps drivers offset gas contributions or a fixed ride charge. Overall, our web app aims to fulfill student's transportation needs by offering affordable and convenient travel options. 
 
 ## Why These Users Matter
 
