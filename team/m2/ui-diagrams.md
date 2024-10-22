@@ -1,7 +1,6 @@
 ## Description
 
-We have decided to make 7 posts in total: Log in page (including sign up page), main page, user profile page,
-chat page, post creating page for drivers, post creating page for passengers
+We have decided to make 7 posts in total: Log in page, Sign up page, Post information Page (main page), user profile page, chat page, post creating page (Drivers and Passengers), User type selection page (Optional)
 
 ## UI diagrams
 
@@ -9,13 +8,15 @@ The relative path to the pdf file of the drawn UI design is : team/m2/326 ui des
 
 ### Explanations of each diagram:
 - Login page: The login page is built for users to log into their own account using their UMass email. The purpose of using UMass email
-is to enable a better security and easier user identification since our application aims to provide a ridesharing platform for UMass students only. Users will also need their password to log in. In case the user is a new user, we also provide an account creation page, in which we will send verification emails to users, and ask them to create their own password.
+is to enable better security and easier user identification since our application aims to provide a ridesharing platform for UMass students only. Users will also need their password to log in. In case the user is a new user, we also provide a link to Sign up page, in which we will send verification emails to users, and ask them to create their own password.
 
-- Drive posting page: This is the main page for our website, where users will have a vision on 
+- Sign up Page: The sign up page is built for new users to create their own account using their UMass email. Users will need to input the verification code we sent to verify themselves before creating new accounts. Users will create their password for logging in later.
+
+- Post information page: This is the main page for our website, where users will have a vision on 
     -- `our logo`: they can use to return to this main page, 
     -- `search bar`: the user can use to search their desired locations,
-    -- `filter bar`: the users can use to filter the  desired time, location, available number of passengers, etc., 
-    -- `sort bar`: allows user to sort each postings by time, cost, and distance from their destination,
+    -- `filter bar`: the users can use to filter the  desired time, location, available number of passengers, etc, 
+    -- `sort bar`: allows user to sort each posting by time, cost, and distance from their destination,
     -- `postings list`: allows users to browse all the postings, if the user finds one they prefer, they can click the contact button to contact the user who posted,
     -- `profile`: shown with user's profile picture, it is used to allow user to access their profile page to edit and view their personal information,
     -- `chat`: allows user to access the Chat page,
