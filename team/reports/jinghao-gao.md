@@ -14,3 +14,8 @@
 - **Task**: Revise UI-digram.md for Draft 2
 - **Details**: Based on the finalized Draft 2's web structure, revise the features in UI-digram.md
 - **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/e1de67831966a81365f7494298231038a8b3d098
+
+### October 28, 2024
+- **Task**: Create main-page folder and skeleton files for the Front-End
+- **Details**: Create HTML, CSS and js files for main-page and build up a basic structure for HTML.
+- **Link to Commit**: 
