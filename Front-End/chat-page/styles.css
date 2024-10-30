@@ -1,0 +1,100 @@
+/* Set padding for the entire page and apply the Inter font family */
+body{
+    padding: 25px 50px;
+    font-family: inter;
+}
+
+/* Header styling */
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.webLogo{
+    font-size: 35px;
+    color:#881c1c;
+}
+.user-info{
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+.username{
+    font-size: 24px;
+}
+.profileIcon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #881c1c;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.45);
+}
+
+/* Search Bar Styling */
+.search-bar{
+    margin-top: 70px;
+}
+.search-input{
+    width: 20%;
+    height: 35px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: none; 
+    background-color: #DFDFDF;
+    font-size: 16px;
+}
+
+/* User-List-Container Styling */
+.user-list-container {
+    margin-top: 20px;
+    width: 20%;
+    height: 70vh;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+    border-bottom: 5px solid #881c1c;
+}
+
+/* Scrollbar Styling: NOT WORKING */
+.user-list-container::-webkit-scrollbar-thumb {
+    background-color: #881c1c;
+    border-radius: 10px;
+}
+
+.user{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 30px 20px;
+    background-color: #F4F4F4;
+    transition: background-color 0.2s, transform 0.2s ease-in-out;;
+    border-bottom: 1px solid #D9D9D9;
+}
+.user:hover{
+    background-color: #E9E9E9;
+    transform: scale(1.02);
+}
+.user-pic{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 25px;
+    width:55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #881c1c;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.45);
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+.user-name{
+    font-size: 20px;
+}
+
+
