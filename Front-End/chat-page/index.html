@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+<html lang="en"></html>
 <head>
-    <title>chat</title>
+    <title>URidec Chat</title>
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="scripts.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,43 @@
 
 <body>
 
-    <header> <!-- Header will contain logo and user profile -->
-        <h1> hello </h1>
+    <header class = "header"> <!-- Header will contain logo and user profile -->
+        <div class = "webLogo">URide Logo</div>
+        <div class = "user-info">
+            <div class = "username">username</div>
+            <div class = "profileIcon">U</div> 
     </header>
 
     <div class="chat-container"> <!-- All chat related components will  be contained here -->
-        <div class="user-search-bar"> <!-- Here, the user can search for a user to message-->
-        </div>
+        <form class="search-bar">
+            <input type="text" placeholder="Search..." class="search-input">
+        </form> <!-- Here, the user can search for a user to message-->
 
-        <div class="user-list-container"> <!-- the list of users (passengers/drivers) will be contained here -->
+        <div class="user-list-container" id = "container" > <!-- the list of users (passengers/drivers) will be contained here -->
+            <div class="user" id ="1">
+                <div class="user-pic">A</div>
+                <span class="user-name">Passenger A</span>
+            </div>
+            <div class="user" id ="2">
+                <div class="user-pic">L</div>
+                <span class="user-name">Passenger L</span>
+            </div>
+            <div class="user" id ="3">
+                <div class="user-pic">C</div>
+                <span class="user-name">Driver C</span>
+            </div>
+            <div class="user" id ="4">
+                <div class="user-pic">B</div>
+                <span class="user-name">Passenger B</span>
+            </div>
+            <div class="user" id ="5">
+                <div class="user-pic">Y</div>
+                <span class="user-name">Driver Y</span>
+            </div>
+            <div class="user" id ="6">
+                <div class="user-pic">D</div>
+                <span class="user-name">Passenger D</span>
+            </div>
         </div>
 
         <div class="messages-container"> <!-- all messages will be contained here-->
