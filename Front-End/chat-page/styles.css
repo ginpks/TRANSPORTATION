@@ -91,6 +91,7 @@ body{
     background-color: #881c1c;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.45);
     margin-right: 10px;
+    flex-shrink: 0;
 }
 .user-name{
     font-size: 20px;
