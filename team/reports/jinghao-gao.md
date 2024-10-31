@@ -18,4 +18,17 @@
 ### October 28, 2024
 - **Task**: Create main-page folder and skeleton files for the Front-End
 - **Details**: Create HTML, CSS and js files for main-page and build up a basic structure for HTML.
-- **Link to Commit**: 
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/7b844c73d8343cb7026dcc053889152c859667e7
+
+- **Task**: Merge pull request of the skeleton files
+- **Details**: Confirm and merge the files of the main page
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/8c42b853409976ad0f352f1668c49efed29d5aa1
+
+### October 31, 2024
+- **Task**: Main implement of main page UI
+- **Details**: Build up all the structure of it and set up the CSS for it
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/f6494d96017d22a28659ef216656fbf4a3cacbde
+
+- **Task**: Merge pull request of the main implement of main page UI
+- **Details**: Confirm and merge the files of the main page
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/ed526ca7792b1de8e5c5634de5ab08f0f20edd8b
