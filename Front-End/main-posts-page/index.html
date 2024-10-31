@@ -9,17 +9,15 @@
 <body>
 
     <header> <!-- Header will contain logo and user profile -->
-        <div style="height: 100px;">
-            <div style="float: left; width: 15%; background-color: #881c1c; text-align: center">
+        <div class="header-bar">
+            <div class="webLogo">
                 <h3> URide logo </h1>
             </div>
-    
-            <div style="float: right; width: 10%; background-color: white; text-align: center; vertical-align: middle">
-                <span style="margin: auto; top: 0; bottom: 0;"> profile image </span>
+            <div class="username">
+                Username
             </div>
-    
-            <div style="float: right; width: 10%; background-color: white; text-align: center">
-                <h5> Username </h5>
+            <div class="profile-icon">
+                <span style="margin: auto; top: 0; bottom: 0;"> <!-- profile image --> </span>
             </div>
         </div>
 
@@ -30,15 +28,14 @@
     <div class="main-body">
 
         <!-- Contains search and post functions -->
-        <div class="2nd-main-bar" style="height: 100px; border: 1px solid black;">
+        <div class="sec-main-bar">
 
             <!-- Here, the user can search for the posts of their destination-->
-            <div class="user-search-bar">
-                <span style="float: left; margin-left: 100px;">Search</span>
-            </div>
-
+            <form class="user-search-bar">
+                <input type="text" placeholder="Search..." class="search-input">
+            </form>
             <!-- This button will lead to the post creation page -->
-            <button class="post-button" style="float: right; margin-right: 100px;">
+            <button class="post-button">
                 POST
             </button>
 
@@ -47,18 +44,88 @@
             </div>
         </div>
 
-        <div class="posts-container">
-            <div style="height: 100px; border: 1px solid black;">
-                <div style="float: left; margin-left: 100px; border: 1px solid black;">
+        <div class="post-block-container">
+            <div class="fliter-sort-bar">
+                <div class="fliter">
                     Fliter
                 </div>
-                <div style="float: right; margin-right: 100px; border: 1px solid black;">
+                <div class="sort">
                     Sort
                 </div>                
             </div>
 
-            <div style="height: 500px; border: 1px solid black; background-color: #cdcdcd; margin: 30px;">
+            <div class="posts-list">
                 <!-- a series of posts are here-->
+                <div class="posts" id="1">
+                    <div class="posts-destination">
+                        <span class="post-information-title">
+                            To
+                        </span>
+                        <span class="post-information">
+                            Boston
+                        </span>
+                    </div>
+                    <div class="posts-starting-place">
+                        <span class="post-information-title">
+                            From
+                        </span>
+                        <span class="post-information">
+                            Umass
+                        </span>
+                    </div>
+                    <br/>
+                    <div class="posts-time">
+                        <span class="post-information-title">
+                            Time
+                        </span>
+                        <span class="post-information">
+                            10/30/2024 1PM
+                        </span>
+                    </div>
+                    <div class="passenger-capacity">
+                        <span class="post-information-title">
+                            Passenger <!-- Seats Available -->
+                        </span>
+                        <span class="post-information">
+                            2
+                        </span>
+                    </div>
+                    <div class="posts-luggage">
+                        <span class="post-information-title">
+                            Luggage <!-- (Available) -->
+                        </span>
+                        <span class="post-information">
+                            3
+                        </span>
+                    </div>
+                    <div class="posts-notes">
+                        <span class="post-information-title">
+                            Notes
+                        </span>
+                        <span class="post-information">
+                            
+                        </span>
+                    </div>
+                    
+                </div>
+                <div class="posts" id="2">
+
+                </div>
+                <div class="posts" id="3">
+
+                </div>
+                <div class="posts" id="4">
+
+                </div>
+                <div class="posts" id="5">
+
+                </div>
+                <div class="posts" id="6">
+
+                </div>
+                <div class="posts" id="7">
+
+                </div>
             </div>
         </div>
 
