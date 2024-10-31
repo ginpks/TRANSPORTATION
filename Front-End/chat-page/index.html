@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="scripts.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -16,10 +17,17 @@
             <div class = "profileIcon">U</div> 
     </header>
 
-    <div class="chat-container"> <!-- All chat related components will  be contained here -->
-        <form class="search-bar">
+    <div class="searchBar-and-selectedPassenger">
+        <form class="search-bar"> <!-- Here, the user can search for a user to message-->
             <input type="text" placeholder="Search..." class="search-input">
-        </form> <!-- Here, the user can search for a user to message-->
+        </form> 
+        <div class="selected-passenger">
+            <div class="user-pic" id="selected-user">A</div>
+            <h1>Passenger A</h1>
+        </div>
+    </div>
+
+    <div class="chat-container"> <!-- All chat related components will  be contained here -->
 
         <div class="user-list-container" id = "container" > <!-- the list of users (passengers/drivers) will be contained here -->
             <div class="user" id ="1">
@@ -28,7 +36,7 @@
             </div>
             <div class="user" id ="2">
                 <div class="user-pic">L</div>
-                <span class="user-name">Passenger L</span>
+                <span class="user-name">Passenger B</span>
             </div>
             <div class="user" id ="3">
                 <div class="user-pic">C</div>
@@ -46,10 +54,58 @@
                 <div class="user-pic">D</div>
                 <span class="user-name">Passenger D</span>
             </div>
+            <div class="user" id ="7">
+                <div class="user-pic">E</div>
+                <span class="user-name">Passenger E</span>
+            </div>
+            <div class="user" id ="8">
+                <div class="user-pic">F</div>
+                <span class="user-name">Passenger F</span>
+            </div>
         </div>
 
-        <div class="messages-container"> <!-- all messages will be contained here-->
+        <div class="messages-container"> <!-- all messaging components will be contained here-->
+            <div class="inbox"> <!-- user messages contained here-->
+                <!-- PLACEHOLDER MESSAGE FOR DEMONSTRATION -->
+                <div class="sent-message"> <!-- class for outgoing messages -->
+                    <p>Hi Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                </div>
+                <div class="received-message"> <!-- class for incoming messages -->
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+                </div>
+                <div class="sent-message"> <!-- class for outgoing messages -->
+                    <p>At vero eos et accusamus</p>
+                </div>
+                <div class="sent-message"> <!-- class for outgoing messages -->
+                    <p> odio dignissimos ducimu</p>
+                </div>
+                <div class="sent-message"> <!-- class for outgoing messages -->
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga</p>
+                </div>
+                <div class="received-message"> <!-- class for incoming messages -->
+                    <p>quisquam est, qui dolorem</p>
+                </div>
+                <div class="received-message"> <!-- class for incoming messages -->
+                    <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore,</p>
+                </div>
+
+                <div class="received-message"> <!-- class for incoming messages -->
+                    <p>apiente delectus, ut aut </p>
+                </div>
+
+                <div class="sent-message"> <!-- class for outgoing messages -->
+                    <p>Hi</p>
+                </div>
+                <div class="received-message"> <!-- class for incoming messages -->
+                    <p>Hello</p>
+                </div>
+            </div>
+
+            <div class="input-container"> <!-- input is contained here -->
+                <input type="text" placeholder="Message" id="chatInput">
+                <button class="send-button"><i class="material-icons">&#xe163;</i></button>
+            </div>
+
         </div>
     </div>
-
 </body>
