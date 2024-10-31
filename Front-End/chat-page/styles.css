@@ -1,28 +1,29 @@
+
 /* Set padding for the entire page and apply the Inter font family */
-body{
-    padding: 25px 50px;
+body {
+    padding: 2vh 3vw;
     font-family: inter;
 }
 
 /* Header styling */
-.header{
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.webLogo{
+.webLogo {
     font-size: 35px;
     color:#881c1c;
 }
-.user-info{
+.user-info {
     display: flex;
     align-items: center;
     gap: 10px
 }
-.username{
+.username {
     font-size: 24px;
 }
-.profileIcon{
+.profileIcon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,11 +37,14 @@ body{
 }
 
 /* Search Bar Styling */
-.search-bar{
-    margin-top: 70px;
+.search-bar {
+    display: flex;
+    margin-top: 5vh;
+    width: calc(100% - 50px);
+    max-width: 15vw;
 }
-.search-input{
-    width: 20%;
+.search-input {
+    width: 100%;
     height: 35px;
     padding: 20px;
     box-sizing: border-box;
@@ -52,21 +56,15 @@ body{
 
 /* User-List-Container Styling */
 .user-list-container {
-    margin-top: 20px;
-    width: 20%;
+    width: calc(100% - 50px);
+    max-width: 15vw;
     height: 70vh;
     background-color: #f4f4f4;
     overflow-y: auto;
-    border-bottom: 5px solid #881c1c;
+    border-top: 10px solid #881c1c;
 }
 
-/* Scrollbar Styling: NOT WORKING */
-.user-list-container::-webkit-scrollbar-thumb {
-    background-color: #881c1c;
-    border-radius: 10px;
-}
-
-.user{
+.user {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -75,11 +73,11 @@ body{
     transition: background-color 0.2s, transform 0.2s ease-in-out;;
     border-bottom: 1px solid #D9D9D9;
 }
-.user:hover{
+.user:hover {
     background-color: #E9E9E9;
     transform: scale(1.02);
 }
-.user-pic{
+.user-pic {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,8 +91,158 @@ body{
     margin-right: 10px;
     flex-shrink: 0;
 }
-.user-name{
+.user-name {
     font-size: 20px;
 }
 
+.inbox {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 72.5vh;
+    overflow-y: auto;
+    margin-left: 20px;
+    background-color: #F4F4F4;
+}
+
+/* style all scroll bars*/
+.inbox::-webkit-scrollbar, .user-list-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}   
+
+.inbox::-webkit-scrollbar-track, .user-list-container::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 50px;
+}
+
+.inbox::-webkit-scrollbar-thumb, .user-list-container::-webkit-scrollbar-thumb {
+    background: rgb(136, 28, 28);
+    border-radius: 5px;
+}
+
+.inbox::-webkit-scrollbar-thumb:hover, .user-list-container::-webkit-scrollbar-thumb:hover {
+  background: rgb(136, 28, 28, 0.4);
+}
+
+
+.chat-container {
+    display:flex;
+    margin-top: 20px;
+}
+
+.messages-container {
+    display:flex;
+    flex-direction: column;
+    height: 70vh;
+    width: 100%;
+    background-color: #F4F4F4;
+    margin-left: 20px;
+    border-radius: 15px;
+    border-top: #881c1c solid 10px;
+}
+
+
+/* incoming message styling*/
+.received-message {
+    display: flex;
+    vertical-align: top;
+    max-width: 45%;
+}
+
+
+.received-message p {
+    background-color: #881c1c;
+    box-shadow: rgb(0 0 0 / 25%) 0px 5px 5px 2px;
+}
+
+/* outgoing message styling */
+.sent-message {
+    max-width: 45%;
+    margin-right: 1.5rem;
+    align-self: flex-end;
+}
+
+.sent-message p {
+    background-color: rgb(136, 28, 28, 0.8);
+    box-shadow: rgb(0 0 0 / 25%) 0px 2px 5px 2px;
+    
+}
+
+.received-message p, .sent-message p {
+    overflow-wrap: break-word;
+    border-radius: 20px;
+    font-size: 1.2em;
+    color: white;
+    padding: 1rem 2rem;
+}
+
+
+
+/* styling message input */
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2vh;
+    width: 100%;
+    position: relative;
+}
+
+.input-container input {
+    height: 4vh;
+    font-size: 1.2em;
+    padding-left: 15px;
+    padding-right: 60px;
+    background-color: #e2e2e2;
+    border-style: none;
+    border-radius: 30px;
+    width: 65vw;
+}
+
+.input-container input:focus {
+    outline: none;
+}
+
+/* styling selected passenger */
+
+.searchBar-and-selectedPassenger {
+    display: flex;
+}
+
+.selected-passenger {
+    margin-left: 20px;
+    position: relative;
+}
+
+.selected-passenger h1 {
+    position: absolute; 
+    bottom: 0;        
+    left: 0;          
+    margin: 0 0 0 70px;     
+    width: max-content;
+}
+
+#selected-user {
+    position: absolute; 
+    bottom: 0;        
+    left: 0;          
+    margin: 0; 
+}
+
+.send-button {
+    background: none; 
+    border: none;
+    cursor: pointer;
+    position: absolute; 
+    right: 4vw; 
+}
+
+
+.send-button i {
+    color:#881c1c;
+}
+
+.send-button i:hover {
+    color: rgb(255, 255, 255, 0.8);
+}
 
