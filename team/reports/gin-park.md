@@ -20,3 +20,12 @@
   - **Details**: Added all information regarding data from the group google document.
   - **Link to Commit**: [Commit on data.md](https://github.com/ginpks/TRANSPORTATION/commit/3afc4d850f511cbcc192269aa9d9469caa7c0f53)
 
+### October 27, 2024
+  - **Task**: Update `Chat-Page/index.html`.
+  - **Details**: Added a skeleton HTML file for joint callaboration as well as repo folder organization.
+  - **Link to Commit**: [Commit on front-end/chat-page/index.html](https://github.com/ginpks/TRANSPORTATION/commit/de2c5b3253e9bb96251df31350efade6b1987c10)
+
+### October 31, 2024
+  - **Task**: Finish UI design for `chat-page index.html, styles.css, and scripts.js`.
+  - **Details**: Implemented the messaging box design and its corresponding css.
+  - **Link to Commit**: [Commit on Front-End/Chat-Page](https://github.com/ginpks/TRANSPORTATION/commit/b9bee088bc29f385528faae642abc3b3250cdc15)
