@@ -45,14 +45,42 @@
         </div>
 
         <div class="post-block-container">
-            <div class="fliter-sort-bar">
-                <div class="fliter">
-                    Fliter
-                </div>
-                <div class="sort">
-                    Sort
-                </div>                
+            <div class="filter-sort-bar">
+                <!-- Filter button using <summary> -->
+                <details>
+                    <summary class="filter-button">Filter</summary>
+                    <div class="modal-content">
+                        <h2>Filter Options</h2>
+        
+                        <!-- Filter by Date -->
+                        <label for="filter-date">Filter by Date:</label>
+                        <input type="date" id="filter-date">
+        
+                        <!-- Filter by Destination -->
+                        <label for="filter-from">From:</label>
+                        <input type="text" id="filter-from" placeholder="Enter origin">
+                        <label for="filter-to">To:</label>
+                        <input type="text" id="filter-to" placeholder="Enter destination">
+        
+                        <!-- Filter by Passenger Number -->
+                        <label for="passenger-number">Passenger Number:</label>
+                        <input type="number" id="passenger-number" min="1" max="10">
+        
+                        <!-- Filter by Baggage -->
+                        <label for="baggage-number">Baggage:</label>
+                        <select id="baggage-number">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </details>
+                <div class="sort">Sort</div>
             </div>
+        </div>       
 
             <div class="posts-list">
                 <!-- a series of posts are here-->
