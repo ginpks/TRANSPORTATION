@@ -11,13 +11,13 @@
     <header> <!-- Header will contain logo and user profile -->
         <div class="header-bar">
             <div class="webLogo">
-                <h3> URide logo </h1>
+                <span class="web-name"> URide logo </span>
             </div>
             <div class="username">
                 Username
             </div>
             <div class="profile-icon">
-                <span style="margin: auto; top: 0; bottom: 0;"> <!-- profile image --> </span>
+                <span> <!-- profile image --> </span>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
         <div class="post-block-container">
             <div class="fliter-sort-bar">
                 <div class="fliter">
-                    Fliter
+                    Filter
                 </div>
                 <div class="sort">
                     Sort
@@ -57,74 +57,203 @@
             <div class="posts-list">
                 <!-- a series of posts are here-->
                 <div class="posts" id="1">
-                    <div class="posts-destination">
-                        <span class="post-information-title">
-                            To
-                        </span>
-                        <span class="post-information">
-                            Boston
-                        </span>
+                    <div class="custom-post-line">
+                            <div class="custom-post-destination">
+                                <span class="custom-post-title">To</span>
+                                <span class="custom-post-detail">Boston</span>
+                            </div>
+                            <div class="custom-post-starting-place">
+                                <span class="custom-post-title">From</span>
+                                <span class="custom-post-detail">Umass</span>
+                            </div>
+                            <div class="custom-post-id">
+                                <span class="custom-post-title">Post 1</span>
+                            </div>
+
                     </div>
-                    <div class="posts-starting-place">
-                        <span class="post-information-title">
-                            From
-                        </span>
-                        <span class="post-information">
-                            Umass
-                        </span>
+                    <!-- Second Line: Time, Number, Luggage -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-time">
+                            <span class="custom-post-title">Time</span>
+                            <span class="custom-post-detail">10/30/2024 1PM</span>
+                        </div>
+                        <div class="custom-post-capacity">
+                            <span class="custom-post-title">Passenger</span>
+                            <span class="custom-post-detail">2</span>
+                        </div>
+                        <div class="custom-post-luggage">
+                            <span class="custom-post-title">Luggage</span>
+                            <span class="custom-post-detail">3</span>
+                        </div>
                     </div>
-                    <br/>
-                    <div class="posts-time">
-                        <span class="post-information-title">
-                            Time
-                        </span>
-                        <span class="post-information">
-                            10/30/2024 1PM
-                        </span>
-                    </div>
-                    <div class="passenger-capacity">
-                        <span class="post-information-title">
-                            Passenger <!-- Seats Available -->
-                        </span>
-                        <span class="post-information">
-                            2
-                        </span>
-                    </div>
-                    <div class="posts-luggage">
-                        <span class="post-information-title">
-                            Luggage <!-- (Available) -->
-                        </span>
-                        <span class="post-information">
-                            3
-                        </span>
-                    </div>
-                    <div class="posts-notes">
-                        <span class="post-information-title">
-                            Notes
-                        </span>
-                        <span class="post-information">
-                            
-                        </span>
+                    <!-- Third Line: Note -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-notes">
+                            <span class="custom-post-title">Notes</span>
+                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
+                        </div>
                     </div>
                     
                 </div>
+
                 <div class="posts" id="2">
+                    <!-- First Line: destination, starting place -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-destination">
+                            <span class="custom-post-title">To</span>
+                            <span class="custom-post-detail">Boston</span>
+                        </div>
+                        <div class="custom-post-starting-place">
+                            <span class="custom-post-title">From</span>
+                            <span class="custom-post-detail">Umass</span>
+                        </div>
+                    </div>
 
+                    <!-- Second Line: Time, Number, Luggage -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-time">
+                            <span class="custom-post-title">Time</span>
+                            <span class="custom-post-detail">10/30/2024 1PM</span>
+                        </div>
+                        <div class="custom-post-capacity">
+                            <span class="custom-post-title">Passenger</span>
+                            <span class="custom-post-detail">2</span>
+                        </div>
+                        <div class="custom-post-luggage">
+                            <span class="custom-post-title">Luggage</span>
+                            <span class="custom-post-detail">3</span>
+                        </div>
+                    </div>
+
+                    <!-- Third Line: Notes -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-notes">
+                            <span class="custom-post-title">Notes</span>
+                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="posts" id="3">
+                    <!-- First Line: destination, starting place -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-destination">
+                            <span class="custom-post-title">To</span>
+                            <span class="custom-post-detail">Boston</span>
+                        </div>
+                        <div class="custom-post-starting-place">
+                            <span class="custom-post-title">From</span>
+                            <span class="custom-post-detail">Umass</span>
+                        </div>
+                    </div>
 
+                    <!-- Second Line: Time, Number, Luggage -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-time">
+                            <span class="custom-post-title">Time</span>
+                            <span class="custom-post-detail">10/30/2024 1PM</span>
+                        </div>
+                        <div class="custom-post-capacity">
+                            <span class="custom-post-title">Passenger</span>
+                            <span class="custom-post-detail">2</span>
+                        </div>
+                        <div class="custom-post-luggage">
+                            <span class="custom-post-title">Luggage</span>
+                            <span class="custom-post-detail">3</span>
+                        </div>
+                    </div>
+
+                    <!-- Third Line: Notes -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-notes">
+                            <span class="custom-post-title">Notes</span>
+                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="posts" id="4">
+                    <!-- First Line: destination, starting place -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-destination">
+                            <span class="custom-post-title">To</span>
+                            <span class="custom-post-detail">Boston</span>
+                        </div>
+                        <div class="custom-post-starting-place">
+                            <span class="custom-post-title">From</span>
+                            <span class="custom-post-detail">Umass</span>
+                        </div>
+                    </div>
 
+                    <!-- Second Line: Time, Number, Luggage -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-time">
+                            <span class="custom-post-title">Time</span>
+                            <span class="custom-post-detail">10/30/2024 1PM</span>
+                        </div>
+                        <div class="custom-post-capacity">
+                            <span class="custom-post-title">Passenger</span>
+                            <span class="custom-post-detail">2</span>
+                        </div>
+                        <div class="custom-post-luggage">
+                            <span class="custom-post-title">Luggage</span>
+                            <span class="custom-post-detail">3</span>
+                        </div>
+                    </div>
+
+                    <!-- Third Line: Note -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-notes">
+                            <span class="custom-post-title">Notes</span>
+                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="posts" id="5">
 
                 </div>
+
                 <div class="posts" id="6">
 
                 </div>
-                <div class="posts" id="7">
 
+                <div class="posts" id="7">
+                    <!-- First Line: destination, starting place -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-destination">
+                            <span class="custom-post-title">To</span>
+                            <span class="custom-post-detail">Boston</span>
+                        </div>
+                        <div class="custom-post-starting-place">
+                            <span class="custom-post-title">From</span>
+                            <span class="custom-post-detail">Umass</span>
+                        </div>
+                    </div>
+
+                    <!-- Second Line: Time, Number, Luggage -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-time">
+                            <span class="custom-post-title">Time</span>
+                            <span class="custom-post-detail">10/30/2024 1PM</span>
+                        </div>
+                        <div class="custom-post-capacity">
+                            <span class="custom-post-title">Passenger</span>
+                            <span class="custom-post-detail">2</span>
+                        </div>
+                        <div class="custom-post-luggage">
+                            <span class="custom-post-title">Luggage</span>
+                            <span class="custom-post-detail">3</span>
+                        </div>
+                    </div>
+
+                    <!-- Third Line: Note -->
+                    <div class="custom-post-line">
+                        <div class="custom-post-notes">
+                            <span class="custom-post-title">Notes</span>
+                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -133,3 +262,29 @@
     </div>
 
 </body>
+
+<footer class="page-footer">
+    <div class="footer-content">
+        <div class="footer-section company-info">
+            <h4>URide</h4>
+            <p>Providing ride-sharing solutions for university students. Your go-to for easy and safe rides.</p>
+        </div>
+        <div class="footer-section quick-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <!-- <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li> -->
+            </ul>
+        </div>
+        <div class="footer-section contact-info">
+            <h4>Contact Us</h4>
+            <p>Email: support@uride.com</p>
+            <p>Phone: +1 413-456-7890</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 URide. All Rights Reserved.</p>
+    </div>
+</footer>
