@@ -53,11 +53,33 @@ body {
 }
 
 .tab-content input {
-    width: 100%;
+    width: 70%;
     padding: 8px;
     margin-top: 5px;
 }
 
+.inline-inputs {
+    display: flex;
+    gap: 5px; 
+    width: 75%;
+}
+
+.inline-inputs input[type="time"] {
+    flex: 1; /* Make both inputs the same width */
+}
+.inline-inputs input[type="date"] {
+    flex: 1; /* Make both inputs the same width */
+}
+
+#extraInfo {
+    width: 70%;
+    min-height: 25px;
+    padding: 8px;
+    resize: none; 
+    overflow-y: hidden; /* Hide scrollbar */
+}
+
+
 .small-input {
-    width: 50px;
+    width: 25px;
 }
