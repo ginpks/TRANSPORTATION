@@ -27,7 +27,8 @@ function savePost(type) {
         postData = {
             from: document.getElementById('from').value,
             destination: document.getElementById('destination').value,
-            time: document.getElementById('time').value,
+            time: document.getElementById('Time').value,
+            date: document.getElementById('date').value,
             people: document.getElementById('people').value,
             extraInfo: document.getElementById('extraInfo').value
         };
@@ -35,12 +36,13 @@ function savePost(type) {
         postData = {
             from: document.getElementById('fromDriver').value,
             destination: document.getElementById('destinationDriver').value,
-            time: document.getElementById('timeDriver').value,
+            time: document.getElementById('TimeDriver').value,
+            date: document.getElementById('dateDriver').value,
             availableSeats: document.getElementById('availableSeats').value,
-            extraInfo: document.getElementById('extraInfo').value
+            extraInfo: document.getElementById('extraInfoDriver').value
         };
     }
-
+    console.log(postData);
     clearFormFields(type);
 }
 
@@ -48,14 +50,16 @@ function clearFormFields(type) {
     if (type === 'passenger') {
         document.getElementById('from').value = '';
         document.getElementById('destination').value = '';
-        document.getElementById('time').value = '';
+        document.getElementById('Time').value = '';
+        document.getElementById('date').value = '';
         document.getElementById('people').value = '';
         document.getElementById('extraInfo').value = '';
     } else if (type === 'driver') {
         document.getElementById('fromDriver').value = '';
         document.getElementById('destinationDriver').value = '';
-        document.getElementById('timeDriver').value = '';
+        document.getElementById('TimeDriver').value = '';
+        document.getElementById('dateDriver').value = '';
         document.getElementById('availableSeats').value = '';
-        document.getElementById('extraInfo').value = '';
+        document.getElementById('extraInfoDriver').value = '';
     }
 }

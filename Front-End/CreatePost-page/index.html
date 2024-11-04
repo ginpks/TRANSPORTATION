@@ -40,11 +40,11 @@
             </div>
             <div class="tab-content">
                 <label for="Extra Info">Extra Info</label>
-                <textarea id="extraInfo" name="extraInfo" placeholder="Add extra information here..." oninput="autoExpand(this)"></textarea>
+                <textarea id="extraInfo" name="extraInfo" placeholder="Add extra information here..."></textarea>
             </div>
             <div class="tab-content">
                 <label for="post">Create Post</label>
-                <input type="button" value="Post Ride!" onclick="SavePost('passenger')">
+                <input type="button" value="Post Ride!" onclick="savePost('passenger')">
             </div>
         </div>
 
@@ -61,8 +61,8 @@
             <div class="tab-content">
                 <label for="Time">Time/Date</label>
                 <div class="inline-inputs">
-                    <input type="time" id="Time" name="Time">
-                    <input type="date" id="date" name="date">
+                    <input type="time" id="TimeDriver" name="Time">
+                    <input type="date" id="dateDriver" name="date">
                 </div>
             </div>
             <div class="tab-content">
@@ -71,14 +71,14 @@
             </div>
             <div class="tab-content">
                 <label for="Extra Info">Extra Info</label>
-                <textarea id="extraInfo" name="extraInfo" placeholder="Add extra information here..." oninput="autoExpand(this)"></textarea>
+                <textarea id="extraInfoDriver" name="extraInfo" placeholder="Add extra information here..."></textarea>
             </div>
             <div class="tab-content">
                 <label for="post">Create Post</label>
-                <input type="button" value="Post Ride!" onclick="SavePost('driver')">
+                <input type="button" value="Post Ride!" onclick="savePost('driver')">
             </div>
         
-        </div>
+        </div>    
     </div>
 </body>
 

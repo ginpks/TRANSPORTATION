@@ -78,6 +78,13 @@ body {
     resize: none; 
     overflow-y: hidden; /* Hide scrollbar */
 }
+#extraInfoDriver {
+    width: 70%;
+    min-height: 25px;
+    padding: 8px;
+    resize: none; 
+    overflow-y: hidden; /* Hide scrollbar */
+}
 
 
 .small-input {
