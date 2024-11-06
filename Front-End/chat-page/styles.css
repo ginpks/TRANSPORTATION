@@ -14,11 +14,13 @@ body {
 .webLogo {
     font-size: 35px;
     color:#881c1c;
+    cursor: pointer;
 }
 .user-info {
     display: flex;
     align-items: center;
-    gap: 10px
+    gap: 10px;
+    cursor: pointer;
 }
 .username {
     font-size: 24px;
@@ -61,7 +63,9 @@ body {
     height: 70vh;
     background-color: #f4f4f4;
     overflow-y: auto;
+    overflow-x: hidden;
     border-top: 10px solid #881c1c;
+    border-radius: 10px;
 }
 
 .user {
@@ -70,7 +74,7 @@ body {
     cursor: pointer;
     padding: 30px 20px;
     background-color: #F4F4F4;
-    transition: background-color 0.2s, transform 0.2s ease-in-out;;
+    transition: background-color 0.2s, transform 0.2s ease-in-out;
     border-bottom: 1px solid #D9D9D9;
 }
 .user:hover {
@@ -212,6 +216,7 @@ body {
 .selected-passenger {
     margin-left: 20px;
     position: relative;
+    cursor: pointer;
 }
 
 .selected-passenger h1 {
