@@ -28,4 +28,19 @@ document.querySelector('#chatInput').addEventListener('keydown', (event) => {
   }
 });
 
+//search function
+const searchInput = document.querySelector('#searchInput'); 
+const userList = document.querySelector('.user-list-container');
+searchInput.addEventListener('input',function(){
+  const token = searchInput.value.toLowerCase();
+  const users = userList.querySelectorAll('.user');
+  users.forEach((user) => {
+    const userName = user.querySelector('.user-name').textContent.toLowerCase();
+    if(userName.includes(token)){
+      user.style.display = '';
+    }else{
+      user.style.display = 'none';
+    }
+  })
+});
 
