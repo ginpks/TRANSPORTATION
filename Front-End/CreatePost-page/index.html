@@ -8,6 +8,21 @@
 </head>
 
 <body>
+    <header> <!-- Header will contain logo and user profile -->
+        <div class="header-bar">
+            <div class="webLogo" onclick="window.location.href = '../main-posts-page/index.html';">
+                <span class="web-name"> URide logo </span>
+            </div>
+            <div class="username">
+                Username
+            </div>
+            <div class="profile-icon">
+                <span> <!-- profile image --> </span>
+            </div>
+        </div>
+
+
+    </header>
     <div class="container">
 
         <div class="logo">URide Create a Post</div>
@@ -44,7 +59,7 @@
             </div>
             <div class="tab-content">
                 <label for="post">Create Post</label>
-                <input type="button" value="Post Ride!" onclick="savePost('passenger')">
+                <input type="button" value="Post Ride!" id="post-passenger" onclick="savePost('passenger')">
             </div>
         </div>
 
@@ -80,6 +95,7 @@
         
         </div>    
     </div>
+
 </body>
 
 </html>
