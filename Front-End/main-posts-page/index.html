@@ -2,7 +2,7 @@
 <head>
     <title>Main Page</title>
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="scripts.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -35,7 +35,7 @@
                 <input type="text" placeholder="Search..." class="search-input">
             </form>
             <!-- This button will lead to the post creation page -->
-            <button class="post-button">
+            <button class="post-button" onclick="window.location.href = '../CreatePost-page/index.html';">
                 POST
             </button>
 
@@ -45,8 +45,8 @@
         </div>
 
         <div class="post-block-container">
-            <div class="fliter-sort-bar">
-                <div class="fliter">
+            <div class="filter-sort-bar">
+                <div class="filter">
                     Filter
                 </div>
                 <div class="sort">
@@ -56,48 +56,10 @@
 
             <div class="posts-list">
                 <!-- a series of posts are here-->
-                <div class="posts" id="1">
-                    <div class="custom-post-line">
-                            <div class="custom-post-destination">
-                                <span class="custom-post-title">To</span>
-                                <span class="custom-post-detail">Boston</span>
-                            </div>
-                            <div class="custom-post-starting-place">
-                                <span class="custom-post-title">From</span>
-                                <span class="custom-post-detail">Umass</span>
-                            </div>
-                            <div class="custom-post-id">
-                                <span class="custom-post-title">Post 1</span>
-                            </div>
+                <!-- Dynamic posts will be injected here by JavaScript -->
 
-                    </div>
-                    <!-- Second Line: Time, Number, Luggage -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-time">
-                            <span class="custom-post-title">Time</span>
-                            <span class="custom-post-detail">10/30/2024 1PM</span>
-                        </div>
-                        <div class="custom-post-capacity">
-                            <span class="custom-post-title">Passenger</span>
-                            <span class="custom-post-detail">2</span>
-                        </div>
-                        <div class="custom-post-luggage">
-                            <span class="custom-post-title">Luggage</span>
-                            <span class="custom-post-detail">3</span>
-                        </div>
-                    </div>
-                    <!-- Third Line: Note -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-notes">
-                            <span class="custom-post-title">Notes</span>
-                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
-                        </div>
-                    </div>
-                    
-                </div>
-
-                <div class="posts" id="2">
-                    <!-- First Line: destination, starting place -->
+                <!-- <div class="posts" id="2">
+                    //First Line: destination, starting place
                     <div class="custom-post-line">
                         <div class="custom-post-destination">
                             <span class="custom-post-title">To</span>
@@ -109,7 +71,7 @@
                         </div>
                     </div>
 
-                    <!-- Second Line: Time, Number, Luggage -->
+                    //Second Line: Time, Number, Luggage
                     <div class="custom-post-line">
                         <div class="custom-post-time">
                             <span class="custom-post-title">Time</span>
@@ -125,136 +87,14 @@
                         </div>
                     </div>
 
-                    <!-- Third Line: Notes -->
+                    //Third Line: Notes
                     <div class="custom-post-line">
                         <div class="custom-post-notes">
                             <span class="custom-post-title">Notes</span>
                             <span class="custom-post-detail notes-detail">Some additional notes here...</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="posts" id="3">
-                    <!-- First Line: destination, starting place -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-destination">
-                            <span class="custom-post-title">To</span>
-                            <span class="custom-post-detail">Boston</span>
-                        </div>
-                        <div class="custom-post-starting-place">
-                            <span class="custom-post-title">From</span>
-                            <span class="custom-post-detail">Umass</span>
-                        </div>
-                    </div>
-
-                    <!-- Second Line: Time, Number, Luggage -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-time">
-                            <span class="custom-post-title">Time</span>
-                            <span class="custom-post-detail">10/30/2024 1PM</span>
-                        </div>
-                        <div class="custom-post-capacity">
-                            <span class="custom-post-title">Passenger</span>
-                            <span class="custom-post-detail">2</span>
-                        </div>
-                        <div class="custom-post-luggage">
-                            <span class="custom-post-title">Luggage</span>
-                            <span class="custom-post-detail">3</span>
-                        </div>
-                    </div>
-
-                    <!-- Third Line: Notes -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-notes">
-                            <span class="custom-post-title">Notes</span>
-                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="posts" id="4">
-                    <!-- First Line: destination, starting place -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-destination">
-                            <span class="custom-post-title">To</span>
-                            <span class="custom-post-detail">Boston</span>
-                        </div>
-                        <div class="custom-post-starting-place">
-                            <span class="custom-post-title">From</span>
-                            <span class="custom-post-detail">Umass</span>
-                        </div>
-                    </div>
-
-                    <!-- Second Line: Time, Number, Luggage -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-time">
-                            <span class="custom-post-title">Time</span>
-                            <span class="custom-post-detail">10/30/2024 1PM</span>
-                        </div>
-                        <div class="custom-post-capacity">
-                            <span class="custom-post-title">Passenger</span>
-                            <span class="custom-post-detail">2</span>
-                        </div>
-                        <div class="custom-post-luggage">
-                            <span class="custom-post-title">Luggage</span>
-                            <span class="custom-post-detail">3</span>
-                        </div>
-                    </div>
-
-                    <!-- Third Line: Note -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-notes">
-                            <span class="custom-post-title">Notes</span>
-                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="posts" id="5">
-
-                </div>
-
-                <div class="posts" id="6">
-
-                </div>
-
-                <div class="posts" id="7">
-                    <!-- First Line: destination, starting place -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-destination">
-                            <span class="custom-post-title">To</span>
-                            <span class="custom-post-detail">Boston</span>
-                        </div>
-                        <div class="custom-post-starting-place">
-                            <span class="custom-post-title">From</span>
-                            <span class="custom-post-detail">Umass</span>
-                        </div>
-                    </div>
-
-                    <!-- Second Line: Time, Number, Luggage -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-time">
-                            <span class="custom-post-title">Time</span>
-                            <span class="custom-post-detail">10/30/2024 1PM</span>
-                        </div>
-                        <div class="custom-post-capacity">
-                            <span class="custom-post-title">Passenger</span>
-                            <span class="custom-post-detail">2</span>
-                        </div>
-                        <div class="custom-post-luggage">
-                            <span class="custom-post-title">Luggage</span>
-                            <span class="custom-post-detail">3</span>
-                        </div>
-                    </div>
-
-                    <!-- Third Line: Note -->
-                    <div class="custom-post-line">
-                        <div class="custom-post-notes">
-                            <span class="custom-post-title">Notes</span>
-                            <span class="custom-post-detail notes-detail">Some additional notes here...</span>
-                        </div>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -288,3 +128,4 @@
         <p>&copy; 2024 URide. All Rights Reserved.</p>
     </div>
 </footer>
+<script type="module" src="scripts.js"></script>

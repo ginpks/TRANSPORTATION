@@ -20,11 +20,12 @@ function switchTab(tab) {
     }
 }
 
-function savePost(type) {
+// Modify savePost function to store data in IndexedDB
+export function savePost(type) {
     let postData;
-    //grab data from post and save it to an object to be saved (postData)
     if (type === 'passenger') {
         postData = {
+            type: 'passenger',
             from: document.getElementById('from').value,
             destination: document.getElementById('destination').value,
             time: document.getElementById('Time').value,
@@ -34,6 +35,7 @@ function savePost(type) {
         };
     } else if (type === 'driver') {
         postData = {
+            type: 'driver',
             from: document.getElementById('fromDriver').value,
             destination: document.getElementById('destinationDriver').value,
             time: document.getElementById('TimeDriver').value,
@@ -42,9 +44,11 @@ function savePost(type) {
             extraInfo: document.getElementById('extraInfoDriver').value
         };
     }
-    console.log(postData);
+
+    storePostInDB(postData);
     clearFormFields(type);
 }
+
 
 function clearFormFields(type) {
     if (type === 'passenger') {
@@ -63,3 +67,50 @@ function clearFormFields(type) {
         document.getElementById('extraInfoDriver').value = '';
     }
 }
+
+// IndexedDB setup
+export function openDatabase() {
+    return new Promise((resolve, reject) => {
+        console.log("trying to open database...");
+        const request = indexedDB.open('PostDatabase', 1);
+        
+        request.onupgradeneeded = (event) => {
+            console.log("database upgrading...");
+            const db = event.target.result;
+            if (!db.objectStoreNames.contains('posts')) {
+                db.createObjectStore('posts', { keyPath: 'id', autoIncrement: true });
+                console.log("create 'posts' data stored successfully");
+            }
+        };
+        
+        request.onsuccess = (event) => {
+            console.log("open database successfully");
+            resolve(event.target.result);
+        };
+        
+        request.onerror = (event) => {
+            console.error('fail to open IndexedDB: ' + event.target.errorCode);
+            reject('Error opening IndexedDB: ' + event.target.errorCode);
+        };
+    });
+}
+
+function storePostInDB(postData) {
+    console.log("ready to store data to IndexedDB...", postData);
+    openDatabase().then((db) => {
+        const transaction = db.transaction('posts', 'readwrite');
+        const store = transaction.objectStore('posts');
+        store.add(postData);
+        transaction.oncomplete = () => {
+            console.log('Post saved to IndexedDB successfully!');
+        };
+        transaction.onerror = (event) => {
+            console.error('Error saving post to IndexedDB:', event.target.error);
+        };
+    }).catch((error) => {
+        console.error('fail to open database to store post 出错:', error);
+    });
+}
+
+document.querySelector('#post-passenger').addEventListener('click', savePost('passenger'));
+window.savePost = savePost;
