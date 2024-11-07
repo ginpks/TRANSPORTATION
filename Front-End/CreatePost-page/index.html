@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<head>
+    <title>URide</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header> <!-- Header will contain logo and user profile -->
+        <div class="header-bar">
+            <div class="webLogo" onclick="window.location.href = '../main-posts-page/index.html';">
+                <span class="web-name"> URide logo </span>
+            </div>
+            <div class="username">
+                Username
+            </div>
+            <div class="profile-icon">
+                <span> <!-- profile image --> </span>
+            </div>
+        </div>
+
+
+    </header>
+    <div class="container">
+
+        <div class="logo">URide Create a Post</div>
+
+        <div class="tabs">
+            <div class="tab active" id="passenger-tab" onclick="switchTab('passenger')">Passengers</div>
+            <div class="tab" id="driver-tab" onclick="switchTab('driver')">Drivers</div>
+        </div> 
+
+        <div class="tab-box" id="passenger-post">
+
+            <div class="tab-content">
+                <label for="from">From</label>
+                <input type="text" id="from" name="from">
+            </div>
+            <div class="tab-content">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="destination">
+            </div>
+            <div class="tab-content">
+                <label for="Time">Time/Date</label>
+                <div class="inline-inputs">
+                    <input type="time" id="Time" name="Time">
+                    <input type="date" id="date" name="date">
+                </div>
+            </div>
+            <div class="tab-content">
+                <label for="people">People</label>
+                <input type="text" id="people" name="people" class="small-input">
+            </div>
+            <div class="tab-content">
+                <label for="Extra Info">Extra Info</label>
+                <textarea id="extraInfo" name="extraInfo" placeholder="Add extra information here..."></textarea>
+            </div>
+            <div class="tab-content">
+                <label for="post">Create Post</label>
+                <input type="button" value="Post Ride!" id="post-passenger" onclick="savePost('passenger')">
+            </div>
+        </div>
+
+        <div class="tab-box" id="driver-post" style="display: none;">
+        
+            <div class="tab-content">
+                <label for="fromDriver">From</label>
+                <input type="text" id="fromDriver" name="fromDriver">
+            </div>
+            <div class="tab-content">
+                <label for="destinationDriver">Destination</label>
+                <input type="text" id="destinationDriver" name="destinationDriver">
+            </div>
+            <div class="tab-content">
+                <label for="Time">Time/Date</label>
+                <div class="inline-inputs">
+                    <input type="time" id="TimeDriver" name="Time">
+                    <input type="date" id="dateDriver" name="date">
+                </div>
+            </div>
+            <div class="tab-content">
+                <label for="availableSeats">Available Seats</label>
+                <input type="text" id="availableSeats" name="availableSeats" class="small-input">
+            </div>
+            <div class="tab-content">
+                <label for="Extra Info">Extra Info</label>
+                <textarea id="extraInfoDriver" name="extraInfo" placeholder="Add extra information here..."></textarea>
+            </div>
+            <div class="tab-content">
+                <label for="post">Create Post</label>
+                <input type="button" value="Post Ride!" onclick="savePost('driver')">
+            </div>
+        
+        </div>    
+    </div>
+
+</body>
+
+</html>

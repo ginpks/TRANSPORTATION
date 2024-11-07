@@ -1,0 +1,161 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-bar{
+    display: flex;
+    height: 60px;
+    /* height: 3vw; */
+    justify-content: space-between; /* make sure proper dispute in different width */
+    /* padding: 0 5%; */
+}
+.webLogo{
+    float: left;
+    display: flex;
+    width: 30vw;
+    height: 100%;
+    background-color: #881c1c;
+    color:#fff;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    line-height: normal;
+    cursor: pointer;
+}
+.web-name{
+    width: 10vw;
+
+    margin: 0 0 0 0;
+    color:#fff;
+    text-align: center;
+    font-size: 1.1em;
+    line-height: normal;
+}
+.username{
+    /* width: 10%;
+    height: 60px; */
+    flex-grow: 1; /* auto takes up the remain space */
+    height: 100%;
+    margin-left: 70vw;
+    margin-right: 1vw;
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1em;
+    line-height: 100%;
+}
+.profile-icon{
+    display: flex;
+    width: 8vw;
+    height: 8vw;
+    aspect-ratio: 1 / 1;
+    max-width: 50px;
+    max-height: 50px;
+    margin: 0.5vw 2vw 0 2vw;
+    border-radius: 50%;
+    background-color: #881c1c;
+    color: #881c1c;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+}
+
+/* input form styling*/
+.container {
+    width: 500px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    color: #881c1c;
+    font-weight: bold;
+    text-align: left;
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+}
+
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tab:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+
+.tab.active {
+    font-weight: bold;
+    border-bottom: 2px solid #881c1c;
+}
+
+.tab-box {
+    background-color: #d3d3d3;
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+
+.tab-content {
+    margin-bottom: 15px;
+}
+
+.tab-content label {
+    display: block;
+    font-weight: bold;
+}
+
+.tab-content input {
+    width: 70%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+.inline-inputs {
+    display: flex;
+    gap: 5px; 
+    width: 75%;
+}
+
+.inline-inputs input[type="time"] {
+    flex: 1; /* Make both inputs the same width */
+}
+.inline-inputs input[type="date"] {
+    flex: 1; /* Make both inputs the same width */
+}
+
+#extraInfo {
+    width: 70%;
+    min-height: 25px;
+    padding: 8px;
+    resize: none; 
+    overflow-y: hidden; /* Hide scrollbar */
+}
+#extraInfoDriver {
+    width: 70%;
+    min-height: 25px;
+    padding: 8px;
+    resize: none; 
+    overflow-y: hidden; /* Hide scrollbar */
+}
+
+
+.small-input {
+    width: 25px;
+}

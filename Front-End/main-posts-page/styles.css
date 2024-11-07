@@ -74,6 +74,7 @@ body{
     cursor: pointer;
 }
 
+/* Sec bar styling: search & post */
 .sec-main-bar{
     display: flex;
     /* width: 90%; */
@@ -123,6 +124,8 @@ body{
     border-bottom: 1px solid #D9D9D9;
 }
 
+
+/* Third bar styling: filter & sort */
 .filter-sort-bar{
     display: flex;
     justify-content: space-between;
@@ -153,7 +156,7 @@ body{
     font-size: 18px;
 }
 
-.filter:hover {
+.filter:hover{
     background-color: #cdcdcd;
     transform: scale(1.02);
 }
@@ -325,6 +328,13 @@ body{
     background-color: #cdcdcd;
   }
   
+/* old sort styling */
+/* .sort:hover{
+    background-color: #cdcdcd;
+    transform: scale(1.02);
+    display: block;
+} */
+
 .posts-list{
     display: flex;
     flex-wrap: wrap;
@@ -403,6 +413,8 @@ body{
     border: #555 solid 1px;
 }
 
+
+/* Footer styling */
 .page-footer {
     background-color: #F4F4F4;
     color: #000000;

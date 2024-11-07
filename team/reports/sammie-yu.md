@@ -26,4 +26,9 @@
 - **Task**: Fixed CSS for user picture in user-list-container strcuture. 
 - **Details**: Fixed CSS for class = "user-pic" to let it be responsive to dynamic layout. 
 - **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/a8f0fa6aaccf73911ab63c1c6e2c5dfd0d797da4
+
+### November 05, 2024
+- **Task**: Implemented search function for chatpage and fixed bug. 
+- **Details**: implemented function for search bar and fixed user-list-container overflow issue.
+- **Link to Commit**https://github.com/ginpks/TRANSPORTATION/commit/f6f7867567a6841b33261d4a9024869b09eb1c22
   
