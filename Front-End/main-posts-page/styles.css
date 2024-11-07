@@ -124,6 +124,7 @@ body{
     border-bottom: 1px solid #D9D9D9;
 }
 
+
 /* Third bar styling: filter & sort */
 .filter-sort-bar{
     display: flex;
@@ -133,43 +134,206 @@ body{
     border: 1px solid black;
     align-items: center;
 }
-.filter{
 
+/* Filter Button */
+.filter-sort-bar {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    border: 1px solid black;
+    align-items: center;
+}
+
+.filter {
     width: 300px;
     height: 50px;
     margin-left: 50px;
     border: 1px solid black;
     background-color: #DFDFDF;
     cursor: pointer;
-    align-items: center;
-    justify-content: center;
     text-align: center;
     line-height: 50px;
     font-size: 18px;
 }
+
 .filter:hover{
     background-color: #cdcdcd;
     transform: scale(1.02);
 }
-.sort{
-    width: 300px;
-    height: 50px;
-    margin-right: 2%;
-    border: 1px solid black;
-    background-color: #DFDFDF;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    line-height: 50px;
-    font-size: 18px;
+
+/* Modal hidden by default */
+.modal {
+    display: none;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 75%;
+    max-height: 75%;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 20px;
 }
-.sort:hover{
-    background-color: #cdcdcd;
-    transform: scale(1.02);
+
+/* Show modal when JavaScript adds 'show' class */
+.modal.show {
     display: block;
 }
 
+/* Modal Content */
+.modal-content {
+    padding: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Filter Section Styles */
+.filter-section {
+    margin: 15px 0;
+}
+
+.filter-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.toggle {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border: 1px solid #000;
+}
+
+/* Style for the time range controls */
+.time-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.time-adjust { /* Button style */
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: gray;
+}
+
+.time-adjust:hover { /* Hover effect */
+    color: #881c1c;
+}
+
+.time-range input[type="text"] { /* Input field style */
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+    border: 2px solid #881c1c;
+    border-radius: 5px;
+    color: #333;
+    background-color: #fff;
+    outline: none;
+}
+
+.separator { /* Separator styling */
+    font-size: 24px;
+    color: gray;
+}
+
+/* Type Selection Buttons */
+.type-selection {
+    display: flex;
+    gap: 10px;
+}
+
+.type-button {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #333;
+}
+
+.type-button.selected {
+    background-color: #881c1c;
+    color: #fff;
+    border-color: #881c1c;
+}
+
+/* Range Slider with Labels */
+.range-container {
+    position: relative;
+    margin-top: 10px;
+}
+
+.range-container input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    margin: 0;
+    appearance: none;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+.range-container input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #881c1c;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.range-container .range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+}
+
+.range-container .range-labels span.highlighted {
+    color: #881c1c;
+    font-weight: bold;
+}
+
+.sort select {
+    display: flex;
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    padding: 5px;
+    margin-right: 50px;
+    background-color: #dfdfdf;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .sort select:hover {
+    background-color: #cdcdcd;
+  }
+  
+/* old sort styling */
+/* .sort:hover{
+    background-color: #cdcdcd;
+    transform: scale(1.02);
+    display: block;
+} */
 
 .posts-list{
     display: flex;
@@ -308,8 +472,8 @@ body{
     }
 
     .username {
-        margin: 1em 0;
-        font-size: 1.2em;
+        margin-top: 100px;
+        font-size: 0.8em;
     }
 
     .post-button {

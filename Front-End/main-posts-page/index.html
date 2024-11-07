@@ -1,64 +1,172 @@
 <!DOCTYPE html>
 <head>
-    <title>Main Page</title>
-    <link rel="stylesheet" href="styles.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="scripts.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
+  <header>
+    <!-- Header will contain logo and user profile -->
+    <div class="header-bar">
+      <div class="webLogo">
+        <span class="web-name"> URide logo </span>
+      </div>
+      <div class="username">Username</div>
+      <div class="profile-icon">
+        <span> <!-- profile image --> </span>
+      </div>
+    </div>
+  </header>
 
-    <header> <!-- Header will contain logo and user profile -->
-        <div class="header-bar">
-            <div class="webLogo">
-                <span class="web-name"> URide logo </span>
+  <!-- All functional related components will be contained here -->
+  <div class="main-body">
+    
+    <!-- Contains search and post functions -->
+    <div class="sec-main-bar">
+      <!-- Here, the user can search for the posts of their destination-->
+      <form class="user-search-bar">
+        <input type="text" placeholder="Search..." class="search-input" />
+      </form>
+      <!-- This button will lead to the post creation page -->
+      <button class="post-button" onclick="window.location.href = '../CreatePost-page/index.html';">POST</button>
+
+      <!-- Here shows users current location or other details -->
+      <div class="status-info-container"></div>
+    </div>
+    
+    <div class="post-block-container">
+      <div class="filter-sort-bar">
+        <!-- Filter button that triggers the popup -->
+        <button id="filter-button" class="filter">Filter</button>
+        <div class="sort">
+            <select id="sort-options" onchange="sortPosts()">
+              <option value="">Sort by...</option>
+              <option value="date">Date</option>
+              <option value="location">Location</option>
+              <option value="price">Price</option>
+            </select>
+          </div>
+      </div>
+
+      <!-- Filter Popup Modal -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <!-- Close button to hide the popup -->
+          <span id="close-button" class="close">&times;</span>
+          <!-- substitutes x for close button -->
+
+          <!-- Filter Content based on your design -->
+          <h2>Filter Options</h2>
+          <div class="filter-section">
+            <!-- Type Selection -->
+            <label>Type</label>
+            <div class="type-selection">
+              <button
+                id="passenger"
+                class="type-button"
+                onclick="selectType('passenger')"
+              >
+                Passenger
+              </button>
+              <button
+                id="driver"
+                class="type-button"
+                onclick="selectType('driver')"
+              >
+                Driver
+              </button>
             </div>
-            <div class="username">
-                Username
+          </div>
+
+          <div class="filter-section">
+            <label>Pickup Between</label>
+            <div class="time-range">
+              <!-- Time Adjust Buttons and Input Fields -->
+              <button class="time-adjust" onclick="adjustTime('start', -1)">
+                -
+              </button>
+              <!-- Added onclick -->
+              <input type="text" id="start-time" value="2:00 PM" readonly />
+              <button class="time-adjust" onclick="adjustTime('start', 1)">
+                +
+              </button>
+              <!-- Added onclick -->
+
+              <span class="separator">-</span>
+
+              <button class="time-adjust" onclick="adjustTime('end', -1)">
+                -
+              </button>
+              <!-- Added onclick -->
+              <input type="text" id="end-time" value="11:00 PM" readonly />
+              <button class="time-adjust" onclick="adjustTime('end', 1)">
+                +
+              </button>
+              <!-- Added onclick -->
             </div>
-            <div class="profile-icon">
-                <span> <!-- profile image --> </span>
+          </div>
+
+
+          <div class="filter-section">
+            <!-- Required Seats Selection -->
+            <label>Required Seats</label>
+            <div class="range-container">
+              <input
+                type="range"
+                id="seats-range"
+                min="1"
+                max="6"
+                step="1"
+                value="1"
+                oninput="updateRangeValue('seats')"
+              />
+              <div class="range-labels">
+                <span id="label-1">1</span>
+                <span id="label-2">2</span>
+                <span id="label-3">3</span>
+                <span id="label-4">4</span>
+                <span id="label-5">5</span>
+                <span id="label-6">6</span>
+              </div>
             </div>
+          </div>
+
+
+          <div class="filter-section">
+            <label>Available luggage</label>
+            <div class="range-container">
+              <input
+                type="range"
+                id="luggage-range"
+                min="0"
+                max="4"
+                step="1"
+                value="0"
+                oninput="updateRangeValue('luggage')"
+              />
+              <div class="range-labels">
+                <span>0</span><span>1</span><span>2</span><span>3</span
+                ><span>4+</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-section">
+            <label>Show related posts</label>
+            <input type="checkbox" />
+          </div>
         </div>
+      </div>
 
-
-    </header>
-
-    <!-- All functional related components will be contained here -->
-    <div class="main-body">
-
-        <!-- Contains search and post functions -->
-        <div class="sec-main-bar">
-
-            <!-- Here, the user can search for the posts of their destination-->
-            <form class="user-search-bar">
-                <input type="text" placeholder="Search..." class="search-input">
-            </form>
-            <!-- This button will lead to the post creation page -->
-            <button class="post-button" onclick="window.location.href = '../CreatePost-page/index.html';">
-                POST
-            </button>
-
-            <!-- Here shows users current location or other details -->
-            <div class="status-info-container">
-            </div>
-        </div>
-
-        <div class="post-block-container">
-            <div class="filter-sort-bar">
-                <div class="filter">
-                    Filter
-                </div>
-                <div class="sort">
-                    Sort
-                </div>                
-            </div>
 
             <div class="posts-list">
                 <!-- a series of posts are here-->
                 <!-- Dynamic posts will be injected here by JavaScript -->
-
-                <!-- <div class="posts" id="2">
+              
+                <!-- post structure sample -->
+                <!-- <div class="posts" id="1">
                     //First Line: destination, starting place
                     <div class="custom-post-line">
                         <div class="custom-post-destination">
@@ -95,37 +203,41 @@
                         </div>
                     </div>
                 </div> -->
+                <!-- post sample ends -->
+              
             </div>
+          </div>
         </div>
-
-
+      </div>
     </div>
-
+  </div>
 </body>
 
 <footer class="page-footer">
-    <div class="footer-content">
-        <div class="footer-section company-info">
-            <h4>URide</h4>
-            <p>Providing ride-sharing solutions for university students. Your go-to for easy and safe rides.</p>
-        </div>
-        <div class="footer-section quick-links">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <!-- <li><a href="#services">Services</a></li>
+  <div class="footer-content">
+    <div class="footer-section company-info">
+      <h4>URide</h4>
+      <p>
+        Providing ride-sharing solutions for university students. Your go-to for
+        easy and safe rides.
+      </p>
+    </div>
+    <div class="footer-section quick-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <!-- <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li> -->
-            </ul>
-        </div>
-        <div class="footer-section contact-info">
-            <h4>Contact Us</h4>
-            <p>Email: support@uride.com</p>
-            <p>Phone: +1 413-456-7890</p>
-        </div>
+      </ul>
     </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 URide. All Rights Reserved.</p>
+    <div class="footer-section contact-info">
+      <h4>Contact Us</h4>
+      <p>Email: support@uride.com</p>
+      <p>Phone: +1 413-456-7890</p>
     </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 URide. All Rights Reserved.</p>
+  </div>
 </footer>
-<script type="module" src="scripts.js"></script>
