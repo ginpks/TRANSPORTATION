@@ -4,6 +4,8 @@
 - **Role**: Oversees the overall project timeline, ensures that milestones are met, and coordinates the team’s efforts. Gin is responsible for setting meeting agendas and ensuring that the team stays focused on project goals.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/c444be9664798335d5dcc1094573699cd841921f): Created the initial GitHub repository and set up the project structure, including the `team/m2` folder for milestone submissions.
+  2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/961365816be4a4ab15c2ab723786aaedbb260a89): Organized the first team meeting and distributed team roles in `roles.md`.
+  3. [Commit 3](https://github.com/ginpks/TRANSPORTATION/commit/fcaa01c06ad62dcb64f48537dbde1889ae51f1eb): Drafted the intial version of "Why these users matter" in `users.md`.
 
 ## Lana Vu - Timekeeper
 - **Role**: Manages the timing of all team activities. Lana ensures that meetings start and end on time, keeps track of deadlines, and reminds the team of upcoming due dates.
