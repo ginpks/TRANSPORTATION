@@ -112,5 +112,5 @@ function storePostInDB(postData) {
     });
 }
 
-document.querySelector('#post-passenger').addEventListener('click', savePost('passenger'));
+// document.querySelector('#post-passenger').addEventListener('click', savePost('passenger'));
 window.savePost = savePost;

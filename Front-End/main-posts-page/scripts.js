@@ -125,11 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Event listener for post button click
   const newPostButton = document.querySelector('.post-button');
+//   const newPostButton = document.getElementsByClassName('post-button');
   if (newPostButton) {
     newPostButton.addEventListener('click', () => {
-      // window.location.href = '../CreatePost-page/index.html'; // Redirect to post creation page
+      window.location.href = '../CreatePost-page/index.html'; // Redirect to post creation page
       // window.location.href = 'https://papago.naver.com';
-      window.location.replace("https://www.runoob.com");
+    //   window.location.replace("https://www.runoob.com");
     });
   }
 
