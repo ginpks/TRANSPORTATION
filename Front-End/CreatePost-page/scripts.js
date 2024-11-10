@@ -48,7 +48,7 @@ export function savePost(type) {
     storePostInDB(postData);
     clearFormFields(type);
 }
-
+window.switchTab = switchTab;
 
 function clearFormFields(type) {
     if (type === 'passenger') {
@@ -95,7 +95,7 @@ export function openDatabase() {
     });
 }
 
-function storePostInDB(postData) {
+export function storePostInDB(postData) {
     console.log("ready to store data to IndexedDB...", postData);
     openDatabase().then((db) => {
         const transaction = db.transaction('posts', 'readwrite');
