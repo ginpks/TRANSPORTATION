@@ -2,7 +2,7 @@
 // import { EventHub } from './EventHub.js';
 // import { Events } from './Events.js';
 // import { TaskRepositoryService } from './TaskRepositoryService.js';
-import {openDatabase} from '../CreatePost-page/scripts.js'
+import {openDatabase, storePostInDB} from '../CreatePost-page/scripts.js'
 
 
 // Filter and Sort feature - Lana
