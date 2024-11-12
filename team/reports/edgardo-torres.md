@@ -15,4 +15,4 @@
 ### November 10, 2024
 - **Task**: Fix a small bug for indexedDB in CreatePost/MainPost pages.
 - **Details**: The main page was not showing posts/data from indexedDB when input was made from creating a post page.
-- **Link to Commit**: [[Commit on Users] (will be updated when pull request is cleared)
+- **Link to Commit**: [[Commit on Users](https://github.com/ginpks/TRANSPORTATION/pull/25/commits/5c4c74bbb8c05733dee1e386fd3fcd1e2590098c)]
