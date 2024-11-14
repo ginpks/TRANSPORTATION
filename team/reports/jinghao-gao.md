@@ -32,3 +32,12 @@
 - **Task**: Merge pull request of the main implement of main page UI
 - **Details**: Confirm and merge the files of the main page
 - **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/ed526ca7792b1de8e5c5634de5ab08f0f20edd8b
+
+### November 13, 2024
+- **Task**: Edit m2/roles.md
+- **Details**: Fix the error of commit link of Jinghao Gao
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/c4c33b5b88d4f5de97fa3c7d0b901133339faa0a
+-
+- **Task**: Edit m2/ui-diagrams.md
+- **Details**: Correct the typo in the file
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/3880996db410edb08dd131b940c5bf8598605b68
