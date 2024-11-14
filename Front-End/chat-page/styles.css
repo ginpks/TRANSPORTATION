@@ -1,7 +1,7 @@
 /* Set padding for the entire page and apply the Inter font family */
 body {
     margin: 2em 3em;
-    font-family: Calibri, inter;
+    font-family: inter;
 }
 
 /* Header styling */
@@ -287,7 +287,6 @@ body {
     }
 
     .search-bar {
-        /* display: none; */
         height: 0;
         width: 0;
         overflow: hidden;
