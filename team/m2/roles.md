@@ -28,8 +28,8 @@
 ## Jinghao Gao - Communication Lead
 - **Role**: Facilitates communication within the team. JingHao is responsible for maintaining and managing the team’s Discord workspace and ensuring that all members stay informed and engaged.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/repo/commit1): Set up the team’s Slack channel, organized communication threads, and established guidelines for communication.
-  2. [Commit 2](https://github.com/repo/commit2): Coordinated communication between team members during the second milestone and relayed critical information about deadlines.
+  1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/58c5c33c9b8ffc4a335af9b911870951b92d9c6b): Communicate with group members to initialize draft 1 and finalize the Final Draft of UI design.
+  2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/f6494d96017d22a28659ef216656fbf4a3cacbde): Create main-page folder and skeleton files, commit the main implement of main page HTML and CSS files.
 
 ## Sammie Yu - Quality Control
 - **Role**: Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Sammie is responsible for proofreading and ensuring the accuracy of all documents before submission.
