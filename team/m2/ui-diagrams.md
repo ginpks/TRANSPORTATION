@@ -4,7 +4,7 @@ We have decided to make 7 posts in total: Log in page, Sign up page, Post inform
 
 ## UI diagrams
 
-The relative path to the pdf file of the drawn UI design is : team/m2/326 ui design (draft 1).pdf
+The relative path to the pdf file of the drawn UI design is: team/m2/UI Design (Draft 2).pdf
 
 ### Explanations of each diagram:
 - Login page: The login page is built for users to log into their own account using their UMass email. The purpose of using UMass email
