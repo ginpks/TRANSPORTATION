@@ -46,7 +46,7 @@ searchInput.addEventListener('input',function(){
 
 
 //The following code is for real dynamic purpose
-let user = document.querySelector('#current-user');
+let user = document.querySelector('.current-user');
 
 user.innerHTML = `${params.get('id')}`;
 
@@ -101,5 +101,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Re-check when the window is resized
   window.addEventListener('resize', handleDropdownForMobile);
-
+  document.querySelector('.webLogo').addEventListener('click', ()=>{window.location.href = '../main-posts-page/index.html';})
 });
