@@ -5,8 +5,6 @@
 import {openDatabase, storePostInDB} from '../CreatePost-page/scripts.js'
 
 
-
-
 // Filter and Sort feature - Lana
 // Get the modal, open button, and close button elements
 const modal = document.getElementById("modal");
@@ -32,10 +30,11 @@ window.onclick = function(event) {
 
 // Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function() {
-    const passengerButton = document.getElementById('passenger');
-    const driverButton = document.getElementById('driver');
 
-    // Add event listeners for each button
+    // const passengerButton = document.getElementById('passenger');
+    // const driverButton = document.getElementById('driver');
+
+    // Add event listeners for each button of filter
     passengerButton.addEventListener("click", function() {
         selectType('passenger');
     });
@@ -94,8 +93,8 @@ function adjustTime(type, increment) {
     inputField.value = formattedTime;
 }
 
-function updateRangeValue() {
-    const range = document.getElementById('seats-range');
+function updateRangeValue(type) {
+    const range = document.getElementById(`${type}-range`);
     const value = range.value;
 
     // Remove 'highlighted' class from all labels
@@ -111,10 +110,31 @@ function updateRangeValue() {
 //main function - Jinghao
 
 document.addEventListener('DOMContentLoaded', () => {
+
   //Load all the posts from data base
+  console.log('DOMContentLoaded');
   loadPostsFromDB();
-  
-  console.log(123);
+    const filterButton = document.getElementById('filter-apply-button');
+    if (filterButton) {
+        filterButton.addEventListener('click', () => {
+            const filterType = document.querySelector('.type-selection .selected')?.id;
+            const startTime = document.getElementById('start-time').value;
+            const endTime = document.getElementById('end-time').value;
+            const requiredSeats = document.getElementById('seats-range').value;
+            const availableLuggage = document.getElementById('luggage-range').value;
+
+            const filterCriteria = {
+                type: filterType,
+                startTime: startTime,
+                endTime: endTime,
+                requiredSeats: requiredSeats,
+                availableLuggage: availableLuggage
+            };
+
+            loadPostsFromDB(filterCriteria);
+            modal.classList.remove('show'); //close filter pop up block
+        });
+    }
 
   // Event listener for profile icon click
   const profileIcon = document.querySelector('.profile-icon');
@@ -125,10 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Event listener for post button click
-  const newPostButton = document.querySelector('.post-button');
-//   const newPostButton = document.getElementsByClassName('post-button');
-  if (newPostButton) {
-    newPostButton.addEventListener('click', () => {
+  const postButton = document.querySelector('.post-button');
+  if (postButton) {
+    postButton.addEventListener('click', () => {
       window.location.href = '../CreatePost-page/index.html'; // Redirect to post creation page
     });
   }
@@ -230,7 +249,7 @@ function createCustomPostDetail(className, title, detail, detailClass = 'custom-
 }
 
 
-function loadPostsFromDB() {
+function loadPostsFromDB(filterCriteria = {}) {
   console.log("trying to load posts from database...");
   openDatabase().then((db) => {
       const transaction = db.transaction('posts', 'readonly');
@@ -238,22 +257,53 @@ function loadPostsFromDB() {
       const request = store.getAll();
 
       request.onsuccess = (event) => {
-        console.log("load posts successfully");
+          console.log("load posts successfully");
           const posts = event.target.result;
           const postsList = document.querySelector('.posts-list');
-          // const postsList = document.getElementsByClassName('.posts-list');
           if (postsList) {
-          postsList.innerHTML = ''; // Clear existing posts
+              postsList.innerHTML = ''; //clear current posts
 
-          posts.forEach((post) => {
-            console.log("load post:", post);
-            createPost(post);
-          });
-        }
-        else {
-          console.error('cannot find .posts-list element');
-        }
-        console.log("Finish loading posts");
+              //apply filter to posts
+              const filteredPosts = posts.filter((post) => {
+                  let match = true;
+
+                  // filter: user type
+                  if (filterCriteria.type && filterCriteria.type !== 'all' && post.type !== filterCriteria.type) {
+                      match = false;
+                  }
+
+                  // Filter: time-range
+                  if (filterCriteria.startTime && filterCriteria.endTime) {
+                      const postTime = new Date(`${post.date} ${post.time}`).getTime();
+                      const startTime = new Date(filterCriteria.startTime).getTime();
+                      const endTime = new Date(filterCriteria.endTime).getTime();
+                      if (postTime < startTime || postTime > endTime) {
+                          match = false;
+                      }
+                  }
+
+                  // filter: seats
+                  if (filterCriteria.requiredSeats && parseInt(post.passengers) <= parseInt(filterCriteria.requiredSeats)) {
+                      match = false;
+                  }
+
+                  // filter: luggage
+                  if (filterCriteria.availableLuggage && parseInt(post.luggage) <= parseInt(filterCriteria.availableLuggage)) {
+                      match = false;
+                  }
+
+                  return match;
+              });
+
+              //create posts that fits the conditions
+              filteredPosts.forEach((post) => {
+                  console.log("load post:", post);
+                  createPost(post);
+              });
+          } else {
+              console.error('cannot find .posts-list element');
+          }
+          console.log("Finish loading posts");
       };
 
       request.onerror = (event) => {
@@ -261,5 +311,3 @@ function loadPostsFromDB() {
       };
   });
 }
-
-
