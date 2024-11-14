@@ -398,6 +398,11 @@ body{
     margin: 0 0 0 5px;
 
 }
+.custom-post-id-content{
+    color: #333;
+    font-size: 16px;
+}
+
 .custom-post-title {
     color: #333;
     margin-bottom: 5px;

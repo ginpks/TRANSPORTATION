@@ -5,6 +5,8 @@
 import {openDatabase, storePostInDB} from '../CreatePost-page/scripts.js'
 
 
+
+
 // Filter and Sort feature - Lana
 // Get the modal, open button, and close button elements
 const modal = document.getElementById("modal");
@@ -107,12 +109,11 @@ function updateRangeValue() {
 }
 
 //main function - Jinghao
-loadPostsFromDB();
-console.log(123);
 
 document.addEventListener('DOMContentLoaded', () => {
   //Load all the posts from data base
   loadPostsFromDB();
+  
   console.log(123);
 
   // Event listener for profile icon click
@@ -129,8 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (newPostButton) {
     newPostButton.addEventListener('click', () => {
       window.location.href = '../CreatePost-page/index.html'; // Redirect to post creation page
-      // window.location.href = 'https://papago.naver.com';
-    //   window.location.replace("https://www.runoob.com");
     });
   }
 
@@ -149,57 +148,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Data type definition for a post
-export class Post {
-  constructor(destination, startingPlace, time, passengers, luggage, notes) {
+class Post {
+  constructor(id, destination, from, time, date, people, luggage, extraInfo) {
+    this.id = id;
     this.destination = destination;
-    this.startingPlace = startingPlace;
+    this.from = from;
     this.time = time;
-    this.passengers = passengers;
+    this.date = date;
+    this.people = people;
     this.luggage = luggage;
-    this.notes = notes;
+    this.extraInfo = extraInfo;
   }
 }
 
-function createPosts(postData) {
-  // create a div to represent a post
-  const postDiv = document.createElement('div');
-  postDiv.className = 'posts';
+function createPost(post) {
+    //create main container
+    const postDiv = document.createElement('div');
+    postDiv.className = 'posts';
 
-  // set up inner html structure for post
-  postDiv.innerHTML = `
-      <div class="custom-post-line">
-          <div class="custom-post-destination">
-              <span class="custom-post-title">To</span>
-              <span class="custom-post-detail">${postData.destination}</span>
-          </div>
-          <div class="custom-post-starting-place">
-              <span class="custom-post-title">From</span>
-              <span class="custom-post-detail">${postData.from}</span>
-          </div>
-      </div>
-      <div class="custom-post-line">
-          <div class="custom-post-time">
-              <span class="custom-post-title">Time</span>
-              <span class="custom-post-detail">${postData.time}</span>
-          </div>
-          <div class="custom-post-capacity">
-              <span class="custom-post-title">${postData.type === 'passenger' ? 'Passengers' : 'Available Seats'}</span>
-              <span class="custom-post-detail">${postData.people ?? postData.availableSeats}</span>
-          </div>
-      </div>
-      <div class="custom-post-line">
-          <div class="custom-post-notes">
-              <span class="custom-post-title">Notes</span>
-              <span class="custom-post-detail notes-detail">${postData.extraInfo}</span>
-          </div>
-      </div>
-  `;
+    //add first line: destination, starting place
+    const firstLineDiv = document.createElement('div');
+    firstLineDiv.className = 'custom-post-line';
 
-  return postDiv;
+    const destinationDiv = createCustomPostDetail('custom-post-destination', 'To', post.destination);
+    const startingPlaceDiv = createCustomPostDetail('custom-post-starting-place', 'From', post.from);
+    const idDiv = createCustomPostDetail('custom-post-id', 'ID', `&nbsp;${post.id}`, 'custom-post-id-content');
+
+    firstLineDiv.appendChild(destinationDiv);
+    firstLineDiv.appendChild(startingPlaceDiv);
+    firstLineDiv.appendChild(idDiv);
+    postDiv.appendChild(firstLineDiv);
+
+    //add second line: time/date, passenger, luggage
+    const secondLineDiv = document.createElement('div');
+    secondLineDiv.className = 'custom-post-line';
+
+    const timeDiv = createCustomPostDetail('custom-post-time', 'Time', `${post.date} ${post.time}`);
+    const capacityDiv = createCustomPostDetail('custom-post-capacity', 'Passenger', post.people);
+    const luggageDiv = createCustomPostDetail('custom-post-luggage', 'Luggage', post.luggage);
+
+    secondLineDiv.appendChild(timeDiv);
+    secondLineDiv.appendChild(capacityDiv);
+    secondLineDiv.appendChild(luggageDiv);
+    postDiv.appendChild(secondLineDiv);
+
+    //add third line: note
+    const thirdLineDiv = document.createElement('div');
+    thirdLineDiv.className = 'custom-post-line';
+
+    const notesDiv = createCustomPostDetail('custom-post-notes', 'Notes', post.extraInfo, 'notes-detail');
+    thirdLineDiv.appendChild(notesDiv);
+    postDiv.appendChild(thirdLineDiv);
+
+    //add redirect link
+    postDiv.addEventListener('click', ()=>{
+        window.location.href = `../chat-page/index.html?id=${post.id}`;
+    })
+
+    //append posts to posts-list
+    const postsList = document.querySelector('.posts-list');
+    postsList.appendChild(postDiv);
+}
+
+//helper function for creating post details
+function createCustomPostDetail(className, title, detail, detailClass = 'custom-post-detail') {
+    const containerDiv = document.createElement('div');
+    containerDiv.className = className;
+
+    const titleSpan = document.createElement('span');
+    titleSpan.className = 'custom-post-title';
+    titleSpan.innerText = title;
+
+    const detailSpan = document.createElement('span');
+    detailSpan.className = detailClass;
+    detailSpan.innerHTML = detail;
+
+    containerDiv.appendChild(titleSpan);
+    containerDiv.appendChild(detailSpan);
+
+    return containerDiv;
 }
 
 
-export function loadPostsFromDB() {
+function loadPostsFromDB() {
   console.log("trying to load posts from database...");
   openDatabase().then((db) => {
       const transaction = db.transaction('posts', 'readonly');
@@ -216,13 +247,13 @@ export function loadPostsFromDB() {
 
           posts.forEach((post) => {
             console.log("load post:", post);
-              const postDiv = createPosts(post);
-              postsList.appendChild(postDiv);
+            createPost(post);
           });
         }
         else {
           console.error('cannot find .posts-list element');
         }
+        console.log("Finish loading posts");
       };
 
       request.onerror = (event) => {
@@ -231,4 +262,4 @@ export function loadPostsFromDB() {
   });
 }
 
-window.loadPostsFromDB = loadPostsFromDB;
+

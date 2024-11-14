@@ -1,5 +1,5 @@
 
-
+const params = new URLSearchParams(window.location.search);
 // **FOLLOWING CODE IS FOR DEMONSTRATIONAL PURPOSES ONLY**
 
 // creates a message element and prepends it the inbox.
@@ -44,3 +44,9 @@ searchInput.addEventListener('input',function(){
   })
 });
 
+
+
+//The following code is for real dynamic purpose
+let user = document.querySelector('#current-user');
+
+user.innerHTML = `${params.get('id')}`;
