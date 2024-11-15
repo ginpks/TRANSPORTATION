@@ -30,5 +30,14 @@
 ### November 05, 2024
 - **Task**: Implemented search function for chatpage and fixed bug. 
 - **Details**: implemented function for search bar and fixed user-list-container overflow issue.
-- **Link to Commit**https://github.com/ginpks/TRANSPORTATION/commit/f6f7867567a6841b33261d4a9024869b09eb1c22
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/f6f7867567a6841b33261d4a9024869b09eb1c22
+
+### November 14, 2024
+- **Task**: Implemented IndexDB for chat page 
+- **Details**: implemented function for setting up indexDB and make the messages we enter persistent. 
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/ef0f8afe06dc04ec3dc4e02ef7a86617d2a0ec05
+
+- **Task**: Fixed role.md link error
+- **Details**: replace the commit link with the correct one and made some adjustments on description. 
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/80e1e63f731e1bf2a2f8269c28c70be4cf0317c2
   
