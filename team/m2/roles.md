@@ -34,9 +34,8 @@
 ## Sammie Yu - Quality Control
 - **Role**: Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Sammie is responsible for proofreading and ensuring the accuracy of all documents before submission.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/repo/commit1): Reviewed and edited the `problem.md` file to ensure clarity and alignment with the project requirements.
-  2. [Commit 2](https://github.com/repo/commit2): Proofread and revised the `features.md` file, ensuring that descriptions were clear and complete.
-  3. [Commit 3](https://github.com/repo/commit3): Conducted a final quality check of all milestone documents before submission to ensure accuracy and completeness.
+  1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/58c5c33c9b8ffc4a335af9b911870951b92d9c6b): Work with group member to design UI digram and finalize the design.
+  2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/ce6571b7fc796aa629f60b849f8ecef1d3ad7df0): Proofread and revised the `ui-digram.md` file, ensuring that descriptions were clear and complete.
 
 ##  Edgardo Torres - Documentation Lead
 - **Role**: Responsible for overseeing the organization and maintenance of all project documentation. Edgardo ensures that all documents are up to date, well-organized, and accessible to team members.
