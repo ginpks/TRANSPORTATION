@@ -22,7 +22,8 @@
 ## Eric Chen - Task Manager
 - **Role**: Responsible for organizing and tracking team tasks. Eric manages the team’s schedule and ensures everyone completes their task on time.
 - **Top 3 Commits**:
-  1. [Commit 2](https://github.com/repo/commit2): Assigned tasks to team members based on discussions during the team’s planning meetings and updated Trello with new assignments.
+  1. [Commit 1]( (https://github.com/ginpks/TRANSPORTATION/commit/8c2bcee05650133a8d10d2316929ba4fbe7bc4f4)):Created a map that helps ride posting.
+  2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/81bcf8c0e580a9c1a92340e98e43ba20b36b178e): Create user profile page
 
 
 ## Jinghao Gao - Communication Lead
