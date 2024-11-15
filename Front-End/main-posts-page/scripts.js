@@ -31,8 +31,8 @@ window.onclick = function(event) {
 // Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", function() {
 
-    // const passengerButton = document.getElementById('passenger');
-    // const driverButton = document.getElementById('driver');
+    const passengerButton = document.getElementById('passenger');
+    const driverButton = document.getElementById('driver');
 
     // Add event listeners for each button of filter
     passengerButton.addEventListener("click", function() {

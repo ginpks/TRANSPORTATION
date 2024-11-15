@@ -46,15 +46,15 @@ body{
     height: 60px; */
     flex-grow: 1; /* auto takes up the remain space */
     height: 100%;
-    margin-left: 70vw;
-    margin-right: 1vw;
+    margin-left: 72vw;
+    margin-right: 0.5vw;
     background-color: rgb(255, 255, 255);
     color: #000000;
     align-items: center;
     justify-content: center;
     text-align: center;
     font-size: 1em;
-    line-height: 100%;
+    line-height: 60px;
 }
 .profile-icon{
     display: flex;
@@ -63,7 +63,7 @@ body{
     aspect-ratio: 1 / 1;
     max-width: 50px;
     max-height: 50px;
-    margin: 0.5vw 2vw 0 2vw;
+    margin: 0.5vw 3vw 0 1vw;
     border-radius: 50%;
     background-color: #881c1c;
     color: #881c1c;
