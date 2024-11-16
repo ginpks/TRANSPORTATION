@@ -1,11 +1,11 @@
 
 # Application Features
 
-## Postings for rides/ride requests
+## Postings for rides/ride requests and User Profile
 
-This feature will allow users to post ride offerings and ride requests, which will be then displayed as a listing for easier viewing. The postings will include the details about the ride like time, exact location, space availability, price, or any other specifications or preferences. 
+This feature will allow users to post ride offerings and ride requests, which will be then displayed as a listing for easier viewing. The postings will include the details about the ride like time, exact location, space availability, price, or any other specifications or preferences. This will be part of the posting page while the User Profile will retain user information like trip history, feedback, and user information.
 
-**Assigned to**: Jinghao Gao
+**Assigned to**: Jinghao Gao, Edgardo Torres
 
 ## Search and filter
 
