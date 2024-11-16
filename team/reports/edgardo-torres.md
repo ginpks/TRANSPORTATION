@@ -16,3 +16,8 @@
 - **Task**: Fix a small bug for indexedDB in CreatePost/MainPost pages.
 - **Details**: The main page was not showing posts/data from indexedDB when input was made from creating a post page.
 - **Link to Commit**: [[Commit on Users](https://github.com/ginpks/TRANSPORTATION/pull/25/commits/5c4c74bbb8c05733dee1e386fd3fcd1e2590098c)]
+
+### November 15, 2024
+- **Task**: Implemented feedback in the user profile page.
+- **Details**: Worked on user page, added feedback functionality with its indexDB. Cleaned up the UI to accommodate feedback
+- **Link to Commit**: work in progress
