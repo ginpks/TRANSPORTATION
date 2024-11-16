@@ -15,9 +15,21 @@ This feature will allow users filter the postings by time, location, and price, 
   
 ## User/client communication
 
-This feature will allow users to communicate with each other if they are interested in some specific posts. This provides the users a direct way to communicate inside the application for better convenience. 
+1. **Feature name:** Chat Inbox
 
-**Assigned to**: Sammie Yu, Gin Park
+- **Description**: The chat inbox stores all messages sent between users for communication. This component includes an input box where users can type their messages as well as a send button. The chat inbox dynamically updates with any messages entered by the user.
+
+  **Point Value**: 2 points
+
+  **Tean Member**: Gin Park
+
+2. **Feature name:** Small View Chat Page
+
+- **Description**: The chat page for small view devices such as mobile phones utilizes a dropdown container constisting of the user list component that was implemented by Sammie Yu for the main view chat page. Transitioning to a dropdown for smaller views ensures simplicity for the user when selecting a chatroom.
+
+  **Point Value**: 1 point
+
+  **Tean Member**: Gin Park
 
 ## Log in and ID verification
 
