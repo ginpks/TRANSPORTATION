@@ -28,8 +28,8 @@ window.onclick = function(event) {
     }
 }
 
-// Wait for the DOM to be fully loaded
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded: Filter setup');
 
     const passengerButton = document.getElementById('passenger');
     const driverButton = document.getElementById('driver');
@@ -41,6 +41,37 @@ document.addEventListener("DOMContentLoaded", function() {
     driverButton.addEventListener("click", function() {
         selectType('driver');
     });
+
+    const filterButton = document.getElementById('filter-apply-button');
+    if (filterButton) {
+        filterButton.addEventListener('click', () => {
+            const filterType = document.querySelector('.type-selection .selected')?.id;
+            const startTime = document.getElementById('start-time').value;
+            const endTime = document.getElementById('end-time').value;
+            const requiredSeats = document.getElementById('seats-range').value;
+            const availableLuggage = document.getElementById('luggage-range').value;
+
+            // Log filter criteria
+            console.log("Filter applied with criteria:", {
+                type: filterType,
+                startTime: startTime,
+                endTime: endTime,
+                requiredSeats: requiredSeats,
+                availableLuggage: availableLuggage
+            });
+
+            const filterCriteria = {
+                type: filterType,
+                startTime: startTime,
+                endTime: endTime,
+                requiredSeats: requiredSeats,
+                availableLuggage: availableLuggage
+            };
+
+            // Reload posts based on filter
+            loadPostsFromDB(filterCriteria);
+        });
+    }
 });
 
 
@@ -214,7 +245,7 @@ function createCustomPostDetail(className, title, detail, detailClass = 'custom-
 
 
 function loadPostsFromDB(filterCriteria = {}) {
-  console.log("trying to load posts from database...");
+  console.log("Loading posts from the database with filter criteria:", filterCriteria);
   openDatabase().then((db) => {
       const transaction = db.transaction('posts', 'readonly');
       const store = transaction.objectStore('posts');
@@ -229,34 +260,37 @@ function loadPostsFromDB(filterCriteria = {}) {
 
               //apply filter to posts
               const filteredPosts = posts.filter((post) => {
-                  let match = true;
+                console.log("Post being checked for filtering:", post);
 
-                  // filter: user type
-                  if (filterCriteria.type && filterCriteria.type !== 'all' && post.type !== filterCriteria.type) {
-                      match = false;
-                  }
+                let match = true;
+                // Apply filters (debugging each criteria separately)
+                if (filterCriteria.type && filterCriteria.type !== 'all' && post.type !== filterCriteria.type) {
+                    console.log("Post excluded by type filter");
+                    match = false;
+                }
 
-                  // Filter: time-range
-                  if (filterCriteria.startTime && filterCriteria.endTime) {
-                      const postTime = new Date(`${post.date} ${post.time}`).getTime();
-                      const startTime = new Date(filterCriteria.startTime).getTime();
-                      const endTime = new Date(filterCriteria.endTime).getTime();
-                      if (postTime < startTime || postTime > endTime) {
-                          match = false;
-                      }
-                  }
+                if (filterCriteria.startTime && filterCriteria.endTime) {
+                    const postTime = new Date(`${post.date} ${post.time}`).getTime();
+                    const startTime = new Date(filterCriteria.startTime).getTime();
+                    const endTime = new Date(filterCriteria.endTime).getTime();
 
-                  // filter: seats
-                  if (filterCriteria.requiredSeats && parseInt(post.passengers) <= parseInt(filterCriteria.requiredSeats)) {
-                      match = false;
-                  }
+                    if (postTime < startTime || postTime > endTime) {
+                        console.log("Post excluded by time range filter");
+                        match = false;
+                    }
+                }
 
-                  // filter: luggage
-                  if (filterCriteria.availableLuggage && parseInt(post.luggage) <= parseInt(filterCriteria.availableLuggage)) {
-                      match = false;
-                  }
+                if (filterCriteria.requiredSeats && parseInt(post.people) < parseInt(filterCriteria.requiredSeats)) {
+                    console.log("Post excluded by required seats filter");
+                    match = false;
+                }
 
-                  return match;
+                if (filterCriteria.availableLuggage && parseInt(post.luggage) < parseInt(filterCriteria.availableLuggage)) {
+                    console.log("Post excluded by luggage filter");
+                    match = false;
+                }
+
+                return match;
               });
 
               //create posts that fits the conditions
