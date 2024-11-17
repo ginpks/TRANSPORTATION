@@ -57,7 +57,7 @@
           <span id="close-button" class="close">&times;</span>
           <!-- substitutes x for close button -->
 
-          <!-- Filter Content based on your design -->
+          <!-- Filter Content -->
           <h2>Filter Options</h2>
           <div class="filter-section">
             <!-- Type Selection -->
@@ -82,29 +82,17 @@
 
           <div class="filter-section">
             <label>Pickup Between</label>
-            <div class="time-range">
-              <!-- Time Adjust Buttons and Input Fields -->
-              <button class="time-adjust" onclick="adjustTime('start', -1)">
-                -
-              </button>
-              <!-- Added onclick -->
-              <input type="text" id="start-time" value="2:00 PM" readonly />
-              <button class="time-adjust" onclick="adjustTime('start', 1)">
-                +
-              </button>
-              <!-- Added onclick -->
-
-              <span class="separator">-</span>
-
-              <button class="time-adjust" onclick="adjustTime('end', -1)">
-                -
-              </button>
-              <!-- Added onclick -->
-              <input type="text" id="end-time" value="11:00 PM" readonly />
-              <button class="time-adjust" onclick="adjustTime('end', 1)">
-                +
-              </button>
-              <!-- Added onclick -->
+            <div class="tab-content">
+              <label for="Time">From</label>
+              <div class="inline-inputs">
+                  <input type="time" id="Time" name="Time">
+                  <input type="date" id="date" name="date">
+              </div>
+              <label for="Time">To</label>  
+              <div class="inline-inputs">
+                  <input type="time" id="Time" name="Time">
+                  <input type="date" id="date" name="date">
+              </div>
             </div>
           </div>
 
