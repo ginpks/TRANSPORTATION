@@ -44,6 +44,8 @@
 ##  Edgardo Torres - Documentation Lead
 - **Role**: Responsible for overseeing the organization and maintenance of all project documentation. Edgardo ensures that all documents are up to date, well-organized, and accessible to team members.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/repo/commit1): Organized the project repository and created a clear folder structure for all milestone documents.
-  2. [Commit 2](https://github.com/repo/commit2): Drafted the initial version of the `data.md` file, outlining the core data types and attributes for the project.
-  3. [Commit 3](https://github.com/repo/commit3): Updated the project’s `README.md` file with detailed instructions for setting up and using the project, ensuring that all team members understood how to contribute to the repository.
+  1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/918b7a59e973ce660a351d6a998f62c0d51893be): Added a paragraph for User Needs.
+  2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/dbb9c2ba6dc9580954b949bbfe44cbe7b2c3260d): Created CreatePost-page folder and worked on its UI.
+  3. [Commit 3](https://github.com/ginpks/TRANSPORTATION/pull/25/commits/5c4c74bbb8c05733dee1e386fd3fcd1e2590098c): The main page was not showing posts/data from indexedDB when input was made from creating a post page.
+  4. [Commit 4](https://github.com/ginpks/TRANSPORTATION/commit/db7d972d5fdf88c85d53dc6b395d0e85a5a8b76f) :Implemented feedback in the user profile page.
+  5. [Commit 5](https://github.com/ginpks/TRANSPORTATION/commit/57e46c922ea3bb6b1d5a05246a42cbaf9f3091f0): Updated feedback with stars for the rating. 
