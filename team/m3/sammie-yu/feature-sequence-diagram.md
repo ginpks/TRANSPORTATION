@@ -1,12 +1,13 @@
 ```mermaid
 sequenceDiagram
     participant User
-    participant index.html
-    participant scripts.js
+    participant UserList
+    participant Chatbox
+    participant IndexDB
 
-    User ->> index.html: Type message and press Enter
-    index.html ->> scripts.js: Capture Enter key event
-    scripts.js -->> scripts.js: Create new message element
-    scripts.js ->> index.html: Append message to chatbox
-    index.html ->> User: Display updated chatbox
+    UserList -->> User: Display the users that can interacted with 
+    User ->> UserList: Select or search for the user that want to interact with
+    UserList -->> UserList: Remove the selected user to the top of the list
+    UserList ->> Chatbox: Selected user's name is displayed
+    User ->> Chatbox: enter the message and click 'send'
 ```
