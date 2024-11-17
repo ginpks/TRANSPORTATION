@@ -20,4 +20,9 @@
 ### November 15, 2024
 - **Task**: Implemented feedback in the user profile page.
 - **Details**: Worked on user page, added feedback functionality with its indexDB. Cleaned up the UI to accommodate feedback
-- **Link to Commit**: work in progress
+- **Link to Commit**: [[Commit on Users](https://github.com/ginpks/TRANSPORTATION/commit/db7d972d5fdf88c85d53dc6b395d0e85a5a8b76f)]
+
+### November 16, 2024
+- **Task**: Updated feedback to include stars
+- **Details**: Updated HTML and CSS with stars for each rating out of 5. Before it only had the number of stars.
+- **Link to Commit**: [[Commit on Users](https://github.com/ginpks/TRANSPORTATION/commit/57e46c922ea3bb6b1d5a05246a42cbaf9f3091f0)]
