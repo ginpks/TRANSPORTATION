@@ -43,7 +43,7 @@ body {
     display: flex;
     margin-top: 5vh;
     width: calc(100% - 50px);
-    max-width: 15vw;
+    max-width: 17vw;
 }
 .search-input {
     width: 100%;
@@ -59,7 +59,7 @@ body {
 /* User-List-Container Styling */
 .user-list-container {
     width: calc(100% - 50px);
-    max-width: 15vw;
+    max-width: 17vw;
     height: 70vh;
     background-color: #f4f4f4;
     overflow-y: auto;
@@ -81,6 +81,12 @@ body {
     background-color: #E9E9E9;
     transform: scale(1.02);
 }
+
+.user.selected{
+    background-color: #dddddd; 
+    font-weight: bold;
+}
+
 .user-pic {
     display: flex;
     align-items: center;
