@@ -183,3 +183,17 @@ h1 {
     max-height: 300px;
     overflow-y: auto;
 }
+
+select#rating {
+    font-family: 'Arial', sans-serif; 
+    font-size: 16px; 
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+select#rating option {
+    font-size: 16px;
+}
