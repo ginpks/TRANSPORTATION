@@ -1,9 +1,11 @@
 
 # Application Features
 
-## Postings for rides/ride requests and User Profile
+## Postings for rides/ride requests
 
-This feature will allow users to post ride offerings and ride requests, which will be then displayed as a listing for easier viewing. The postings will include the details about the ride like time, exact location, space availability, price, or any other specifications or preferences. This will be part of the posting page while the User Profile will retain user information like trip history, feedback, and user information.
+This feature will allow users to post ride offerings and ride requests, which will be then displayed as a listing for easier viewing. The postings will include the details about the ride like time, exact location, space availability, price, or any other specifications or preferences.
+
+**Point Value**: 3 points
 
 **Assigned to**: Jinghao Gao, Edgardo Torres
 
@@ -46,6 +48,8 @@ This feature will display the exact pickup and dropoff location for each ride. T
 ## Feedback 
 
 This feature will allow the users to post their feedback after the trip to make a better experience in the future. Since it's going to be shown in public, it makes both parties want to cooperate to get the high rankings for the experience. This will include the star rating after the ride (out of 5) and other feedback options like "great music", "quiet ride", or "certified yapper". 
+
+**Point Value**: 2 points
 
 **Assigned to**: Edgardo Torres
 
