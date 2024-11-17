@@ -1,3 +1,6 @@
+This is the sequence diagram for Chatbox Page. This page is developed collaboraitvely with Gin Park. 
+
+
 ```mermaid
 sequenceDiagram
     participant User
