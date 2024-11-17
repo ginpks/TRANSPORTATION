@@ -64,11 +64,15 @@ searchInput.addEventListener('input',function(){
 // dynamically update the selected passenger when clicked
 document.addEventListener('DOMContentLoaded', () => {
   loadMessages(); //load message
+  loadUserOrder();
   const users = document.querySelectorAll(".user");
   const selectedUser = document.getElementById("selected");
   const selectedUserPic = document.getElementById("selected-user")
   const userListContainerMobile = document.querySelector(".user-list-container-mobile");
   const selectedPassenger = document.querySelector(".dropdown");
+
+  //behavior in user list container
+  const userList = document.querySelector(".user-list-container");
 
   users.forEach(user => {
 
@@ -79,6 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedUser.textContent = userName.textContent;
       selectedUserPic.textContent = userPic.textContent;
       userListContainerMobile.style.display = "none";
+
+      //behavior in user list container
+      userList.prepend(user);
+      users.forEach(others => {
+        others.classList.remove("selected");
+      });
+      user.classList.add("selected")
+      userList.scrollTo({
+        top:0,
+        behavior: 'smooth'
+      })
+      saveUserOrder();
     });
   });
 
@@ -116,8 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //Setting Up database for Chatpage
-
-export function openDatabase() {
+export function openMessageDatabase() {
   return new Promise((resolve, reject) => {
       console.log("trying to open database...");
       let db;
@@ -144,7 +159,7 @@ export function openDatabase() {
 }
 
 function loadMessages(){
-  openDatabase().then((db)=>{
+  openMessageDatabase().then((db)=>{
     const transaction = db.transaction("messages", "readonly");
     const store = transaction.objectStore("messages");
     const inbox = document.querySelector('.inbox');
@@ -170,6 +185,67 @@ function loadMessages(){
   }).catch((error) => {
       console.error("Error opening database:", error);
   })
+}
+
+//Setting up database for user-list 
+function openUserListDatabase() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("userListDatabase", 1);
+
+    request.onupgradeneeded = event => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains("userOrder")) {
+        db.createObjectStore("userOrder", { keyPath: "id" });
+      }
+    };
+    request.onsuccess = event => {
+      resolve(event.target.result);
+    };
+    request.onerror = event => {
+      reject("Error opening user order database: " + event.target.errorCode);
+    };
+  });
+}
+
+function saveUserOrder() {
+  const userListContainer = document.querySelector('.user-list-container');
+  const users = userListContainer.querySelectorAll('.user');
+  const userOrder = Array.from(users).map(user => user.getAttribute('id')); // Collect user IDs in order
+  openUserListDatabase().then(db => {
+    const transaction = db.transaction("userOrder", "readwrite");
+    const store = transaction.objectStore("userOrder");
+    const orderData = { id: "order", order: userOrder };
+    store.put(orderData);
+  }).catch(error => {
+    console.error("Error saving user order:", error);
+  });
+}
+
+function loadUserOrder() {
+  openUserListDatabase().then(db => {
+    const transaction = db.transaction("userOrder", "readonly");
+    const store = transaction.objectStore("userOrder");
+
+    const request = store.get("order");
+    request.onsuccess = event => {
+      const savedOrder = event.target.result?.order; // Retrieve saved order
+      if (savedOrder) {
+        const userListContainer = document.querySelector('.user-list-container');
+        const users = Array.from(userListContainer.querySelectorAll('.user'));
+        savedOrder.forEach(userId => {
+          const userElement = users.find(user => user.getAttribute('id') === userId);
+          if (userElement) {
+            userListContainer.appendChild(userElement); // Append in the saved order
+          }
+        });
+      }
+    };
+    request.onerror = event => {
+      console.error("Error loading user order:", event.target.errorCode);
+    };
+  }).catch(error => {
+    console.error("Error opening database:", error);
+  });
 }
 
 
