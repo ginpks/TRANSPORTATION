@@ -1,4 +1,4 @@
-This is the sequence diagram for Chatbox Page. This page is developed collaboraitvely with Gin Park. 
+This is the sequence diagram for Chatbox Page of URide. It was implemented collaboratively with Gin Park, who implemented the dynamic Chatbox and responsiveness.
 
 
 ```mermaid
