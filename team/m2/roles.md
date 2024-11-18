@@ -37,8 +37,10 @@
 ## Jinghao Gao - Communication Lead
 - **Role**: Facilitates communication within the team. JingHao is responsible for maintaining and managing the team’s Discord workspace and ensuring that all members stay informed and engaged.
 - **Top 3 Commits**:
-  1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/58c5c33c9b8ffc4a335af9b911870951b92d9c6b): Communicate with group members to initialize draft 1 and finalize the Final Draft of UI design.
-  2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/f6494d96017d22a28659ef216656fbf4a3cacbde): Create main-page folder and skeleton files, commit the main implement of main page HTML and CSS files.
+  1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/e37215d4666f54872fb1019668f0712f44b73ea3): Complete the load-posts function and the filter function for seats and luggage.
+  2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/86ec09135de4b43b44b1ca8d4176bbb054df461e): Improve the HTML and js files for inputting and storing data based on the new post data type.
+  3. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/58c5c33c9b8ffc4a335af9b911870951b92d9c6b): Communicate with group members to initialize draft 1 and finalize the Final Draft of UI design.
+  4. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/f6494d96017d22a28659ef216656fbf4a3cacbde): Create main-page folder and skeleton files, commit the main implement of main page HTML and CSS files.
 
 ## Sammie Yu - Quality Control
 - **Role**: Reviews team submissions and ensures that all deliverables meet the necessary quality standards. Sammie is responsible for proofreading and ensuring the accuracy of all documents before submission.
