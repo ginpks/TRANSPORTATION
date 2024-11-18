@@ -25,3 +25,17 @@
 - **Task**: Finished the filter and sort UI for the main page
 - **Details**: Fixed the filter CSS file and added some interactivity, added sort button
 - **Link to Commit**: [Commit on main-post-page](https://github.com/ginpks/TRANSPORTATION/commit/e38aa2c3df48b805c103828f6589478aa16ad8c3)
+
+### November 16, 2024
+- **Task**: Enhanced the UI for filter 
+- **Details**: Fixed the time frame filter interface for the filter screen, mainly changed HTML and CSS files
+- **Link to Commit**: [Commit on main-post-page](https://github.com/ginpks/TRANSPORTATION/commit/edd9d5c2b790c458390ed75465fbcf44a553ab8b)
+
+### November 17, 2024
+- **Task**: Finished filter implementation
+- **Details**: Fixed the filter JS implementation
+- **Link to Commit**: [Commit on main-post-page](https://github.com/ginpks/TRANSPORTATION/pull/36/commits/ba7c0b0d39a88ee199b115eb09202d264f206229)
+- **
+- **Task**: Finished search and sort implementation
+- **Details**: Added JS implementation for search and sort features
+- **Link to Commit**: [Commit on main-post-page](https://github.com/ginpks/TRANSPORTATION/pull/36/commits/7ade4939fc82d3cabce9842fdb3b129bd8e55db5)
