@@ -13,7 +13,9 @@ This feature will allow users to post ride offerings and ride requests, which wi
 
 This feature will allow users filter the postings by time, location, and price, so that users can find the rides that are the best fit for their needs. For example, the users will be able to search for the rides available for a specific route or filter all the rides that are posted for a specific date. 
 
-**Assigned to**: Lana Vu
+**Point Value**: 2 points
+
+**Assigned to**: Lana Vu, Jinghao Gao
   
 ## User/client communication
 
