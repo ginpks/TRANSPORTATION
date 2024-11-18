@@ -47,7 +47,7 @@
   2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/f6f7867567a6841b33261d4a9024869b09eb1c22): implemented the search function for chat page
   3. [Commit 3](https://github.com/ginpks/TRANSPORTATION/commit/ef0f8afe06dc04ec3dc4e02ef7a86617d2a0ec05): implemented message persistence
   4. [Commit 4](https://github.com/ginpks/TRANSPORTATION/commit/ef0f8afe06dc04ec3dc4e02ef7a86617d2a0ec05): imporve dynamic user-list order and implemented persistence
-  5. [Commit 5](https://github.com/ginpks/TRANSPORTATION/commit/e03d288e1b91d932a40fe8b3a4120a7f773929ab): Improve sequence-diagram for chat page 
+  5. [Commit 5](https://github.com/ginpks/TRANSPORTATION/commit/e03d288e1b91d932a40fe8b3a4120a7f773929ab): Revised sequence-diagram for chat page 
   6. [Commit 6](https://github.com/ginpks/TRANSPORTATION/commit/58c5c33c9b8ffc4a335af9b911870951b92d9c6b): Work with group member to design UI digram and finalize the design.
   7. [Commit 7](https://github.com/ginpks/TRANSPORTATION/commit/ce6571b7fc796aa629f60b849f8ecef1d3ad7df0): Proofread and revised the `ui-digram.md` file, ensuring that descriptions were clear and complete.
 
