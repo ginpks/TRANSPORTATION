@@ -9,15 +9,21 @@ This feature will allow users to post ride offerings and ride requests, which wi
 
 **Assigned to**: Edgardo Torres, Jinghao Gao
 
+1. **Feature name:** IndexDB connection
+Save and write post information that the user inputs to the indexDB so that we can load these data in the main page.
+  **Point Value**: 1 points
+
+  **Assigned to**: Jinghao Gao
+
 ## Main page view 
 
 This is the main view, where all the postings will appear. Upon clicking on a specific posting, the chat screen will appear. There are also search/filter/sort functions available to use from the main view. 
 
-**Point Value**: 5 points
+**Point Value**: 4 points
 
 **Assigned to**: Jinghao Gao
 
-## Filter the posts on the main page
+1. **Feature name:** Filter the posts on the main page
 
 This feature will allow users to filter the postings by time, location, and price, so that users can find the rides that are the best fit for their needs. For example, the users will be able to filter for the rides available for a specific route or filter all the rides that are posted for a specific date. 
 
@@ -25,7 +31,14 @@ This feature will allow users to filter the postings by time, location, and pric
 
 **Assigned to**: Lana Vu, Jinghao Gao
 
-## Search the posts on the main page
+2. **Feature name:** Post List
+Load post information from the indexDB and construct HTML structure for each post.
+
+  **Point Value**: 1 points
+
+  **Assigned to**: Jinghao Gao
+
+3. **Feature name:** Search the posts on the main page
 
 This feature will allow users to search for posts that are either going from or to a specific destination. 
 
@@ -33,13 +46,14 @@ This feature will allow users to search for posts that are either going from or 
 
 **Assigned to**: Lana Vu
 
-## Sort the posts on the main page
+4. **Feature name:** Sort the posts on the main page
 
 This feature will allow users to sort the existing posts by location (from where they are heading out), date of departure, or number of passengers. 
 
 **Point Value**: 3 point 
 
 **Assigned to**: Lana Vu
+
   
 ## User/client communication
 
