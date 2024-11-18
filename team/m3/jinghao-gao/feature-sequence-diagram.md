@@ -1,3 +1,7 @@
+Below is a sequence diagram for Main-page on the front end, where users can see a series of posts and can use Search, Filter, and Sort to specify the showing list. 
+Filter and Sort feature was implemented collaboratively with Lana vu.
+
+```mermaid
 title Main Page Sequence Diagram
 
 participant User
@@ -29,3 +33,4 @@ User->Sort:Select sorting condition
 Sort->BrowserPostsList:Send condition
 BrowserPostsList-->BrowserPostsList:Sort the posts based on the condition
 User<--BrowserPostsList:Display filtered posts
+```
