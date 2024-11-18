@@ -1,11 +1,11 @@
 
 # Application Features
 
-## Postings for rides/ride requests
+## Create Posts for rides/ride requests
 
 This feature will allow users to post ride offerings and ride requests, which will be then displayed as a listing for easier viewing. The postings will include the details about the ride like time, exact location, space availability, price, or any other specifications or preferences.
 
-**Point Value**: 3 points
+**Point Value**: 2 points
 
 **Assigned to**: Jinghao Gao, Edgardo Torres
 
