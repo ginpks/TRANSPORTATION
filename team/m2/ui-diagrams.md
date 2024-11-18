@@ -26,17 +26,15 @@ is to enable better security and easier user identification since our applicatio
   
   <img src="diagrams/main-page.png">
 
-- User profile page: In this page, user will be able to edit and view their personal information. On the top left corner, there is our logo that will lead the user back to the main page. On the left side, there is a bar that contains:
+- User profile page: In this page, user will be able to edit and view their personal information. On the top of the page, there is our logo that will lead the user back to the main posts page. On the left side, there is a bar that contains:
     -- `information`: where the user can view and edit the basic information such as profile picture
-    -- `posts`: where the user can view and post past and new ride shares
     -- `history trips`: where the user can view all the past trips with detailed information
-    -- `feedback`: where the user can send feedback and view feedbacks from other users
-    -- `settings`: where the user can access settings of the website
-    -- `help`: where the user can request help on the website and ask questions
+    -- `feedback`: where the user can send feedback and access their feedback made and feedback given
+    -- `settings & help`: where the user can access the help information and user settings of the website 
     -- `log out`: where the user can log out of the account, and it will take the user back to the log in page
 The default page for this page is the information page.
 
-<img src="diagrams/user-profile.png">
+<img src="diagrams/Updated-user-profile.png">
 
 - Chat page: 
     In this page, the user can chat with other people who request a ride share. On the top left corner, there is our logo that takes the user back to the main page. On the left side, there is a bar that lists all the users who is or was chatting with the user. There is also a search bar that allows the user to search for a specific user to chat. On the top right corner, there is user's profile picture that allows the user to access the User profile page. In the middle of this page, user will be able to chat with another user with basic structure of chatting, including typing and sending. On the top of the chat box, the user name that the user is chatting to is displayed, and there is also a block button that allows user to block other users in case the user is having a horrible experience.
@@ -44,17 +42,17 @@ The default page for this page is the information page.
 <img src="diagrams/chat-page.png">
 
 - post creating page for drivers/passengers:
-    The ride posting page for both drivers and passengers are alike. Here the user will be able to select a time frame which the user is comfortable leaving, as well as the expected cost (with a suggest cost calculated by us(might be implemented with enough user data)), user's destination, comments the user want to show(can include the preferred way the user want to perform the money transaction (cash/venmo/zelle/...))
-    Before editing the post, the users will be asked to choose whether they are creating the post as passengers/drivers.
+    The ride posting page for both drivers and passengers are alike. Here the user will be able to select a time frame which the user is comfortable leaving, user's destination and origin departure, users can input (depending on forum selection) either: number of passengers and luggage or available seats and available space for luggage, lastly users can submit extra information for the ride(can include the preferred way the user want to perform the money transaction (cash/venmo/zelle/...))
+    Before editing the post, the users will choose whether they are creating the post as passengers/drivers.
 
-  <img src="diagrams/create-post-png.png">
+  <img src="diagrams/Updated-create-post.png">
 
     ### Use Case:
     The general pipeline of the UI is such:
     When a user is accessing our website:
     - User login page: the user either log in or create their account
     After the user logs into their account:
-    - Drive posting page (Main page): users can browse all the postings and contact publishers if they are interested in specific post, and they can always use 'filer', and 'sort' to only focus on the posts that benefits their interests. 
-    - The logo on the top left corner allows user to always be able to return to the main page.
-    - The user profile picture on the top right corner allows user to always be ale to access their personal information page:
-     - In the user information page, the user can click posts on the left to access the posting page for either driver or passenger
+    - Drive posting page (Main page): users can browse all the postings and contact publishers if they are interested in specific posts, and they can always use 'filer', and 'sort' to only focus on the posts that benefit their interests. 
+    - The logo on the top left allows the user to return to the main post page.
+    - The user profile picture on the top right corner allows users to access their personal information page:
+     - In the user information page, the user can click on the logo at the top center of the page to access the posting page for either driver or passenger
