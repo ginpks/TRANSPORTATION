@@ -1,4 +1,4 @@
-loginpg.addEventListener('click', function (event) {
+loginpg.addEventListener('click', function () {
     const username = document.getElementById('usr').value.trim();
     const email = document.getElementById('userEmail').value.trim();
     const password = document.getElementById('inipsw').value.trim();
@@ -8,7 +8,7 @@ loginpg.addEventListener('click', function (event) {
         //do something
         return;
     }
-
+    window.location.href = 'user-profile-page/index.html'
 
 
     const accountData = {
