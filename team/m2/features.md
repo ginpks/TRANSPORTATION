@@ -47,7 +47,7 @@ This feature will allow users to sort the existing posts by location (from where
 
 - **Description**: The chat inbox stores all messages sent between users for communication. This component includes an input box where users can type their messages as well as a send button. The chat inbox dynamically updates with any messages entered by the user. All the sent messages will be stored in the IndexDB for persistence. Gin Park implemented all the dynamic behaviors and functions, and Sammie Yu implemented the message persistence.
 
-  **Point Value**: 3 points
+  **Point Value**: 5 points
 
   **Team Member**: Gin Park, Sammie Yu
 
@@ -63,7 +63,7 @@ This feature will allow users to sort the existing posts by location (from where
 
 - **Description**: The User List contains all the users for communication. User can click it and scroll it. Clicking a user moves them to the top of the user list dynamically, and the user list will automatically scroll to the top, which adapts intuition and ensures users can quickly find their most recent conversations. Updates of user list will be stored in IndexDB.
 
-  **Point Value**: 2 point
+  **Point Value**: 3 point
 
   **Team Member**: Sammie Yu
 
@@ -71,7 +71,7 @@ This feature will allow users to sort the existing posts by location (from where
 
 - **Description**: User can search for the name of other users that they want to chat with. 
 
-  **Point Value**: 1.5 point
+  **Point Value**: 2 point
 
   **Team Member**: Sammie Yu
   
