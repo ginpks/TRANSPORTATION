@@ -45,11 +45,11 @@ This feature will allow users to sort the existing posts by location (from where
 
 1. **Feature name:** Chat Inbox
 
-- **Description**: The chat inbox stores all messages sent between users for communication. This component includes an input box where users can type their messages as well as a send button. The chat inbox dynamically updates with any messages entered by the user.
+- **Description**: The chat inbox stores all messages sent between users for communication. This component includes an input box where users can type their messages as well as a send button. The chat inbox dynamically updates with any messages entered by the user. All the sent messages will be stored in the IndexDB for persistence. Gin Park implemented all the dynamic behaviors and functions, and Sammie Yu implemented the message persistence.
 
-  **Point Value**: 2 points
+  **Point Value**: 3 points
 
-  **Tean Member**: Gin Park
+  **Team Member**: Gin Park, Sammie Yu
 
 2. **Feature name:** Small View Chat Page
 
@@ -57,7 +57,24 @@ This feature will allow users to sort the existing posts by location (from where
 
   **Point Value**: 1 point
 
-  **Tean Member**: Gin Park
+  **Team Member**: Gin Park
+
+3. **Feature name:** User List
+
+- **Description**: The User List contains all the users for communication. User can click it and scroll it. Clicking a user moves them to the top of the user list dynamically, and the user list will automatically scroll to the top, which adapts intuition and ensures users can quickly find their most recent conversations. Updates of user list will be stored in IndexDB.
+
+  **Point Value**: 2 point
+
+  **Team Member**: Sammie Yu
+
+4. **Feature name:** Search Bar for User List
+
+- **Description**: User can search for the name of other users that they want to chat with. 
+
+  **Point Value**: 1.5 point
+
+  **Team Member**: Sammie Yu
+  
 
 ## Log in and ID verification
 
@@ -78,9 +95,3 @@ This feature will allow the users to post their feedback after the trip to make 
 **Point Value**: 2 points
 
 **Assigned to**: Edgardo Torres
-
-## Notifications/alerts
-
-This feature will notify users when there is a ride post that they might find fitting and when drivers are coming. This will also show push notifications for the exact arrival time/location so that meet ups can be in a timely manner. Moreover, it will alert users when the ride is canceled, postponed, or arriving late. 
-
-**Assigned to**: Gin Park, Sammie Yu
