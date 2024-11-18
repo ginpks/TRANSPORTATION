@@ -4,13 +4,15 @@ We have decided to make 7 posts in total: Log in page, Sign up page, Post inform
 
 ## UI diagrams
 
-The relative path to the pdf file of the drawn UI design is : team/m2/326 ui design (draft 1).pdf
+The relative path to the pdf file of the drawn UI design is: team/m2/UI Design (Draft 2).pdf
 
 ### Explanations of each diagram:
 - Login page: The login page is built for users to log into their own account using their UMass email. The purpose of using UMass email
 is to enable better security and easier user identification since our application aims to provide a ridesharing platform for UMass students only. Users will also need their password to log in. In case the user is a new user, we also provide a link to Sign up page, in which we will send verification emails to users, and ask them to create their own password.
 
 - Sign up Page: The sign up page is built for new users to create their own account using their UMass email. Users will need to input the verification code we sent to verify themselves before creating new accounts. Users will create their password for logging in later.
+<img src="diagrams/log-in.png">
+<img src="diagrams/create-account.png">
 
 - Post information page: This is the main page for our website, where users will have a vision on 
     -- `our logo`: they can use to return to this main page, 
@@ -21,6 +23,8 @@ is to enable better security and easier user identification since our applicatio
     -- `profile`: shown with user's profile picture, it is used to allow user to access their profile page to edit and view their personal information,
     -- `chat`: allows user to access the Chat page,
     -- `switch`: allows user to switch to see the posts from passenger/driver perspective.
+  
+  <img src="diagrams/main-page.png">
 
 - User profile page: In this page, user will be able to edit and view their personal information. On the top left corner, there is our logo that will lead the user back to the main page. On the left side, there is a bar that contains:
     -- `information`: where the user can view and edit the basic information such as profile picture
@@ -30,14 +34,20 @@ is to enable better security and easier user identification since our applicatio
     -- `settings`: where the user can access settings of the website
     -- `help`: where the user can request help on the website and ask questions
     -- `log out`: where the user can log out of the account, and it will take the user back to the log in page
-The default page for this page is the information page. 
+The default page for this page is the information page.
+
+<img src="diagrams/user-profile.png">
 
 - Chat page: 
     In this page, the user can chat with other people who request a ride share. On the top left corner, there is our logo that takes the user back to the main page. On the left side, there is a bar that lists all the users who is or was chatting with the user. There is also a search bar that allows the user to search for a specific user to chat. On the top right corner, there is user's profile picture that allows the user to access the User profile page. In the middle of this page, user will be able to chat with another user with basic structure of chatting, including typing and sending. On the top of the chat box, the user name that the user is chatting to is displayed, and there is also a block button that allows user to block other users in case the user is having a horrible experience.
 
+<img src="diagrams/chat-page.png">
+
 - post creating page for drivers/passengers:
     The ride posting page for both drivers and passengers are alike. Here the user will be able to select a time frame which the user is comfortable leaving, as well as the expected cost (with a suggest cost calculated by us(might be implemented with enough user data)), user's destination, comments the user want to show(can include the preferred way the user want to perform the money transaction (cash/venmo/zelle/...))
     Before editing the post, the users will be asked to choose whether they are creating the post as passengers/drivers.
+
+  <img src="diagrams/create-post-png.png">
 
     ### Use Case:
     The general pipeline of the UI is such:

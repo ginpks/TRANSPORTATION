@@ -46,15 +46,15 @@ body{
     height: 60px; */
     flex-grow: 1; /* auto takes up the remain space */
     height: 100%;
-    margin-left: 70vw;
-    margin-right: 1vw;
+    margin-left: 72vw;
+    margin-right: 0.5vw;
     background-color: rgb(255, 255, 255);
     color: #000000;
     align-items: center;
     justify-content: center;
     text-align: center;
     font-size: 1em;
-    line-height: 100%;
+    line-height: 60px;
 }
 .profile-icon{
     display: flex;
@@ -63,7 +63,7 @@ body{
     aspect-ratio: 1 / 1;
     max-width: 50px;
     max-height: 50px;
-    margin: 0.5vw 2vw 0 2vw;
+    margin: 0.5vw 3vw 0 1vw;
     border-radius: 50%;
     background-color: #881c1c;
     color: #881c1c;
@@ -196,8 +196,61 @@ body{
 }
 
 /* Filter Section Styles */
+/* Filter Section */
 .filter-section {
-    margin: 15px 0;
+    margin-bottom: 20px;
+}
+
+/* Tab Content */
+.tab-content {
+    margin-top: 10px;
+}
+
+/* Inline Inputs Container */
+.inline-inputs {
+    display: flex;
+    gap: 10px; /* Space between inputs */
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+/* Input Fields */
+.inline-inputs input[type="time"],
+.inline-inputs input[type="date"] {
+    width: 150px; /* Set a consistent width */
+    height: 40px; /* Adjust height for better UX */
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 2px solid #ddd; /* Default border */
+    border-radius: 5px; /* Rounded edges */
+    outline: none;
+    background-color: #fff;
+    color: #333; /* Default text color */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Highlight on Focus */
+.inline-inputs input[type="time"]:focus,
+.inline-inputs input[type="date"]:focus {
+    border-color: #881c1c; /* Red border for focus */
+    box-shadow: 0 0 5px rgba(136, 28, 28, 0.5); /* Subtle red glow */
+    color: #881c1c; /* Text turns red on focus */
+}
+
+/* Labels */
+.tab-content label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; /* Dark text for labels */
+    margin-bottom: 5px;
+    display: block; /* Labels stack above inputs */
+}
+
+/* Hover Effect for Inputs */
+.inline-inputs input[type="time"]:hover,
+.inline-inputs input[type="date"]:hover {
+    border-color: #881c1c; /* Red border on hover */
+    cursor: pointer;
 }
 
 .filter-section label {
@@ -213,35 +266,8 @@ body{
     border: 1px solid #000;
 }
 
-/* Style for the time range controls */
-.time-range {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.time-adjust { /* Button style */
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
+.toggle label {
     cursor: pointer;
-    color: gray;
-}
-
-.time-adjust:hover { /* Hover effect */
-    color: #881c1c;
-}
-
-.time-range input[type="text"] { /* Input field style */
-    width: 80px;
-    height: 40px;
-    text-align: center;
-    font-size: 16px;
-    border: 2px solid #881c1c;
-    border-radius: 5px;
-    color: #333;
-    background-color: #fff;
-    outline: none;
 }
 
 .separator { /* Separator styling */
@@ -324,16 +350,14 @@ body{
     cursor: pointer;
   }
   
-  .sort select:hover {
+.sort select:hover {
     background-color: #cdcdcd;
-  }
+ }
   
-/* old sort styling */
-/* .sort:hover{
+.sort select:focus {
+    outline: none;
     background-color: #cdcdcd;
-    transform: scale(1.02);
-    display: block;
-} */
+}
 
 .posts-list{
     display: flex;
@@ -398,6 +422,11 @@ body{
     margin: 0 0 0 5px;
 
 }
+.custom-post-id-content{
+    color: #333;
+    font-size: 16px;
+}
+
 .custom-post-title {
     color: #333;
     margin-bottom: 5px;

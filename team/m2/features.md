@@ -3,9 +3,11 @@
 
 ## Postings for rides/ride requests
 
-This feature will allow users to post ride offerings and ride requests, which will be then displayed as a listing for easier viewing. The postings will include the details about the ride like time, exact location, space availability, price, or any other specifications or preferences. 
+This feature will allow users to post ride offerings and ride requests, which will be then displayed as a listing for easier viewing. The postings will include the details about the ride like time, exact location, space availability, price, or any other specifications or preferences.
 
-**Assigned to**: Jinghao Gao
+**Point Value**: 3 points
+
+**Assigned to**: Jinghao Gao, Edgardo Torres
 
 ## Search and filter
 
@@ -15,9 +17,21 @@ This feature will allow users filter the postings by time, location, and price, 
   
 ## User/client communication
 
-This feature will allow users to communicate with each other if they are interested in some specific posts. This provides the users a direct way to communicate inside the application for better convenience. 
+1. **Feature name:** Chat Inbox
 
-**Assigned to**: Sammie Yu, Gin Park
+- **Description**: The chat inbox stores all messages sent between users for communication. This component includes an input box where users can type their messages as well as a send button. The chat inbox dynamically updates with any messages entered by the user.
+
+  **Point Value**: 2 points
+
+  **Tean Member**: Gin Park
+
+2. **Feature name:** Small View Chat Page
+
+- **Description**: The chat page for small view devices such as mobile phones utilizes a dropdown container constisting of the user list component that was implemented by Sammie Yu for the main view chat page. Transitioning to a dropdown for smaller views ensures simplicity for the user when selecting a chatroom.
+
+  **Point Value**: 1 point
+
+  **Tean Member**: Gin Park
 
 ## Log in and ID verification
 
@@ -34,6 +48,8 @@ This feature will display the exact pickup and dropoff location for each ride. T
 ## Feedback 
 
 This feature will allow the users to post their feedback after the trip to make a better experience in the future. Since it's going to be shown in public, it makes both parties want to cooperate to get the high rankings for the experience. This will include the star rating after the ride (out of 5) and other feedback options like "great music", "quiet ride", or "certified yapper". 
+
+**Point Value**: 2 points
 
 **Assigned to**: Edgardo Torres
 

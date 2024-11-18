@@ -25,22 +25,26 @@ export function savePost(type) {
     let postData;
     if (type === 'passenger') {
         postData = {
+            id: Math.floor(Math.random() * 10000),
             type: 'passenger',
             from: document.getElementById('from').value,
             destination: document.getElementById('destination').value,
             time: document.getElementById('Time').value,
             date: document.getElementById('date').value,
             people: document.getElementById('people').value,
+            luggage: document.getElementById('luggage').value,
             extraInfo: document.getElementById('extraInfo').value
         };
     } else if (type === 'driver') {
         postData = {
+            id: Math.floor(Math.random() * 10000),
             type: 'driver',
             from: document.getElementById('fromDriver').value,
             destination: document.getElementById('destinationDriver').value,
             time: document.getElementById('TimeDriver').value,
             date: document.getElementById('dateDriver').value,
-            availableSeats: document.getElementById('availableSeats').value,
+            people: document.getElementById('availableSeats').value,
+            luggage: document.getElementById('availableLuggage').value,
             extraInfo: document.getElementById('extraInfoDriver').value
         };
     }
@@ -57,6 +61,7 @@ function clearFormFields(type) {
         document.getElementById('Time').value = '';
         document.getElementById('date').value = '';
         document.getElementById('people').value = '';
+        document.getElementById('luggage').value = '';
         document.getElementById('extraInfo').value = '';
     } else if (type === 'driver') {
         document.getElementById('fromDriver').value = '';
@@ -64,6 +69,7 @@ function clearFormFields(type) {
         document.getElementById('TimeDriver').value = '';
         document.getElementById('dateDriver').value = '';
         document.getElementById('availableSeats').value = '';
+        document.getElementById('availableLuggage').value = '';
         document.getElementById('extraInfoDriver').value = '';
     }
 }

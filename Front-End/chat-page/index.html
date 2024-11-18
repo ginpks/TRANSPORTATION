@@ -20,23 +20,55 @@
     <div class="searchBar-and-selectedPassenger">
         <form class="search-bar"> <!-- Here, the user can search for a user to message-->
             <input type="text" placeholder="Search..." class="search-input" id = "searchInput">
-        </form> 
+        </form>         
         <div class="selected-passenger">
             <div class="user-pic" id="selected-user">A</div>
-            <h1>Passenger A</h1>
+
+            <div class="dropdown">
+                <h1 class="current-user" id="selected"></h1>
+                <div class="dropdown-content">
+                    <div class="user-list-container-mobile" id = "user-list-container-mobile" > <!-- the list of users (passengers/drivers) will be contained here -->
+                        <div class="user" id ="1">
+                            <div class="user-pic">A</div>
+                            <span class="user-name">Passenger A</span>
+                        </div>
+                        <div class="user" id ="2">
+                            <div class="user-pic">L</div>
+                            <span class="user-name">Passenger B</span>
+                        </div>
+                        <div class="user" id ="3">
+                            <div class="user-pic">C</div>
+                            <span class="user-name">Driver C</span>
+                        </div>
+                        <div class="user" id ="4">
+                            <div class="user-pic">B</div>
+                            <span class="user-name">Passenger B</span>
+                        </div>
+                        <div class="user" id ="5">
+                            <div class="user-pic">Y</div>
+                            <span class="user-name">Driver Y</span>
+                        </div>
+                        <div class="user" id ="6">
+                            <div class="user-pic">D</div>
+                            <span class="user-name">Passenger D</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <div class="chat-container"> <!-- All chat related components will  be contained here -->
 
-        <div class="user-list-container" id = "container" > <!-- the list of users (passengers/drivers) will be contained here -->
+        <div class="user-list-container" id = "user-list-container" > <!-- the list of users (passengers/drivers) will be contained here -->
             <div class="user" id ="1">
                 <div class="user-pic">A</div>
                 <span class="user-name">Passenger A</span>
             </div>
             <div class="user" id ="2">
                 <div class="user-pic">L</div>
-                <span class="user-name">Passenger B</span>
+                <span class="user-name">Friend L</span>
             </div>
             <div class="user" id ="3">
                 <div class="user-pic">C</div>
@@ -103,7 +135,9 @@
 
             <div class="input-container"> <!-- input is contained here -->
                 <input type="text" placeholder="Message" id="chatInput">
-                <button class="send-button"><i class="material-icons">&#xe163;</i></button>
+                <button id="sendButton" class="send-button">
+                    <i class="material-icons">send</i> <!-- You can use any icon you prefer -->
+                </button>
             </div>
 
         </div>

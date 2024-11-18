@@ -1,7 +1,6 @@
-
 /* Set padding for the entire page and apply the Inter font family */
 body {
-    padding: 2vh 3vw;
+    margin: 2em 3em;
     font-family: inter;
 }
 
@@ -10,6 +9,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 1vh;
 }
 .webLogo {
     font-size: 35px;
@@ -43,7 +43,7 @@ body {
     display: flex;
     margin-top: 5vh;
     width: calc(100% - 50px);
-    max-width: 15vw;
+    max-width: 17vw;
 }
 .search-input {
     width: 100%;
@@ -59,7 +59,7 @@ body {
 /* User-List-Container Styling */
 .user-list-container {
     width: calc(100% - 50px);
-    max-width: 15vw;
+    max-width: 17vw;
     height: 70vh;
     background-color: #f4f4f4;
     overflow-y: auto;
@@ -81,6 +81,12 @@ body {
     background-color: #E9E9E9;
     transform: scale(1.02);
 }
+
+.user.selected{
+    background-color: #dddddd; 
+    font-weight: bold;
+}
+
 .user-pic {
     display: flex;
     align-items: center;
@@ -109,29 +115,28 @@ body {
 }
 
 /* style all scroll bars*/
-.inbox::-webkit-scrollbar, .user-list-container::-webkit-scrollbar {
+.inbox::-webkit-scrollbar, .user-list-container::-webkit-scrollbar, .user-list-container-mobile::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }   
 
-.inbox::-webkit-scrollbar-track, .user-list-container::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
+.inbox::-webkit-scrollbar-track, .user-list-container::-webkit-scrollbar-track, .user-list-container-mobile::-webkit-track {
     border-radius: 50px;
 }
 
-.inbox::-webkit-scrollbar-thumb, .user-list-container::-webkit-scrollbar-thumb {
+.inbox::-webkit-scrollbar-thumb, .user-list-container::-webkit-scrollbar-thumb, .user-list-container-mobile::-webkit-scrollbar-thumb {
     background: rgb(136, 28, 28);
     border-radius: 5px;
 }
 
-.inbox::-webkit-scrollbar-thumb:hover, .user-list-container::-webkit-scrollbar-thumb:hover {
+.inbox::-webkit-scrollbar-thumb:hover, .user-list-container::-webkit-scrollbar-thumb:hover, .user-list-container-mobile::-webkit-scrollbar-thumb:hover {
   background: rgb(136, 28, 28, 0.4);
 }
 
 
 .chat-container {
     display:flex;
-    margin-top: 20px;
+    margin-top: 0;
 }
 
 .messages-container {
@@ -207,47 +212,167 @@ body {
     outline: none;
 }
 
+.send-button {
+    position: relative;
+    right: 50px;
+    border: none;
+    background-color: #e2e2e2;
+    cursor: pointer;
+}
+
+.send-button i {
+    font-size: 24px; /* Icon size */
+    color: #881c1c; /* Set the color of the icon */
+}
+
+.send-button:hover i {
+    color: #b84e4e; /* Change icon color on hover */
+}
+
 /* styling selected passenger */
 
 .searchBar-and-selectedPassenger {
     display: flex;
+    margin-bottom: 1vh;
 }
 
 .selected-passenger {
+    display: flex;
+    align-items: end;
+    width: 100%;
     margin-left: 20px;
-    position: relative;
+}
+
+.dropdown {
     cursor: pointer;
 }
 
-.selected-passenger h1 {
-    position: absolute; 
-    bottom: 0;        
-    left: 0;          
-    margin: 0 0 0 70px;     
-    width: max-content;
+.dropdown h1{
+    margin: 0;
 }
 
-#selected-user {
-    position: absolute; 
-    bottom: 0;        
-    left: 0;          
-    margin: 0; 
+.user-list-container-mobile {
+    display: none;
 }
 
-.send-button {
-    background: none; 
-    border: none;
-    cursor: pointer;
-    position: absolute; 
-    right: 4vw; 
+.user-list-container-mobile {
+    display: none;
+    height: 25vh;
+    background-color: #f4f4f4;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 2px solid black;
+    border-radius: 5px;
 }
 
+/* smaller devices (950px and below) */
+@media only screen and (max-width: 950px) {
 
-.send-button i {
-    color:#881c1c;
+    body {
+        width: 95vw;
+        margin: 0 auto;
+    } 
+
+    header {
+        margin-bottom: 1em;
+    }
+
+
+    .username {
+        display: none;
+    }
+
+    .profileIcon {
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .webLogo {
+        font-size: 30px;
+    }
+
+    .search-bar {
+        height: 0;
+        width: 0;
+        overflow: hidden;
+    }
+
+    .searchBar-and-selectedPassenger {
+        display: flex;
+        justify-content: center;
+        margin: 3px;       
+
+    }
+
+    .selected-passenger {
+        margin:0;
+        display:flex;
+        justify-content: center;    
+    }
+
+    .selected-passenger h1 {
+        position: static;
+        margin-bottom: 0;
+    }
+    
+    .selected-passenger h1 {
+        font-size: 1.5em;
+        border: #881c1c 3px solid;
+        padding: 0.3em;
+        border-radius: 10px;
+    }
+
+    .input-container {
+        margin-bottom: 0vh;
+    }
+
+    .messages-container {
+        margin-left: 0px;
+    }
+
+    .user-list-container {
+        height: 0;
+        width: 0;
+        overflow: hidden;
+    }
+
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      height: 5vh;
+      background-color: #f9f9f9;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 10px;
+    }
+    
+    .selected-passenger:hover .dropdown-content {
+      display: block;
+    }
+    
+    .user-list-container-mobile {
+        display: block;
+    }
+
+    .user {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 10px 10px;
+        background-color: #F4F4F4;
+        transition: background-color 0.2s, transform 0.2s ease-in-out;
+        border-bottom: 1px solid #050000;
+    }   
+    .user:hover {
+        background-color: #E9E9E9;
+        transform: scale(1.02);
+    }   
+    .user-pic {
+        display: none;
+    }
+    .user-name {
+        font-size: 15px;
+    }
 }
-
-.send-button i:hover {
-    color: rgb(255, 255, 255, 0.8);
-}
-
