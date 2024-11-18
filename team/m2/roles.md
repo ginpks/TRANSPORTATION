@@ -14,6 +14,11 @@
 - **Role**: Manages the timing of all team activities. Lana ensures that meetings start and end on time, keeps track of deadlines, and reminds the team of upcoming due dates.
 - **Top 3 Commits**:
   1. [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/964831befcb8653c7118f1bf617649fc67e14b28): Drafted the initial version of the `problem.md` file.
+  2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/70d9255c1d2006d9ab873f0808dff7809bd97eab): Updated all the features and added the details.
+  3. [Commit 3](https://github.com/ginpks/TRANSPORTATION/commit/03beaff57b2c99abc188cc325f675b0fe284862b): Drafted the initial version of "Primary Users" in `users.md`.
+  4. [Commit 4](https://github.com/ginpks/TRANSPORTATION/commit/e38aa2c3df48b805c103828f6589478aa16ad8c3): Drafted the initial version of the UI for the filter feature.
+  5. [Commit 5](https://github.com/ginpks/TRANSPORTATION/pull/36/commits/ba7c0b0d39a88ee199b115eb09202d264f206229): Finished up the filter implementation, fixed the bugs from the initial draft.
+  6. [Commit 6](https://github.com/ginpks/TRANSPORTATION/pull/36/commits/7ade4939fc82d3cabce9842fdb3b129bd8e55db5): Implemented sort and search for the main page. 
 
 ## Ray Huang - Note-Taker
 - **Role**: Records detailed notes during meetings and ensures that action items are clearly communicated.
