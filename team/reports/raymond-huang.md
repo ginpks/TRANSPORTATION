@@ -9,4 +9,4 @@ sent html file for login page to teamate instead of committing
 
 november 17, 
 task: implement login pages
-details: pulled all 7 files
+details: pulled all 7 files, unsure how to link the commits
