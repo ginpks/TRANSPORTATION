@@ -1,0 +1,92 @@
+/* General Body Styles, reason for all the weird repets is that all 
+these files were created on seperate times and have little standardization
+I will standardize later, but currently everything should work*/
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #881c1c;
+}
+
+.left, .right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #881c1c;
+}
+
+.left {
+    border-right: 4px solid #000;
+}
+
+.box {
+    width: 200px;
+    height: 400px;
+    flex-direction: column;
+    background-color: white;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.button, .button3 {
+    border: none;
+    color: black;
+    font-size: 45px;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    border: 3px solid black;
+    cursor: pointer;
+}
+
+.button:hover, .button3:hover {
+    background-color: red;
+    color: white;
+}
+
+.left .button, .right .button {
+    border: none;
+    color: red;
+    text-align: center;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button2 {
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 3px solid black;
+}
+
+.input, .username {
+    width: 30%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.skip-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.main-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
