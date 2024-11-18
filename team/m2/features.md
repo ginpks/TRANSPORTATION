@@ -63,7 +63,7 @@ This feature will allow users to sort the existing posts by location (from where
 
 - **Description**: The User List contains all the users for communication. User can click it and scroll it. Clicking a user moves them to the top of the user list dynamically, and the user list will automatically scroll to the top, which adapts intuition and ensures users can quickly find their most recent conversations. Updates of user list will be stored in IndexDB.
 
-  **Point Value**: 3 point
+  **Point Value**: 4 point
 
   **Team Member**: Sammie Yu
 
@@ -71,7 +71,7 @@ This feature will allow users to sort the existing posts by location (from where
 
 - **Description**: User can search for the name of other users that they want to chat with. 
 
-  **Point Value**: 2 point
+  **Point Value**: 3 point
 
   **Team Member**: Sammie Yu
   
