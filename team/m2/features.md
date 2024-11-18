@@ -55,7 +55,7 @@ This feature will allow users to sort the existing posts by location (from where
 
 - **Description**: The chat page for small view devices such as mobile phones utilizes a dropdown container constisting of the user list component that was implemented by Sammie Yu for the main view chat page. Transitioning to a dropdown for smaller views ensures simplicity for the user when selecting a chatroom.
 
-  **Point Value**: 1 point
+  **Point Value**: 3 point
 
   **Team Member**: Gin Park
 
