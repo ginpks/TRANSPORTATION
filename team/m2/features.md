@@ -9,13 +9,37 @@ This feature will allow users to post ride offerings and ride requests, which wi
 
 **Assigned to**: Jinghao Gao, Edgardo Torres
 
-## Search and filter
+## Main page view 
 
-This feature will allow users filter the postings by time, location, and price, so that users can find the rides that are the best fit for their needs. For example, the users will be able to search for the rides available for a specific route or filter all the rides that are posted for a specific date. 
+This is the main view, where all the postings will appear. Upon clicking on a specific posting, the chat screen will appear. There's also search/filter/sort functions available to use from the main view. 
 
-**Point Value**: 2 points
+**Point Value**: 3 points
+
+**Assigned to**: Jinghao Gao
+
+## Filter the posts on the main page
+
+This feature will allow users filter the postings by time, location, and price, so that users can find the rides that are the best fit for their needs. For example, the users will be able to filter for the rides available for a specific route or filter all the rides that are posted for a specific date. 
+
+**Point Value**: 3 points
 
 **Assigned to**: Lana Vu, Jinghao Gao
+
+## Search the posts on the main page
+
+This feature will allow users to search for the posts that are either going from or to a specific destination. 
+
+**Point Value**: 1 point 
+
+**Assigned to**: Lana Vu
+
+## Sort the posts on the main page
+
+This feature will allow users to sort the existing posts by location (from where they are heading out), date of departure, or number of passengers. 
+
+**Point Value**: 2 point 
+
+**Assigned to**: Lana Vu
   
 ## User/client communication
 
