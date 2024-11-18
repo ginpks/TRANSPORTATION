@@ -1,7 +1,7 @@
 const createAccountButton = document.getElementById('createAccbutt');
 const invalidUser = /[^ \w@.]/;
 
-createAccountButton.addEventListener('click', function (event) {
+createAccountButton.addEventListener('click', function () {
     const username = document.getElementById('cusr').value.trim();
     const password = document.getElementById('psw').value.trim();
     
@@ -9,7 +9,7 @@ createAccountButton.addEventListener('click', function (event) {
         //do something
         return;
     }
-
+    window.location.href = 'user-profile-page/index.html'
     // look up username in database then email confirmation code
 
 
