@@ -26,7 +26,10 @@
   1. [Commit 1](https://github.com/repo/commit1): Recorded and distributed notes from the first brainstorming meeting, documenting the team’s initial ideas for the project.
   2. [Commit 2](https://github.com/repo/commit2): Summarized team discussions on feature prioritization and updated the `features.md` file with finalized features.
   3. [Commit 3](https://github.com/repo/commit3): Updated the `roles.md` file with detailed action items and responsibilities following each meeting.
-
+  4. [Commit 4] implemented login page for html and js side https://github.com/ginpks/TRANSPORTATION/pull/41
+  5. [Commit 5] implemented choose page page for html and js side
+  6. [Commit 6] implemented create account page
+     
 ## Eric Chen - Task Manager
 - **Role**: Responsible for organizing and tracking team tasks. Eric manages the team’s schedule and ensures everyone completes their task on time.
 - **Top 3 Commits**:
