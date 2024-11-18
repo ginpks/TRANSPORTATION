@@ -5,31 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="script.js"></script>
+    <script src="scripts.js" type="module"></script>
     <title>URide</title>
 </head>
 
 <body>
-    <header>
+    <!-- Header Section -->
+    <header> <!-- Header will contain logo and user profile -->
         <div class="header-container">
-            <img src="logo.png" alt="Logo" class="logo-image">
-            <h1>URide</h1>
+            <div class="webLogo" onclick="window.location.href = '../main-posts-page/index.html';">
+                <span class="web-name"> URide logo </span>
+            </div>
+            <div class="Logo">
+                <span> <!-- profile image --> </span>
+            </div>
         </div>
     </header>
+
+    <!-- Main Container -->
     <div class="container">
+        <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <ul>
                 <li><a href="personal-info.html">Personal Information</a></li>
-                <li><a href="posts.html">Posts</a></li>
                 <li><a href="history-trip.html">History Trip</a></li>
-                <li><a href="your-feedback.html">Your Feedback</a></li>
-                <li><a href="setting.html">Setting</a></li>
-                <li><a href="help.html">Help</a></li>
+                <li><button id="toggleFeedbackButton" class="sidebar-button">Your Feedback</button></li>
+                <li><a href="setting-help.html">Settings & Help</a></li>
                 <li><a href="logout.html">Log Out</a></li>
             </ul>
         </nav>
 
+        <!-- Content Area -->
         <div class="content">
+            <!-- Profile Section -->
             <div class="profile-section">
                 <div class="profile-picture">
                     <div class="picture-placeholder"></div>
@@ -41,6 +49,8 @@
                     <p><strong>Year in School:</strong> Junior</p>
                 </div>
             </div>
+
+            <!-- Posts and Chat Section -->
             <div class="sections-container">
                 <div class="posts-section">
                     <h3>Past Posts</h3>
@@ -52,8 +62,48 @@
                     <iframe src="../chat-page/index.html" class="chat-iframe" frameborder="0"></iframe>
                 </div>
             </div>
+
+
+                <!-- Feedback Box -->
+                <div id="feedbackBox" style="display: none;">
+                    <div class="feedback-container">
+                        <!-- Feedback Form -->
+                        <div class="feedback-form">
+                            <h3>Your Feedback</h3>
+                            <form id="feedbackForm">
+                                <label for="rating">Rate your experience:</label>
+                                <select id="rating">
+                                    <option value="5">★★★★★ - Excellent</option>
+                                    <option value="4">★★★★☆ - Good</option>
+                                    <option value="3">★★★☆☆ - Average</option>
+                                    <option value="2">★★☆☆☆ - Poor</option>
+                                    <option value="1">★☆☆☆☆ - Terrible</option>
+                                </select>
+                
+                                <label for="comments">Comments:</label>
+                                <textarea id="comments" rows="3" placeholder="Your feedback..."></textarea>
+                
+                                <button type="submit">Submit</button>
+                            </form>
+                        </div>
+                
+                        <!-- Retrieved Feedback -->
+                        <div class="feedback-list">
+                            <h3>Previous Feedback</h3>
+                            <div id="feedbackList">
+                                <p>No feedback submitted yet.</p>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                
+
+
         </div>
     </div>
+
+
 </body>
 
 </html>
