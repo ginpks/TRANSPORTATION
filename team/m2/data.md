@@ -43,8 +43,8 @@
   - `Receiver_id` (int): unique identifier for the person who receives the message.
   - `Message_id` (int): unique identifier for each message.
   - `Timestamp` (int): date and time the message was sent/received.
-  - `Message_status` (string): sent/received/read/failed.
 - **Data Source**: User input via messaging; system-generated data.
+- **indexDB Implement**: In the chat-page, we open and write message data to indexDB and read message data from indexDB. And post data contains the attributes list above. We also write user list data to indexDB and read those data when the page loaded.
 
 ### 4. Feedback Form
 
