@@ -27,7 +27,7 @@
     <div class="sec-main-bar">
       <!-- Here, the user can search for the posts of their destination-->
       <form class="user-search-bar">
-        <input type="text" placeholder="Search..." class="search-input" />
+        <input type="text" placeholder="Search..." class="search-input" id = "searchInput" />
       </form>
       <!-- This button will lead to the post creation page -->
       <!-- <button class="post-button" onclick="window.location.href = '../CreatePost-page/index.html';">POST</button> -->
@@ -41,13 +41,13 @@
         <!-- Filter button that triggers the popup -->
         <button id="filter-button" class="filter">Filter</button>
         <div class="sort">
-            <select id="sort-options" onchange="sortPosts()">
-              <option value="">Sort by...</option>
-              <option value="date">Date</option>
-              <option value="location">Location</option>
-              <option value="price">Price</option>
-            </select>
-          </div>
+          <select id="sort-options" onchange="sortPosts()">
+            <option value="">Sort by...</option>
+            <option value="date">Date</option>
+            <option value="location">Location</option>
+            <option value="passengers">Passengers</option>
+          </select>        
+        </div>
       </div>
 
       <!-- Filter Popup Modal -->

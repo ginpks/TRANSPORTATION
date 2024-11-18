@@ -101,6 +101,74 @@ function selectType(type) {
     }
 }
 
+// Sort feature - Lana
+// Select the sort dropdown
+const sortDropdown = document.querySelector('#sort-options');
+
+// Add an event listener to the dropdown
+sortDropdown.addEventListener('change', function () {
+    // Get the selected sorting criteria
+    const sortBy = sortDropdown.value;
+
+    // Select all posts
+    const postsList = document.querySelector('.posts-list');
+    const posts = Array.from(postsList.querySelectorAll('.posts'));
+
+    // Sort the posts array based on the selected criteria
+    const sortedPosts = posts.sort((a, b) => {
+        if (sortBy === 'date') {
+            // Parse date and time from posts
+            const dateA = new Date(a.querySelector('.custom-post-time .custom-post-detail').textContent.trim());
+            const dateB = new Date(b.querySelector('.custom-post-time .custom-post-detail').textContent.trim());
+            return dateA - dateB; // Ascending order
+        } else if (sortBy === 'location') {
+            // Sort alphabetically by 'from' location
+            const fromA = a.querySelector('.custom-post-starting-place .custom-post-detail').textContent.trim().toLowerCase();
+            const fromB = b.querySelector('.custom-post-starting-place .custom-post-detail').textContent.trim().toLowerCase();
+            return fromA.localeCompare(fromB);
+        } else if (sortBy === 'passengers') {
+            // Sort by number of passengers (numeric comparison)
+            const passengersA = parseInt(a.querySelector('.custom-post-capacity .custom-post-detail').textContent.trim(), 10);
+            const passengersB = parseInt(b.querySelector('.custom-post-capacity .custom-post-detail').textContent.trim(), 10);
+            return passengersA - passengersB; // Ascending order
+        }
+        return 0; // No sorting if no valid option is selected
+    });
+
+    // Clear the posts container and re-add the sorted posts
+    postsList.innerHTML = ''; // Remove all current posts
+    sortedPosts.forEach((post) => postsList.appendChild(post)); // Append sorted posts
+});
+
+
+
+// Search feature - Lana
+// Select the search input and posts container
+const searchInput = document.querySelector('#searchInput'); 
+const postsList = document.querySelector('.posts-list');
+
+// Add an event listener to capture input changes
+searchInput.addEventListener('input', function () {
+    // Get the search token (case-insensitive)
+    const token = searchInput.value.toLowerCase();
+
+    // Retrieve all posts
+    const posts = postsList.querySelectorAll('.posts');
+
+    // Iterate through posts and filter based on the token
+    posts.forEach((post) => {
+        // Combine the searchable fields from the post (e.g., destination, "from" location)
+        const destination = post.querySelector('.custom-post-destination .custom-post-detail')?.textContent.toLowerCase() || '';
+        const from = post.querySelector('.custom-post-starting-place .custom-post-detail')?.textContent.toLowerCase() || '';
+
+        // Check if any field contains the search token
+        if (destination.includes(token) || from.includes(token)) {
+            post.style.display = ''; // Show the post
+        } else {
+            post.style.display = 'none'; // Hide the post
+        }
+    });
+});
 
 //main function - Jinghao
 
