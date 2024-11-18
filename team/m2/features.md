@@ -5,13 +5,13 @@
 
 This feature will allow users to post ride offerings and ride requests, which will be then displayed as a listing for easier viewing. The postings will include the details about the ride like time, exact location, space availability, price, or any other specifications or preferences.
 
-**Point Value**: 2 points
+**Point Value**: 3 points
 
-**Assigned to**: Jinghao Gao, Edgardo Torres
+**Assigned to**: Edgardo Torres, Jinghao Gao
 
 ## Main page view 
 
-This is the main view, where all the postings will appear. Upon clicking on a specific posting, the chat screen will appear. There's also search/filter/sort functions available to use from the main view. 
+This is the main view, where all the postings will appear. Upon clicking on a specific posting, the chat screen will appear. There are also search/filter/sort functions available to use from the main view. 
 
 **Point Value**: 3 points
 
@@ -19,7 +19,7 @@ This is the main view, where all the postings will appear. Upon clicking on a sp
 
 ## Filter the posts on the main page
 
-This feature will allow users filter the postings by time, location, and price, so that users can find the rides that are the best fit for their needs. For example, the users will be able to filter for the rides available for a specific route or filter all the rides that are posted for a specific date. 
+This feature will allow users to filter the postings by time, location, and price, so that users can find the rides that are the best fit for their needs. For example, the users will be able to filter for the rides available for a specific route or filter all the rides that are posted for a specific date. 
 
 **Point Value**: 3 points
 
@@ -27,7 +27,7 @@ This feature will allow users filter the postings by time, location, and price, 
 
 ## Search the posts on the main page
 
-This feature will allow users to search for the posts that are either going from or to a specific destination. 
+This feature will allow users to search for posts that are either going from or to a specific destination. 
 
 **Point Value**: 1 point 
 
