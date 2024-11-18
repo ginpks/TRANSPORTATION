@@ -27,7 +27,7 @@
     <div class="sec-main-bar">
       <!-- Here, the user can search for the posts of their destination-->
       <form class="user-search-bar">
-        <input type="text" placeholder="Search..." class="search-input" />
+        <input type="text" placeholder="Search..." class="search-input" id = "searchInput" />
       </form>
       <!-- This button will lead to the post creation page -->
       <!-- <button class="post-button" onclick="window.location.href = '../CreatePost-page/index.html';">POST</button> -->
@@ -41,13 +41,13 @@
         <!-- Filter button that triggers the popup -->
         <button id="filter-button" class="filter">Filter</button>
         <div class="sort">
-            <select id="sort-options" onchange="sortPosts()">
-              <option value="">Sort by...</option>
-              <option value="date">Date</option>
-              <option value="location">Location</option>
-              <option value="price">Price</option>
-            </select>
-          </div>
+          <select id="sort-options" onchange="sortPosts()">
+            <option value="">Sort by...</option>
+            <option value="date">Date</option>
+            <option value="location">Location</option>
+            <option value="passengers">Passengers</option>
+          </select>        
+        </div>
       </div>
 
       <!-- Filter Popup Modal -->
@@ -83,17 +83,17 @@
           <div class="filter-section">
             <label>Pickup Between</label>
             <div class="tab-content">
-              <label for="Time">From</label>
+              <label for="start-time">From</label>
               <div class="inline-inputs">
-                  <input type="time" id="Time" name="Time">
-                  <input type="date" id="date" name="date">
+                  <input type="time" id="start-time" name="start-time">
+                  <input type="date" id="start-date" name="start-date">
               </div>
-              <label for="Time">To</label>  
+              <label for="end-time">To</label>
               <div class="inline-inputs">
-                  <input type="time" id="Time" name="Time">
-                  <input type="date" id="date" name="date">
+                  <input type="time" id="end-time" name="end-time">
+                  <input type="date" id="end-date" name="end-date">
               </div>
-            </div>
+          </div>
           </div>
 
 
@@ -141,10 +141,10 @@
             </div>
           </div>
 
-          <div class="filter-section">
+          <!-- <div class="filter-section">
             <label>Show related posts</label>
             <input type="checkbox" />
-          </div>
+          </div> -->
           
           <button id="filter-apply-button" class="filter-apply">Apply Filter</button>
         </div>
