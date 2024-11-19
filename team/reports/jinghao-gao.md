@@ -59,21 +59,22 @@
 
 ### November 17, 2024
 - **Task 1**: Create Jinghao Gao's Sequence Diagram
-- **Details**: The Sequence Diagram reflects all the features in main page.
-- **Link to Commit**: 
+- **Details**: Create the Sequence Diagram that reflects all the features in the main page.
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/7842adfcf7e535f61a1999d192c460304d0484c5
 
-- **Task 2**: 
-- **Details**: 
-- **Link to Commit**:
+- **Task 2**: Edit Sequence Diagram
+- **Details**: Fix the error of the diagram to the final version.
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/aec2d5e692a630d9883c4d8d96099ea7abc52a36
 
 - **Task 3**: Upload data.md
-- **Details**: 
-- **Link to Commit**:
+- **Details**: Based on the revised data type of posts and the indexDB usage, update the data.md 
+- **Link to Commit**: [Commit 1](https://github.com/ginpks/TRANSPORTATION/commit/b7415652bb5e80525dd36181475bf8b3f0365f9d)
+                      [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/ce71a2cec7acdfcfc8cff70ef7f0393d861a9577)
 
 - **Task 4**: Upload roles.md
-- **Details**: 
-- **Link to Commit**:
+- **Details**: Update the newest top commits.
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/532cf6dbb91608a4c4ca0100c3ff8c8f3e711ee1
 
 - **Task 5**: Upload features.md
-- **Details**: 
-- **Link to Commit**: 
+- **Details**: Edit the revised features of main page and create post page, and give points to them.
+- **Link to Commit**: https://github.com/ginpks/TRANSPORTATION/commit/2204c038b8e56f4e6d78d2bd4029ac8e8937ff27
