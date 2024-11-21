@@ -29,3 +29,29 @@
   - **Task**: Finish UI design for `chat-page index.html, styles.css, and scripts.js`.
   - **Details**: Implemented the messaging box design and its corresponding css.
   - **Link to Commit**: [Commit on Front-End/Chat-Page](https://github.com/ginpks/TRANSPORTATION/commit/b9bee088bc29f385528faae642abc3b3250cdc15)
+
+### November 13, 2024
+  - **Task**: Implement dynamice responsiveness for `chat-page index.html, styles.css, and scripts.js`.
+  - **Details**: Implemented dynamic responsivenes for smaller view devices.
+  - **Link to Commit**: [Commit on Front-End/Chat-Page](https://github.com/ginpks/TRANSPORTATION/commit/a5bea7882a307390f1939e11b24e72f8224d2370)
+
+### November 15, 2024
+  - **Task**: Implement feature sequence diagram for chat page inbox `team/m3/gin-park/feature-sequence-diagram.md`.
+  - **Details**: Created a sequence diagram in mermaid syntax showcasing dynamically updating chat page inbox.
+  - **Link to Commit**: [Commit on team/m3/gin-park/feature-sequence-diagram.md](https://github.com/ginpks/TRANSPORTATION/commit/c60b3ca37354d8c6e01629219235e8f69df13d5b)
+
+### November 16, 2024
+  - **Task**: Update `features.md`.
+  - **Details**: Added points and description to features that were worked on.
+  - **Link to Commit**: [Commit on features.md](https://github.com/ginpks/TRANSPORTATION/commit/46019bc8ef144755ef938842ab4ac25730740836)
+
+### November 16, 2024
+  - **Task**: Update `roles.md`.
+  - **Details**: Added top 3 commits for milestone #3.
+  - **Link to Commit**: [Commit on roles.md](https://github.com/ginpks/TRANSPORTATION/commit/43a070b22a29a6d6ee3eb0b78172d3b8d681e183)
+
+### November 17, 2024
+  - **Task**: Update `ui-diagrams.md`.
+  - **Details**: Updated diagrams for front-end.
+  - **Link to Commit**: [Commit on ui-diagrams.md](https://github.com/ginpks/TRANSPORTATION/commit/20953cf9dd12b1180e247d84e867c7070a359b1e)
+
