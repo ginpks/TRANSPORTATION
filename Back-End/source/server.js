@@ -1,5 +1,6 @@
 import express from 'express';
-import authRoutes from '../auth/routes.js'; // Adjust the path as needed
+import session from "express-session";
+import authRoutes from '../Back-End/authentication/routes.js'; // Adjust the path as needed
 
 const app = express();
 const PORT = 3000;

@@ -1,6 +1,5 @@
-
 import bcrypt from "bcryptjs";
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 import User from "../Back-End/authentication/user.js";
 
 
@@ -27,43 +26,21 @@ export const registerUser = async (req, res) => {
     }
   };
   
-  // Handle user login
-  export const loginUser = async (req, res) => {
-    try {
-      const { username, password } = req.body;
-  
-      // Find the user
-      const user = await User.findOne({ where: { username } });
-      if (!user) {
-        return res.status(401).json({ message: 'Invalid username or password' });
-      }
-  
-      // Compare passwords
-      const isPasswordValid = await bcrypt.compare(password, user.password);
-      if (!isPasswordValid) {
-        return res.status(401).json({ message: 'Invalid username or password' });
-      }
-  
-      res.status(200).json({ message: 'Login successful', user });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
-
-
-// Handle user logout 
-const factoryResponse = (status, message) => ({ status, message });
 
 //login
 export const login = async (req, res, next) => {
-    const { username, password } = req.body;
-    const user = await User.findOne({ where: { username } });
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json(factoryResponse(401, "Invalid credentials"));
+    try{
+        const { username, password } = req.body;
+        const user = await User.findOne({ where: { username } });
+        if (!user || !(await bcrypt.compare(password, user.password))) {
+        return res.status(401).json(factoryResponse(401, "Invalid credentials"));
+        }
+        req.login(user, (err) =>
+            err ? next(err) : res.json(factoryResponse(200, "Login successful! Welcome!"))
+        );
+    }catch(error){
+        res.status(500).json({ error: error.message });
     }
-    req.login(user, (err) =>
-        err ? next(err) : res.json(factoryResponse(200, "Login successful! Welcome!"))
-      );
 };
 
 //logout
@@ -73,7 +50,7 @@ export const logout = (req, res) => {
             res.json(factoryResponse(500, "Logout failed"));
             return;
         }
-        res.json(factoryResponse(200, "Logout successful"));
+        res.json(factoryResponse(200, "Logout successful! See you."));
     });
 };
 
