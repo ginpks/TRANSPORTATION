@@ -6,19 +6,30 @@
     <link rel="stylesheet" href="styles.css">
     <script type="module" src="CreateAccount.js"></script>
 </head>
+
 <body>
+    <header>
+        <!-- Header will contain logo and user profile -->
+        <div class="header-bar">
+            <div class="webLogo">
+                <span class="web-name" onclick="window.location.href = '../main-posts-page/index.html';"> URide logo </span>
+            </div>
+    </header>
 
 
+    <div class="right">
+        <p class="title" style="display: block;">Create Account</p>
 
-<div class="right">
-    <p>Create Account</p>
-    <div class="box"> 
-    <input type = "text" class = "input" placeholder = "username" id = "crusr">
-    <input type = "text" class = "input" placeholder = "umassEmail" id = "userEmail">
-    <input type = "text" class = "input" placeholder = "password" id = "inipsw">
-    <input type = "text" class = "input" placeholder = "confirm password" id = "confpsw">
-    <button class="button" id = "createAccbutt" onclick="window.location.href='mainpage.html'">Create Account</button>
-</div>
-<script src="CreateAccount.js"></script>
+        <div class="box"> 
+            <input type = "text" class = "input" placeholder = "username" id = "crusr">
+            <input type = "text" class = "input" placeholder = "umassEmail" id = "userEmail">
+            <input type = "text" class = "input" placeholder = "password" id = "inipsw">
+            <input type = "text" class = "input" placeholder = "confirm password" id = "confpsw">
+            <button class="button" id = "createAccbutt" onclick="window.location.href='../main-posts-page/index.html';">Create Account</button>
+        </div>
+        <p style="display: block;">Already have a account? </p>
+        <button class="button4" id = "signInButt" onclick="window.location.href='LoginPage.html';" style="display: block;">Sign in here!</button>
+    </div>
+    <script src="CreateAccount.js"></script>
 </body>
 </html>

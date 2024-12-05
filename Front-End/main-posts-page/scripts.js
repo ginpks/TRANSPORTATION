@@ -203,10 +203,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileIcon = document.querySelector('.profile-icon');
   if (profileIcon) {
     profileIcon.addEventListener('click', () => {
-      window.location.href = 'user-profile.html'; // Redirect to user profile page
+      window.location.href = '../user-profile-page/index.html'; // Redirect to user profile page
     });
   }
-
+  const userName = document.querySelector('.username');
+  if (userName) {
+    userName.addEventListener('click', () => {
+      window.location.href = '../user-profile-page/index.html'; // Redirect to user profile page
+    });
+  }
   // Event listener for post button click
   const postButton = document.querySelector('.post-button');
   if (postButton) {

@@ -2,46 +2,100 @@
 these files were created on seperate times and have little standardization
 I will standardize later, but currently everything should work*/
 body {
-    margin: 0;
+    /* margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100vh; */
     background-color: #881c1c;
 }
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-bar{
+    display: flex;
+    height: 60px;
+    /* height: 3vw; */
+    justify-content: space-between; /* make sure proper dispute in different width */
+    /* padding: 0 5%; */
+}
+.webLogo{
+    float: left;
+    display: flex;
+    width: 30vw;
+    height: 100%;
+    background-color: #881c1c;
+    color:#fff;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 1em;
+    line-height: normal;
 
+}
+.web-name{
+    width: 10vw;
+    margin: 0 0 0 0;
+    color:#fff;
+    text-align: center;
+    font-size: 1.1em;
+    line-height: normal;
+    cursor: pointer;
+}
 .left, .right {
-    flex: 1;
+    /* flex: 1; */
+    flex-direction: column;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #881c1c;
 }
-
-.left {
-    border-right: 4px solid #000;
+.right {
+    margin-top: 50px;
 }
 
 .box {
     width: 200px;
     height: 400px;
+    padding: 20px;
     flex-direction: column;
     background-color: white;
-    border: 2px solid black;
+    /* border: 2px solid black; */
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    font-size: 18px;
+}
+.rightInfo{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    align-self: flex-start;
+}
+.boxLeft {
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+    flex-direction: column;
+    background-color: white;
+    border-top: 2px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
 }
-
+.leftInfo {
+    align-self: flex-start;
+}
 .button, .button3 {
     border: none;
     color: black;
     font-size: 45px;
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 40px;
     text-align: center;
     border: 3px solid black;
     cursor: pointer;
@@ -89,4 +143,21 @@ body {
     display: flex;
     width: 100%;
     justify-content: center;
+}
+
+.title {
+    margin: 20px;
+    font-size: 30px;
+}
+.input {
+    width: 150px;
+}
+#button5 {
+    margin: 20px;
+}
+#SignIn {
+    margin-top: 40px;
+}
+.createAccbutt {
+    margin-top: 40px;
 }

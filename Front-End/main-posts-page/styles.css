@@ -55,6 +55,7 @@ body{
     text-align: center;
     font-size: 1em;
     line-height: 60px;
+    cursor: pointer;
 }
 .profile-icon{
     display: flex;
