@@ -9,12 +9,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const logoutLink = document.querySelector("a[href='logout.html']");
-    if (logoutLink) {
-        logoutLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            logoutUser();
-        });
+    async function logout() {
+        try {
+            const response = await fetch("/logout", { method: "POST", credentials: "include" });
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(data.message);
+                window.location.href = "Front-End/login/LoginPage.html"; 
+            } else {
+                alert(data.message || "Logout failed. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error during logout:", error);
+            alert("An error occurred. Please try again.");
+        }
+    }
+
+    const logoutButton = document.querySelector('button[onclick="logout()"]');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', logout);
     }
 
     function navigateToPage(pageName) {
