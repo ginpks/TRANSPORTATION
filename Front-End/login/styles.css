@@ -1,6 +1,4 @@
-/* General Body Styles, reason for all the weird repets is that all 
-these files were created on seperate times and have little standardization
-I will standardize later, but currently everything should work*/
+/* General body styling */
 body {
     margin: 0;
     padding: 0;
@@ -8,15 +6,28 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #881c1c;
+    font-family: Arial, sans-serif;
 }
 
+/* Container for the left and right sections */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+}
+
+/* Left and right panels */
 .left, .right {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+    box-sizing: border-box; /* Includes padding in total width/height */
     background-color: #881c1c;
 }
 
@@ -24,42 +35,44 @@ body {
     border-right: 4px solid #000;
 }
 
+.right {
+    border-left: 4px solid #000;
+}
+
+/* Box styling */
 .box {
-    width: 200px;
-    height: 400px;
-    flex-direction: column;
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Limit max size */
+    padding: 20px;
     background-color: white;
     border: 2px solid black;
+    border-radius: 8px; /* Rounded corners */
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 18px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
+/* Button styles */
 .button, .button3 {
     border: none;
+    background-color: #ffffff;
     color: black;
-    font-size: 45px;
-    width: 200px;
-    height: 200px;
+    font-size: 16px;
+    padding: 15px 20px;
     text-align: center;
+    margin: 10px;
     border: 3px solid black;
+    border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease; /* Smooth hover effect */
 }
 
 .button:hover, .button3:hover {
-    background-color: red;
+    background-color: #c20000;
     color: white;
-}
-
-.left .button, .right .button {
-    border: none;
-    color: red;
-    text-align: center;
-    display: inline-block;
-    font-size: 12px;
-    margin: 4px 2px;
-    cursor: pointer;
 }
 
 .button2 {
@@ -67,17 +80,28 @@ body {
     cursor: pointer;
     padding: 10px 20px;
     border: 3px solid black;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
 }
 
-.input, .username {
-    width: 30%;
+.button2:hover {
+    background-color: #c20000;
+    color: white;
+}
+
+/* Input fields styling */
+.input {
+    width: 100%; /* Full width within the box */
+    max-width: 300px; /* Limit max size */
     padding: 10px;
     margin: 10px 0;
     border: 1px solid black;
     border-radius: 4px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
+/* Skip container and main buttons */
 .skip-container {
     margin-top: 20px;
     display: flex;
@@ -89,4 +113,38 @@ body {
     display: flex;
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap; /* Allows buttons to stack on smaller screens */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .left, .right {
+        flex: 1 1 100%; /* Take full width on small screens */
+        border: none; /* Remove border for a cleaner look */
+    }
+
+    .box {
+        width: 100%;
+        max-width: 90%; /* Reduce max size */
+    }
+
+    .button, .button3 {
+        font-size: 14px;
+        padding: 10px 15px; /* Smaller padding */
+    }
+
+    .input {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .button, .button3 {
+        font-size: 12px;
+        padding: 8px 12px; /* Smaller padding for very small screens */
+    }
+
+    .box {
+        padding: 15px; /* Smaller padding for compact design */
+    }
 }
