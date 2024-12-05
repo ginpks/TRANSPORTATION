@@ -35,6 +35,7 @@
 - **Top 3 Commits**:
   1. [Commit 1]( (https://github.com/ginpks/TRANSPORTATION/commit/8c2bcee05650133a8d10d2316929ba4fbe7bc4f4)):Created a map that helps ride posting.
   2. [Commit 2](https://github.com/ginpks/TRANSPORTATION/commit/81bcf8c0e580a9c1a92340e98e43ba20b36b178e): Create user profile page
+  3. [Commit 3](https://github.com/ginpks/TRANSPORTATION/commit/7693aebcc4b6573fd4cddc73de24402d3f262977): Created user log out functionality
 
 
 ## Jinghao Gao - Communication Lead

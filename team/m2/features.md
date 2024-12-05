@@ -98,9 +98,19 @@ This feature will allow users to log in to their accounts to keep track or their
 
 ## Location tracker/map
 
-This feature will display the exact pickup and dropoff location for each ride. This will help users find each other with more precision to avoid situations when either party gets lost. 
+- **Description**: This feature will display the exact pickup and dropoff location for each ride. This will help users find each other with more precision to avoid situations when either party gets lost. 
 
-**Assigned to**: Gin Park, Eric Chen
+  **Point Value**: 3 points
+
+  **Assigned to**: Eric Chen
+
+## User profile page
+
+- **Description**: This feature allows user to take a glimpse on his or her information and make modifications. It also leads users to other pages in their convenience.
+
+  **Point Value**: 3 points
+
+  **Assigned to**: Eric Chen
 
 ## Feedback 
 
