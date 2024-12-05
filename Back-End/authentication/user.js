@@ -1,4 +1,3 @@
-// import { Sequelize, DataTypes } from "sequelize";
 import { Sequelize, DataTypes } from '@sequelize/core';
 import { SqliteDialect } from '@sequelize/sqlite3';
 
