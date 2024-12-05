@@ -1,42 +1,28 @@
 /* General body styling */
 body {
-    /* margin: 0;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
     background-color: #881c1c;
     font-family: Arial, sans-serif;
 }
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.header-bar{
-    display: flex;
-    height: 60px;
-    /* height: 3vw; */
-    justify-content: space-between; /* make sure proper dispute in different width */
-    /* padding: 0 5%; */
-}
-.webLogo{
-    float: left;
-    display: flex;
-    width: 30vw;
-    height: 100%;
-    background-color: #881c1c;
-    color:#fff;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    font-size: 1em;
-    line-height: normal;
 
+/* Container for the left and right sections */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+}
+
+/* Left and right panels */
 .left, .right {
-    /* flex: 1; */
-    flex-direction: column;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,8 +30,9 @@ body {
     box-sizing: border-box; /* Includes padding in total width/height */
     background-color: #881c1c;
 }
-.right {
-    margin-top: 50px;
+
+.left {
+    border-right: 4px solid #000;
 }
 
 .right {
@@ -54,6 +41,12 @@ body {
 
 /* Box styling */
 .box {
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Limit max size */
+    padding: 20px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px; /* Rounded corners */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,11 +55,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
+/* Button styles */
 .button, .button3 {
     border: none;
     background-color: #ffffff;
     color: black;
-
+    font-size: 16px;
+    padding: 15px 20px;
     text-align: center;
     margin: 10px;
     border: 3px solid black;
@@ -118,5 +113,38 @@ body {
     display: flex;
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap; /* Allows buttons to stack on smaller screens */
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .left, .right {
+        flex: 1 1 100%; /* Take full width on small screens */
+        border: none; /* Remove border for a cleaner look */
+    }
+
+    .box {
+        width: 100%;
+        max-width: 90%; /* Reduce max size */
+    }
+
+    .button, .button3 {
+        font-size: 14px;
+        padding: 10px 15px; /* Smaller padding */
+    }
+
+    .input {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .button, .button3 {
+        font-size: 12px;
+        padding: 8px 12px; /* Smaller padding for very small screens */
+    }
+
+    .box {
+        padding: 15px; /* Smaller padding for compact design */
+    }
 }
