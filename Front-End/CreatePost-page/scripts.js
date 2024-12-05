@@ -25,7 +25,7 @@ export function savePost(type) {
     let postData;
     if (type === 'passenger') {
         postData = {
-            id: Math.floor(Math.random() * 10000),
+            // id: Math.floor(Math.random() * 10000),
             type: 'passenger',
             from: document.getElementById('from').value,
             destination: document.getElementById('destination').value,
@@ -37,7 +37,7 @@ export function savePost(type) {
         };
     } else if (type === 'driver') {
         postData = {
-            id: Math.floor(Math.random() * 10000),
+            // id: Math.floor(Math.random() * 10000),
             type: 'driver',
             from: document.getElementById('fromDriver').value,
             destination: document.getElementById('destinationDriver').value,
@@ -49,7 +49,31 @@ export function savePost(type) {
         };
     }
 
-    storePostInDB(postData);
+    // storePostInDB(postData);
+
+    // const token = localStorage.getItem('token');
+    fetch('http://localhost:3000/api/posts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(postData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Post created successfully:', data);
+        clearFormFields(type);
+    })
+    .catch(error => {
+        console.error('Error creating post:', error);
+    });
+
     clearFormFields(type);
 }
 window.switchTab = switchTab;
