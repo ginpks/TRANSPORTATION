@@ -69,7 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             // Reload posts based on filter
-            loadPostsFromDB(filterCriteria);
+            // loadPostsFromDB(filterCriteria);
+            loadPostsFromServer(filterCriteria);
         });
     }
 });
@@ -176,7 +177,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //Load all the posts from data base
   console.log('DOMContentLoaded');
-  loadPostsFromDB();
+  // loadPostsFromDB();
+  loadPostsFromServer();
     const filterButton = document.getElementById('filter-apply-button');
     if (filterButton) {
         filterButton.addEventListener('click', () => {
@@ -194,7 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 availableLuggage: availableLuggage
             };
 
-            loadPostsFromDB(filterCriteria);
+            // loadPostsFromDB(filterCriteria);
+            loadPostsFromServer(filterCriteria);
             modal.classList.remove('show'); //close filter pop up block
         });
     }
@@ -381,4 +384,43 @@ function loadPostsFromDB(filterCriteria = {}) {
           console.error('Error loading posts from IndexedDB:', event.target.error);
       };
   });
+}
+
+//Milestone 4: Load posts from the server
+function loadPostsFromServer(filterCriteria = {}) {
+    console.log("Loading posts from the server with filter criteria:", filterCriteria);
+    
+    let url = 'http://localhost:3000/api/posts';
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(posts => {
+            const postsList = document.querySelector('.posts-list');
+            if (postsList) {
+                postsList.innerHTML = ''; // Clear current posts
+                
+                // Apply filter to posts if needed (optional, based on filterCriteria)
+                const filteredPosts = posts.filter((post) => {
+                    let match = true;
+                    // Apply filters (e.g., type, time range, required seats, luggage, etc.)
+                    // Filtering logic goes here (similar to existing filter logic)
+                    return match;
+                });
+
+                // Create posts that fit the conditions
+                filteredPosts.forEach((post) => {
+                    createPost(post);
+                });
+            } else {
+                console.error('Cannot find .posts-list element');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching posts from server:', error);
+        });
 }

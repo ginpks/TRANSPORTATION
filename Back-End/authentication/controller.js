@@ -1,3 +1,4 @@
+
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import User from "../Back-End/authentication/user.js";
@@ -75,4 +76,5 @@ export const logout = (req, res) => {
         res.json(factoryResponse(200, "Logout successful"));
     });
 };
+
 
