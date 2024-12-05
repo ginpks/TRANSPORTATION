@@ -16,3 +16,7 @@
 ## Nov 11, 2024
 - Created user profile page
 - Commit link: (https://github.com/ginpks/TRANSPORTATION/commit/81bcf8c0e580a9c1a92340e98e43ba20b36b178e)
+
+## Dec 5, 2024
+- Created user log out functionality
+- Commit link: (https://github.com/ginpks/TRANSPORTATION/commit/7693aebcc4b6573fd4cddc73de24402d3f262977)
