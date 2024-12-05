@@ -14,7 +14,7 @@ app.use('/api/auth', authRoutes);
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 
 const express = require('express');
-const app = express();
+// const app = express();
 const postRoutes = require('../posts/routes');
 const { sequelize } = require('../posts/post'); // Import sequelize instance
 

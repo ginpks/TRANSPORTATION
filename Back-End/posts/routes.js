@@ -5,7 +5,7 @@ const router = express.Router();
 const { createPost, getAllPosts, getPostById, updatePost, deletePost } = require('./controller');
 // const authenticateToken = require('../authentication/controller').authenticateToken;
 
-// Create Post
+// Create Posts
 // router.post('/', authenticateToken, createPost);
 router.post('/', createPost);
 
