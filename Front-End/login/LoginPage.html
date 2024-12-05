@@ -7,20 +7,29 @@
     <script type="module" src="scripts.js"></script>
 </head>
 <body>
+    <header>
+        <!-- Header will contain logo and user profile -->
+        <div class="header-bar">
+            <div class="webLogo">
+                <span class="web-name" onclick="window.location.href = '../main-posts-page/index.html';"> URide logo </span>
+            </div>
+    </header>
 
-<div class="left">
-    <div class="box">
-<button class="button">Create New Account</button>
-</div>
-</div>
+    <div class="right">
+        <div class="box">
+            <div class="rightInfo">User Login</div>
+            <input type = "text" class = "input" placeholder = "username/Email" id = "usr">
+            <input type = "text" class = "input" placeholder = "password" id = "psw">
+            <button class="button" id = "SignIn" onclick="window.location.href='../main-posts-page/index.html';">Sign In</button>
+        </div>
+    <div class="left boxLeft">
+        <div class="leftInfo">New User?</div>
+        <!-- <div class="boxLeft"> -->
+            <button class="button" id="button5" onclick="window.location.href='CreateAccount.html';">Create New Account</button>
+        <!-- </div> -->
+    </div>
 
-<div class="right">
-    <div class="box"> 
-        <input type="text" class="input" placeholder="username" id="usr">
-        <input type="password" class="input" placeholder="password" id="psw">        
-    <button class="button" id = "SignIn" onclick="window.location.href='mainpage.html'">Sign In</button>
 
-</div>
 
 </body>
 </html>
