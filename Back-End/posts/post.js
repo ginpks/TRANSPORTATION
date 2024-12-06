@@ -3,12 +3,12 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 // Create a new instance of Sequelize using sqlite as our database
 // and storing it in posts.sqlite
-const sequelize = new Sequelize({
+const postDatabase = new Sequelize({
     dialect: 'sqlite',
     storage: 'posts.sqlite',
 });
 
-const Post = sequelize.define('Post', {
+const Post = postDatabase.define('Post', {
     type: {
         type: DataTypes.STRING,
         allowNull: false
@@ -43,4 +43,4 @@ const Post = sequelize.define('Post', {
     }
 });
 
-module.exports = { sequelize, Post };
+module.exports = { postDatabase, Post };

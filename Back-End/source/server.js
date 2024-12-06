@@ -1,41 +1,40 @@
 import express from 'express';
 import session from "express-session";
-import authRoutes from '../Back-End/authentication/routes.js'; // Adjust the path as needed
+import authRoutes from '../authentication/routes.js'; // Adjust the path as needed
+import chatDatabase from '../chat/chatDB.js';
+import postRoutes from '../posts/routes.js';
+import { postDatabase } from '../posts/post.js';
+import chatRoutes from '../chat/routes.js';
+import cors from 'cors';
 
 const app = express();
-const PORT = 3000;
 
-// Middleware for parsing JSON
-app.use(express.json());
-
+//Authentication System 
 // Use authentication routes
 app.use('/api/auth', authRoutes);
-
-// Start the server
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-
-const express = require('express');
-// const app = express();
-const postRoutes = require('../posts/routes');
-const { sequelize } = require('../posts/post'); // Import sequelize instance
 
 // Middleware setup
 app.use(express.json());
 
-const cors = require('cors');
-app.use(cors());
 
+app.use(cors());
 // Set up post-related routes
 app.use('/api/posts', postRoutes);
+// app.use("/api/chat", chatRoutes);
 
-// Sync database before starting the server
-sequelize.sync({ force: false }) // Sync database
+//Sync Databases and start server
+Promise.all([
+  postDatabase.sync({ force: false }),
+  chatDatabase.sync({ force: false })
+])
   .then(() => {
+    console.log("All databases synced successfully!");
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
+      console.log(`Server is running on http://localhost:${PORT}`);
     });
   })
   .catch((error) => {
-    console.error('Unable to start the server:', error);
+    console.error("Unable to sync databases or start the server:", error);
+    process.exit(1);
   });

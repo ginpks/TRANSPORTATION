@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 // import dotenv from "dotenv";
-import User from "../Back-End/authentication/user.js";
+import User from "../authentication/user.js";
 
 
 // Handle user registration
