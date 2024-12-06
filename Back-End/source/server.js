@@ -9,6 +9,9 @@ import cors from 'cors';
 
 const app = express();
 
+// serve Front-End files
+app.use(express.static('Front-End'));
+
 //Authentication System 
 // Use authentication routes
 app.use('/api/auth', authRoutes);
