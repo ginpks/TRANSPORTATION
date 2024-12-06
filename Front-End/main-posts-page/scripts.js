@@ -392,7 +392,10 @@ function loadPostsFromServer(filterCriteria = {}) {
     
     let url = 'http://localhost:3000/api/posts';
 
-    fetch(url)
+    fetch(url, {
+        method: 'GET',
+        credentials: 'include' // include cookie, to keep track of communication
+    })
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

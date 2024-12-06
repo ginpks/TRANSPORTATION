@@ -1,11 +1,11 @@
 // import bcrypt from "bcryptjs";
 // import dotenv from "dotenv";
-// import Post from "../Back-End/posts/post.js";
+import { Post } from "./post.js";
 
-const { Post } = require('./post');
+// const { Post } = require('./post');
 
 //Create post
-exports.createPost = async (req, res) => {
+export const createPost = async (req, res) => {
     try {
         console.log('Request Body:', req.body);
         const postData = req.body;
@@ -22,7 +22,7 @@ exports.createPost = async (req, res) => {
 };
 
 //get all posts
-exports.getAllPosts = async (req, res) => {
+export const getAllPosts = async (req, res) => {
     try {
         const posts = await Post.findAll();
         res.json(posts);
@@ -32,7 +32,7 @@ exports.getAllPosts = async (req, res) => {
 };
 
 //get post by ID
-exports.getPostById = async (req, res) => {
+export const getPostById = async (req, res) => {
     try {
         const post = await Post.findByPk(req.params.id);
         if (!post) {
@@ -45,7 +45,7 @@ exports.getPostById = async (req, res) => {
 };
 
 //update post
-exports.updatePost = async (req, res) => {
+export const updatePost = async (req, res) => {
     try {
         const post = await Post.findByPk(req.params.id);
         if (!post) {
@@ -59,7 +59,7 @@ exports.updatePost = async (req, res) => {
 };
 
 //delete post
-exports.deletePost = async (req, res) => {
+export const deletePost = async (req, res) => {
     try {
         const post = await Post.findByPk(req.params.id);
         if (!post) {

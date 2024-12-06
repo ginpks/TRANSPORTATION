@@ -19,6 +19,7 @@ signInButton.addEventListener('click', async function (event) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
+      credentials: 'include' // include cookie, to keep track of communication
     });
 
     if (response.ok) {
