@@ -1,3 +1,4 @@
+//ES Module
 import express from 'express';
 import session from "express-session";
 import authRoutes from '../authentication/routes.js'; // Adjust the path as needed
@@ -15,12 +16,21 @@ app.use('/api/auth', authRoutes);
 
 // Middleware setup
 app.use(express.json());
-
-
 app.use(cors());
-// Set up post-related routes
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false
+}));
+
+// Initial Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+// Set up post and chat related routes
 app.use('/api/posts', postRoutes);
-// app.use("/api/chat", chatRoutes);
+app.use("/api/chat", chatRoutes);
 
 //Sync Databases and start server
 Promise.all([

@@ -58,6 +58,7 @@ export function savePost(type) {
             'Content-Type': 'application/json',
             // 'Authorization': `Bearer ${token}`
         },
+        credentials: 'include', // include cookie, to keep track of communication
         body: JSON.stringify(postData)
     })
     .then(response => {
@@ -138,7 +139,7 @@ export function storePostInDB(postData) {
             console.error('Error saving post to IndexedDB:', event.target.error);
         };
     }).catch((error) => {
-        console.error('fail to open database to store post 出错:', error);
+        console.error('fail to open database to store post:', error);
     });
 }
 

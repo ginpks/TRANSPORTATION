@@ -1,6 +1,7 @@
 {
   "name": "transportation",
   "version": "1.0.0",
+  "type": "module",
   "description": "test 123 open our via happiness",
   "main": "index.js",
   "scripts": {

@@ -9,7 +9,16 @@ import {
 
 // Routes for registration, login, and logout
 router.post('/register', registerUser);
-router.post("/login", login);
+
+// router.post("/login", login);
+
+// Using middleware-passport
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/success',
+  failureRedirect: '/login',
+  failureMessage: true
+}));
+
 router.get("/logout", logout);
 
 export default router;

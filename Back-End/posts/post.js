@@ -1,5 +1,5 @@
-// import { Sequelize, DataTypes } from "sequelize";
-const { Sequelize, DataTypes } = require('sequelize');
+import { Sequelize, DataTypes } from "sequelize";
+// const { Sequelize, DataTypes } = require('sequelize');
 
 // Create a new instance of Sequelize using sqlite as our database
 // and storing it in posts.sqlite
@@ -8,6 +8,7 @@ const postDatabase = new Sequelize({
     storage: 'posts.sqlite',
 });
 
+// Defining the Post model
 const Post = postDatabase.define('Post', {
     type: {
         type: DataTypes.STRING,
@@ -43,4 +44,9 @@ const Post = postDatabase.define('Post', {
     }
 });
 
-module.exports = { postDatabase, Post };
+// Create the table if it doesn't exist or update existing table to match model definition above
+await sequelize.sync();
+
+// Export the User model to make database accessible for other components of our app.
+// module.exports = { postDatabase, Post };
+export { postDatabase, Post }; //ES Module
