@@ -17,18 +17,22 @@
     </header>
 
 
-    <div class="right">
-        <p class="title" style="display: block;">Create Account</p>
-
-        <div class="box"> 
-            <input type = "text" class = "input" placeholder = "username" id = "crusr">
-            <input type = "text" class = "input" placeholder = "umassEmail" id = "userEmail">
-            <input type = "text" class = "input" placeholder = "password" id = "inipsw">
-            <input type = "text" class = "input" placeholder = "confirm password" id = "confpsw">
-            <button class="button" id = "createAccbutt" onclick="window.location.href='../main-posts-page/index.html';">Create Account</button>
+    <div class="container">
+        <!-- Create Account Section -->
+        <div class="box">
+            <div class="info">Create Account</div>
+            <input type="text" class="input" placeholder="username" id="crusr">
+            <input type="text" class="input" placeholder="umassEmail" id="userEmail">
+            <input type="password" class="input" placeholder="password" id="inipsw">
+            <input type="password" class="input" placeholder="confirm password" id="confpsw">
+            <button class="button" id="createAccbutt" onclick="window.location.href='../main-posts-page/index.html';">Create Account</button>
         </div>
-        <p style="display: block;">Already have a account? </p>
-        <button class="button4" id = "signInButt" onclick="window.location.href='LoginPage.html';" style="display: block;">Sign in here!</button>
+
+        <!-- Redirect to Login Section -->
+        <div class="box">
+            <p>Already have an account?</p>
+            <button class="button" id="signInButt" onclick="window.location.href='LoginPage.html';">Sign in here!</button>
+        </div>
     </div>
     <script src="CreateAccount.js"></script>
 </body>
