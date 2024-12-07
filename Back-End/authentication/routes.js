@@ -1,3 +1,4 @@
+import passport from "passport";
 import express from "express";
 import {
     login,
@@ -17,7 +18,15 @@ router.post('/login', passport.authenticate('local', {
   successRedirect: '/success',
   failureRedirect: '/login',
   failureMessage: true
-}));
+}),
+(req, res) => {
+  // Check if authentication was successful
+  if (!req.user) {
+    return res.status(401).json({ error: 'Login failed.' });
+  }
+  // Login successful
+  res.status(200).json({ message: 'Login successful', user: req.user });
+});
 
 router.get("/logout", logout);
 
