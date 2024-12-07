@@ -45,7 +45,7 @@ const Post = postDatabase.define('Post', {
 });
 
 // Create the table if it doesn't exist or update existing table to match model definition above
-await sequelize.sync();
+await postDatabase.sync();
 
 // Export the User model to make database accessible for other components of our app.
 // module.exports = { postDatabase, Post };

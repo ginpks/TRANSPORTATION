@@ -7,15 +7,16 @@ import postRoutes from '../posts/routes.js';
 import { postDatabase } from '../posts/post.js';
 import chatRoutes from '../chat/routes.js';
 import cors from 'cors';
+import passport from 'passport';
+import '../authentication/passport.js'; 
+import {isAuthenticated} from '../authentication/authMiddleware.js'
 
 const app = express();
 
 // serve Front-End files
 app.use(express.static('Front-End'));
 
-//Authentication System 
-// Use authentication routes
-app.use('/api/auth', authRoutes);
+
 
 // Middleware setup
 app.use(express.json());
@@ -30,10 +31,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+//Authentication System 
+// Use authentication routes
+app.use('/api/auth', authRoutes);
 // Set up post and chat related routes
-app.use('/api/posts', postRoutes);
-app.use("/api/chat", chatRoutes);
+app.use('/api/posts',isAuthenticated , postRoutes);
+app.use("/api/chat", isAuthenticated, chatRoutes);
 
 //Sync Databases and start server
 Promise.all([
@@ -51,3 +54,12 @@ Promise.all([
     console.error("Unable to sync databases or start the server:", error);
     process.exit(1);
   });
+
+  // Global error handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something went wrong with the server!' });
+  if(!req.session){
+    return res.status(401).json({ error: "Session timed out or expired. Reload or Log in again."})
+  }
+});
