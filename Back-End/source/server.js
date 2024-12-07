@@ -36,7 +36,7 @@ app.use(passport.session());
 app.use('/api/auth', authRoutes);
 // Set up post and chat related routes
 app.use('/api/posts',isAuthenticated , postRoutes);
-app.use("/api/chat", isAuthenticated, chatRoutes);
+app.use("/api/chat", chatRoutes); //for testing stage, exclude isAuthenticated now
 
 //Sync Databases and start server
 Promise.all([
