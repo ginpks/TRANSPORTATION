@@ -145,3 +145,6 @@ export function storePostInDB(postData) {
 
 // document.querySelector('#post-passenger').addEventListener('click', savePost('passenger'));
 window.savePost = savePost;
+
+
+// event listener for posts that call websocket
