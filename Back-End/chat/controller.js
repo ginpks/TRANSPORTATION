@@ -84,10 +84,16 @@ export const getChatHistory = async (req, res) => {
     }
   }
 
-  export const updateLastInteraction = async (session_id) => {
+  export const updateInteraction = async (req, res) => {
     try {
-      await Session.update({ last_interaction: new Date() }, { where: { id: session_id } });
+      const { session_id } = req.body;
+      await Session.update(
+        { last_interaction: new Date() },
+        { where: { id: session_id } }
+      );
+      res.status(200).json({ success: true, message: "Interaction updated successfully" });
     } catch (error) {
-      console.error("Error updating last interaction:", error.message);
+      console.error(error);
+      res.status(500).json({ success: false, error: "Failed to update interaction" });
     }
   };
