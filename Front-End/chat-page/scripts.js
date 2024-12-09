@@ -34,6 +34,28 @@ if (sessionId) {
     inbox.prepend(sendMessageContainer);
 
     // send message user types back to the server
+    fetch('/api/chat/messages', { 
+      method: 'POST', 
+      headers: { 
+        'Content-Type': 'application/json' 
+      }, 
+      body: JSON.stringify({ session_id: sessionId, 
+        sender_id: currentUserId,
+        receiver_id: postOwnerId, 
+        message: messageToSend 
+      }) 
+    }) 
+    .then(response => response.json()) 
+    .then(data => { 
+      if (data.success) { 
+        console.log('Message stored in database:', data.data); 
+      } else { 
+        console.error('Failed to store message:', data.error); 
+      } 
+    }) 
+    .catch(error => { 
+      console.error('Error storing message:', error); 
+    });
     socket.emit('sendMessage', { sessionId, message: messageToSend, senderId: currentUserId });
   }
 
@@ -66,7 +88,7 @@ if (sessionId) {
 // when a user clicks on a post, they are redirected to the chat page where the owner
 // of said post is added to the list of chatters
 document.addEventListener('DOMContentLoaded', () => {
-  //fetch all userList from the back-end
+   //fetch all userList from the back-end when the page is loaded 
     fetch("http://localhost:3000/api/chat/userlist",{
       method: "POST",
       headers:{
@@ -76,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then((response) => response.json())
       .then((result) => {
         if(result.success){
+          //update html 
           const userList = result.data;
           const userListContainer = document.querySelector('.user-list-container');
           const selectedUserPic = document.getElementById("selected-user");
@@ -97,8 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="user-pic">${userName.charAt(0).toUpperCase()}</div>
             <span class="user-name">${userName}</span>
           `;
-            userElement.addEventListener("click", () => {
-              window.location.href = `/chat-page/index.html?session_id=${sessionId}&currentUserId=${currentUserId}&postOwnerId=${userName}`;
+            userElement.addEventListener("click", async () => {
+              if (selectedUserName.textContent === userName) {
+                console.log("User is already selected. No action needed.");
+                return;
+              }
+              const target_sessionID = await getSession(currentUserId, userName);
+              updateInteraction(target_sessionID);
+              window.location.href = `/chat-page/index.html?session_id=${target_sessionID}&currentUserId=${currentUserId}&postOwnerId=${userName}`;
             });
             userListContainer.appendChild(userElement);
           });
@@ -108,6 +137,56 @@ document.addEventListener('DOMContentLoaded', () => {
       }).catch((error)=> console.error("Error fetching user list:", error));
 });
 
+
+async function getSession(currentUserId, postOwnerId) {
+  try {
+    const response = await fetch("http://localhost:3000/api/chat/session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ currentUserId, postOwnerId }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      return result.session_id; 
+    } else {
+      console.error("Failed to get session:", result.error);
+      return null; 
+    }
+  } catch (error) {
+    console.error("Error getting or creating session:", error);
+    return null;
+  }
+}
+
+
+async function updateInteraction(sessionId) {
+  try {
+    const response = await fetch("http://localhost:3000/api/chat/session/update-interaction", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ session_id: sessionId }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      console.log(`Interaction for session ${sessionId} updated successfully.`);
+      return true; 
+    } else {
+      console.error("Failed to update interaction:", result.error);
+      return false; 
+    }
+  } catch (error) {
+    console.error("Error updating interaction:", error);
+    return false; 
+  }
+}
 
 //search function
 const searchInput = document.querySelector('#searchInput'); 
@@ -125,75 +204,76 @@ searchInput.addEventListener('input',function(){
   })
 });
 
-// dynamically update the selected passenger when clicked
-document.addEventListener('DOMContentLoaded', () => {
-  // loadMessages(); //load message
-  // loadUserOrder();
-  const users = document.querySelectorAll(".user");
-  const selectedUser = document.getElementById("selected");
-  const selectedUserPic = document.getElementById("selected-user")
-  const userListContainerMobile = document.querySelector(".user-list-container-mobile");
-  const selectedPassenger = document.querySelector(".dropdown");
 
-  //behavior in user list container
-  const userList = document.querySelector(".user-list-container");
+// // dynamically update the selected passenger when clicked
+// document.addEventListener('DOMContentLoaded', () => {
+//   // loadMessages(); //load message
+//   // loadUserOrder();
+//   const users = document.querySelectorAll(".user");
+//   const selectedUser = document.getElementById("selected");
+//   const selectedUserPic = document.getElementById("selected-user")
+//   const userListContainerMobile = document.querySelector(".user-list-container-mobile");
+//   const selectedPassenger = document.querySelector(".dropdown");
 
-  users.forEach(user => {
+//   //behavior in user list container
+//   const userList = document.querySelector(".user-list-container");
 
-    const userName = user.querySelector('span.user-name');
-    const userPic = user.querySelector('div.user-pic');
+//   users.forEach(user => {
 
-    user.addEventListener('click', () => {
-      selectedUser.textContent = userName.textContent;
-      selectedUserPic.textContent = userPic.textContent;
-      userListContainerMobile.style.display = "none";
+//     const userName = user.querySelector('span.user-name');
+//     const userPic = user.querySelector('div.user-pic');
 
-      //behavior in user list container
-      userList.prepend(user);
-      users.forEach(others => {
-        others.classList.remove("selected");
-      });
-      user.classList.add("selected")
-      userList.scrollTo({
-        top:0,
-        behavior: 'smooth'
-      })
-      // saveUserOrder();
-    });
-  });
+//     user.addEventListener('click', () => {
+//       selectedUser.textContent = userName.textContent;
+//       selectedUserPic.textContent = userPic.textContent;
+//       userListContainerMobile.style.display = "none";
 
-  // Function to toggle dropdown functionality based on screen size
-  const handleDropdownForMobile = () => {
-    const isSmallScreen = window.matchMedia("(max-width: 950px)").matches;
+//       //behavior in user list container
+//       userList.prepend(user);
+//       users.forEach(others => {
+//         others.classList.remove("selected");
+//       });
+//       user.classList.add("selected")
+//       userList.scrollTo({
+//         top:0,
+//         behavior: 'smooth'
+//       })
+//       // saveUserOrder();
+//     });
+//   });
 
-    if (isSmallScreen) {
-      // Add hover functionality for small screens
-      selectedPassenger.addEventListener('mouseenter', showDropdown);
-      selectedPassenger.addEventListener('mouseleave', hideDropdown);
-    } else {
-      // Remove hover functionality for larger screens
-      selectedPassenger.removeEventListener('mouseenter', showDropdown);
-      selectedPassenger.removeEventListener('mouseleave', hideDropdown);
-      userListContainerMobile.style.display = "none"; // Make sure it's hidden on large screens
-    }
-  };
+//   // Function to toggle dropdown functionality based on screen size
+//   const handleDropdownForMobile = () => {
+//     const isSmallScreen = window.matchMedia("(max-width: 950px)").matches;
 
-  // Functions to show and hide the dropdown
-  const showDropdown = () => {
-    userListContainerMobile.style.display = "block";
-  };
+//     if (isSmallScreen) {
+//       // Add hover functionality for small screens
+//       selectedPassenger.addEventListener('mouseenter', showDropdown);
+//       selectedPassenger.addEventListener('mouseleave', hideDropdown);
+//     } else {
+//       // Remove hover functionality for larger screens
+//       selectedPassenger.removeEventListener('mouseenter', showDropdown);
+//       selectedPassenger.removeEventListener('mouseleave', hideDropdown);
+//       userListContainerMobile.style.display = "none"; // Make sure it's hidden on large screens
+//     }
+//   };
 
-  const hideDropdown = () => {
-    userListContainerMobile.style.display = "none";
-  };
+//   // Functions to show and hide the dropdown
+//   const showDropdown = () => {
+//     userListContainerMobile.style.display = "block";
+//   };
 
-  // Initial check and set event listeners
-  handleDropdownForMobile();
+//   const hideDropdown = () => {
+//     userListContainerMobile.style.display = "none";
+//   };
 
-  // Re-check when the window is resized
-  window.addEventListener('resize', handleDropdownForMobile);
-  document.querySelector('.webLogo').addEventListener('click', ()=>{window.location.href = '../main-posts-page/index.html';})
-});
+//   // Initial check and set event listeners
+//   handleDropdownForMobile();
+
+//   // Re-check when the window is resized
+//   window.addEventListener('resize', handleDropdownForMobile);
+//   document.querySelector('.webLogo').addEventListener('click', ()=>{window.location.href = '../main-posts-page/index.html';})
+// });
 
 
 
