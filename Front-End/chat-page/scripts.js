@@ -34,20 +34,29 @@ if (sessionId) {
     sendMessageContainer.appendChild(messageContent);
     inbox.prepend(sendMessageContainer);
 
-    //store the message into database 
-    // openDatabase().then((db) => {
-    //   const transaction = db.transaction("messages", "readwrite");
-    //   const store = transaction.objectStore("messages");
-    //   const message = {
-    //       content: messageToSend,
-    //       timestamp: Date.now(),
-    //       senderId: "currentUserId",  // Replace with actual current user ID
-    //       receiverId: "otherUserId"   // Replace with actual recipient ID
-    //   };
-    //   store.add(message);
-    // }).catch((error) => {
-    //   console.error("Error saving message:", error);
-    // });
+    // Send message to server to be stored in database 
+    fetch('/api/chat/messages', { 
+      method: 'POST', 
+      headers: { 
+        'Content-Type': 'application/json' 
+      }, 
+      body: JSON.stringify({ session_id: sessionId, 
+        sender_id: currentUserId,
+        receiver_id: postOwnerId, 
+        message: messageToSend 
+      }) 
+    }) 
+    .then(response => response.json()) 
+    .then(data => { 
+      if (data.success) { 
+        console.log('Message stored in database:', data.data); 
+      } else { 
+        console.error('Failed to store message:', data.error); 
+      } 
+    }) 
+    .catch(error => { 
+      console.error('Error storing message:', error); 
+    });
 
     // send message user types back to the server
     socket.emit('sendMessage', { sessionId, message: messageToSend, senderId: currentUserId });
