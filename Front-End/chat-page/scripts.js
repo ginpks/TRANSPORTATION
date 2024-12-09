@@ -34,6 +34,28 @@ if (sessionId) {
     inbox.prepend(sendMessageContainer);
 
     // send message user types back to the server
+    fetch('/api/chat/messages', { 
+      method: 'POST', 
+      headers: { 
+        'Content-Type': 'application/json' 
+      }, 
+      body: JSON.stringify({ session_id: sessionId, 
+        sender_id: currentUserId,
+        receiver_id: postOwnerId, 
+        message: messageToSend 
+      }) 
+    }) 
+    .then(response => response.json()) 
+    .then(data => { 
+      if (data.success) { 
+        console.log('Message stored in database:', data.data); 
+      } else { 
+        console.error('Failed to store message:', data.error); 
+      } 
+    }) 
+    .catch(error => { 
+      console.error('Error storing message:', error); 
+    });
     socket.emit('sendMessage', { sessionId, message: messageToSend, senderId: currentUserId });
   }
 
