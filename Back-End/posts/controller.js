@@ -10,8 +10,6 @@ export const createPost = async (req, res) => {
         console.log('Request Body:', req.body);
         const postData = req.body;
 
-        // postData.userId = req.user.userId;
-
         const post = await Post.create(postData);
         console.log('New Post Created:', post);
         res.status(201).json(post);
