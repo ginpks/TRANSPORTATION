@@ -9,8 +9,8 @@ import { isAuthenticated } from '../authentication/authMiddleware.js';
 
 //A series of Routes
 // Create Posts
-router.post('/', isAuthenticated, createPost);
-// router.post('/', createPost);
+// router.post('/', isAuthenticated, createPost);
+router.post('/', createPost);
 
 // Get Post
 router.get('/', getAllPosts);
