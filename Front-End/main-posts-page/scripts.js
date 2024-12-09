@@ -439,8 +439,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const post = event.target.closest('.posts');
       if (post) {
         // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
-        const currentUserId = 3; // hardcoded for testing (Replace with actual current user ID)
-        const postOwnerId = 2; // hardcoded for testing (Replace with actual post owner ID)
+        const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
+        const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
         
         try {
           // Call backend to get or create a session

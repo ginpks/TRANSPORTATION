@@ -9,11 +9,11 @@ const chatDatabase = new Sequelize({
   // Define the Session model
   const Session = chatDatabase.define("Session", {
     user1_id: { 
-        type: DataTypes.INTEGER, 
+        type: DataTypes.STRING, 
         allowNull: false },
 
     user2_id: { 
-        type: DataTypes.INTEGER, 
+        type: DataTypes.STRING, 
         allowNull: false },
         
     last_interaction: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
@@ -28,11 +28,11 @@ const chatDatabase = new Sequelize({
       },
     },
     sender_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     receiver_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     message: {

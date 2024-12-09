@@ -62,6 +62,32 @@ export const getChatHistory = async (req, res) => {
     }
   };
 
+  export const getUserList = async (req, res) => {
+    const { currentUserId, postOwnerId } = req.body;
+    try{
+      const sessions = await Session.findAll({
+        where:{
+          [Op.or]: [{ user1_id: currentUserId }, { user2_id: currentUserId }],
+        },
+        order: [["last_interaction", "DESC"]]
+      });
+
+      const userList = sessions.map((session) => {
+        return session.user1_id === currentUserId
+          ? session.user2_id
+          : session.user1_id;
+      });
+
+      if (postOwnerId && !userList.includes(postOwnerId)) {
+        userList.unshift(postOwnerId); 
+      }
+      res.status(200).json({ success: true, data: userList });
+    }catch(error){
+      console.error("Error in getUserList:", error);
+      res.status(500).json({ success: false, error: error.message });
+    }
+  }
+
   export const updateLastInteraction = async (session_id) => {
     try {
       await Session.update({ last_interaction: new Date() }, { where: { id: session_id } });
