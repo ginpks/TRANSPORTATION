@@ -1,4 +1,3 @@
-
 const params = new URLSearchParams(window.location.search);
 let user = document.querySelector('.current-user');
 user.innerHTML = `${params.get('id')}`;
@@ -34,30 +33,6 @@ if (sessionId) {
     sendMessageContainer.appendChild(messageContent);
     inbox.prepend(sendMessageContainer);
 
-    // Send message to server to be stored in database 
-    fetch('/api/chat/messages', { 
-      method: 'POST', 
-      headers: { 
-        'Content-Type': 'application/json' 
-      }, 
-      body: JSON.stringify({ session_id: sessionId, 
-        sender_id: currentUserId,
-        receiver_id: postOwnerId, 
-        message: messageToSend 
-      }) 
-    }) 
-    .then(response => response.json()) 
-    .then(data => { 
-      if (data.success) { 
-        console.log('Message stored in database:', data.data); 
-      } else { 
-        console.error('Failed to store message:', data.error); 
-      } 
-    }) 
-    .catch(error => { 
-      console.error('Error storing message:', error); 
-    });
-
     // send message user types back to the server
     socket.emit('sendMessage', { sessionId, message: messageToSend, senderId: currentUserId });
   }
@@ -91,21 +66,46 @@ if (sessionId) {
 // when a user clicks on a post, they are redirected to the chat page where the owner
 // of said post is added to the list of chatters
 document.addEventListener('DOMContentLoaded', () => {
-  if (sessionId) {
-    // creating the userlist element to append it to the list of users
-    const userList = document.querySelector('.user-list-container');
-    const driverDiv = document.createElement('div');
-    const postOwnerId = 2; // hardcoded for testing (Replace with actual post owner ID)
-
-
-    driverDiv.className = 'user';
-    driverDiv.setAttribute('id', postOwnerId);
-    driverDiv.innerHTML = `
-      <div class="user-pic">D</div>
-      <span class="user-name">Driver ${postOwnerId}</span> 
-    `; // replace postOwnerId with actual driver name somehow.
-    userList.appendChild(driverDiv);
-  }
+  //fetch all userList from the back-end
+    fetch("http://localhost:3000/api/chat/userlist",{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ currentUserId, postOwnerId }),
+    }).then((response) => response.json())
+      .then((result) => {
+        if(result.success){
+          const userList = result.data;
+          const userListContainer = document.querySelector('.user-list-container');
+          const selectedUserPic = document.getElementById("selected-user");
+          const selectedUserName = document.getElementById("selected");
+          userListContainer.innerHTML = "";
+          selectedUserPic.textContent = postOwnerId.charAt(0).toUpperCase();
+          selectedUserName.textContent = postOwnerId;
+  
+          userList.forEach((userName, index) => {
+            const userElement = document.createElement("div");
+            userElement.className = "user";
+            userElement.setAttribute("id", userName);
+  
+            if (index === 0 && userName === postOwnerId) {
+              userElement.classList.add("selected");
+            }
+  
+            userElement.innerHTML = `
+            <div class="user-pic">${userName.charAt(0).toUpperCase()}</div>
+            <span class="user-name">${userName}</span>
+          `;
+            userElement.addEventListener("click", () => {
+              window.location.href = `/chat-page/index.html?session_id=${sessionId}&currentUserId=${currentUserId}&postOwnerId=${userName}`;
+            });
+            userListContainer.appendChild(userElement);
+          });
+        }else{
+          console.error("Failed to fetch user list:", result.error);
+        }
+      }).catch((error)=> console.error("Error fetching user list:", error));
 });
 
 
@@ -127,8 +127,8 @@ searchInput.addEventListener('input',function(){
 
 // dynamically update the selected passenger when clicked
 document.addEventListener('DOMContentLoaded', () => {
-  loadMessages(); //load message
-  loadUserOrder();
+  // loadMessages(); //load message
+  // loadUserOrder();
   const users = document.querySelectorAll(".user");
   const selectedUser = document.getElementById("selected");
   const selectedUserPic = document.getElementById("selected-user")
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         top:0,
         behavior: 'smooth'
       })
-      saveUserOrder();
+      // saveUserOrder();
     });
   });
 
@@ -195,121 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.webLogo').addEventListener('click', ()=>{window.location.href = '../main-posts-page/index.html';})
 });
 
-//Setting Up database for Chatpage
-export function openMessageDatabase() {
-  return new Promise((resolve, reject) => {
-      console.log("trying to open database...");
-      let db;
-      const request = indexedDB.open('chatDatabase', 1);
-      
-      request.onupgradeneeded = (event) => {
-          console.log("database upgrading...");
-          db = event.target.result;
-          if (!db.objectStoreNames.contains('messages')) {
-            const store = db.createObjectStore("messages", { keyPath: "id", autoIncrement: true });
-            store.createIndex("timestamp", "timestamp", { unique: false }); // For ordering by time
-            store.createIndex("senderId", "senderId", { unique: false });   // For querying by sender
-            store.createIndex("receiverId", "receiverId", { unique: false }); // For querying by receiver
-        };
-      };
-      request.onsuccess = (event) => {
-          console.log("open database successfully");
-          resolve(event.target.result);
-      };
-      request.onerror = (event) => {
-          reject('Error opening IndexedDB: ' + event.target.errorCode);
-      };
-  });
-}
 
-function loadMessages(){
-  openMessageDatabase().then((db)=>{
-    const transaction = db.transaction("messages", "readonly");
-    const store = transaction.objectStore("messages");
-    const inbox = document.querySelector('.inbox');
-    // inbox.innerHTML = "";  // Clear previous messages
-    const request = store.openCursor();
-    request.onsuccess = (event) =>{
-      const cursor = event.target.result;
-      if(cursor){
-        const messageData = cursor.value;
-        // Display each message
-        const messageContainer = document.createElement('div');
-        messageContainer.classList.add('sent-message');
-        const messageContent = document.createElement('p');
-        messageContent.textContent = messageData.content;
-        messageContainer.appendChild(messageContent);
-        inbox.prepend(messageContainer);
-        cursor.continue();
-      }
-    }
-    request.onerror = (event) => {
-      console.error("Error loading messages:", event.target.errorCode);
-     };
-  }).catch((error) => {
-      console.error("Error opening database:", error);
-  })
-}
-
-//Setting up database for user-list 
-function openUserListDatabase() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open("userListDatabase", 1);
-
-    request.onupgradeneeded = event => {
-      const db = event.target.result;
-      if (!db.objectStoreNames.contains("userOrder")) {
-        db.createObjectStore("userOrder", { keyPath: "id" });
-      }
-    };
-    request.onsuccess = event => {
-      resolve(event.target.result);
-    };
-    request.onerror = event => {
-      reject("Error opening user order database: " + event.target.errorCode);
-    };
-  });
-}
-
-function saveUserOrder() {
-  const userListContainer = document.querySelector('.user-list-container');
-  const users = userListContainer.querySelectorAll('.user');
-  const userOrder = Array.from(users).map(user => user.getAttribute('id')); // Collect user IDs in order
-  openUserListDatabase().then(db => {
-    const transaction = db.transaction("userOrder", "readwrite");
-    const store = transaction.objectStore("userOrder");
-    const orderData = { id: "order", order: userOrder };
-    store.put(orderData);
-  }).catch(error => {
-    console.error("Error saving user order:", error);
-  });
-}
-
-function loadUserOrder() {
-  openUserListDatabase().then(db => {
-    const transaction = db.transaction("userOrder", "readonly");
-    const store = transaction.objectStore("userOrder");
-
-    const request = store.get("order");
-    request.onsuccess = event => {
-      const savedOrder = event.target.result?.order; // Retrieve saved order
-      if (savedOrder) {
-        const userListContainer = document.querySelector('.user-list-container');
-        const users = Array.from(userListContainer.querySelectorAll('.user'));
-        savedOrder.forEach(userId => {
-          const userElement = users.find(user => user.getAttribute('id') === userId);
-          if (userElement) {
-            userListContainer.appendChild(userElement); // Append in the saved order
-          }
-        });
-      }
-    };
-    request.onerror = event => {
-      console.error("Error loading user order:", event.target.errorCode);
-    };
-  }).catch(error => {
-    console.error("Error opening database:", error);
-  });
-}
 
 
