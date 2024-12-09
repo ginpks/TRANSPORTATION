@@ -1,5 +1,3 @@
-import { response } from "express";
-
 const params = new URLSearchParams(window.location.search);
 let user = document.querySelector('.current-user');
 user.innerHTML = `${params.get('id')}`;
@@ -69,61 +67,46 @@ if (sessionId) {
 // when a user clicks on a post, they are redirected to the chat page where the owner
 // of said post is added to the list of chatters
 document.addEventListener('DOMContentLoaded', () => {
-  //fetch userList from the back-end
-  fetch("http://localhost:3000/api/chat/userlist",{
-    method: "POST",
-    headers:{
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ currentUserId, postOwnerId }),
-  }).then((response) => response.json())
-    .then((result) => {
-      if(result.success){
-        const userList = result.data;
-        const userListContainer = document.querySelector('.user-list-container');
-        userListContainer.innerHTML = "";
-
-        userList.forEach((userName, index) => {
-          const userElement = document.createElement("div");
-          userElement.className = "user";
-          userElement.setAttribute("id", userName);
-
-          if (index === 0 && userName === postOwnerId) {
-            userElement.classList.add("selected");
-          }
-
-          userElement.innerHTML = `
-          <div class="user-pic">${userName.charAt(0).toUpperCase()}</div>
-          <span class="user-name">${userName}</span>
-        `;
-          userElement.addEventListener("click", () => {
-            window.location.href = `/chatpage/index.html?session_id=${sessionId}&currentUserId=${currentUserId}&postOwnerId=${postOwnerId}`;
+  //fetch all userList from the back-end
+    fetch("http://localhost:3000/api/chat/userlist",{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ currentUserId, postOwnerId }),
+    }).then((response) => response.json())
+      .then((result) => {
+        if(result.success){
+          const userList = result.data;
+          const userListContainer = document.querySelector('.user-list-container');
+          const selectedUserPic = document.getElementById("selected-user");
+          const selectedUserName = document.getElementById("selected");
+          userListContainer.innerHTML = "";
+          selectedUserPic.textContent = postOwnerId.charAt(0).toUpperCase();
+          selectedUserName.textContent = postOwnerId;
+  
+          userList.forEach((userName, index) => {
+            const userElement = document.createElement("div");
+            userElement.className = "user";
+            userElement.setAttribute("id", userName);
+  
+            if (index === 0 && userName === postOwnerId) {
+              userElement.classList.add("selected");
+            }
+  
+            userElement.innerHTML = `
+            <div class="user-pic">${userName.charAt(0).toUpperCase()}</div>
+            <span class="user-name">${userName}</span>
+          `;
+            userElement.addEventListener("click", () => {
+              window.location.href = `/chat-page/index.html?session_id=${sessionId}&currentUserId=${currentUserId}&postOwnerId=${userName}`;
+            });
+            userListContainer.appendChild(userElement);
           });
-          userListContainer.appendChild(userElement);
-        });
-      }else{
-        console.error("Failed to fetch user list:", data.error);
-      }
-    }).catch((error)=> console.error("Error fetching user list:", error));
-
-
-
-
-  // if (sessionId) {
-  //   // creating the userlist element to append it to the list of users
-  //   const userList = document.querySelector('.user-list-container');
-  //   const driverDiv = document.createElement('div');
-  //   const postOwnerId = 2; // hardcoded for testing (Replace with actual post owner ID)
-
-
-  //   driverDiv.className = 'user';
-  //   driverDiv.setAttribute('id', postOwnerId);
-  //   driverDiv.innerHTML = `
-  //     <div class="user-pic">D</div>
-  //     <span class="user-name">Driver ${postOwnerId}</span> 
-  //   `; // replace postOwnerId with actual driver name somehow.
-  //   userList.appendChild(driverDiv);
-  // }
+        }else{
+          console.error("Failed to fetch user list:", result.error);
+        }
+      }).catch((error)=> console.error("Error fetching user list:", error));
 });
 
 
@@ -214,65 +197,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// //Setting up database for user-list 
-// function openUserListDatabase() {
-//   return new Promise((resolve, reject) => {
-//     const request = indexedDB.open("userListDatabase", 1);
-
-//     request.onupgradeneeded = event => {
-//       const db = event.target.result;
-//       if (!db.objectStoreNames.contains("userOrder")) {
-//         db.createObjectStore("userOrder", { keyPath: "id" });
-//       }
-//     };
-//     request.onsuccess = event => {
-//       resolve(event.target.result);
-//     };
-//     request.onerror = event => {
-//       reject("Error opening user order database: " + event.target.errorCode);
-//     };
-//   });
-// }
-
-// function saveUserOrder() {
-//   const userListContainer = document.querySelector('.user-list-container');
-//   const users = userListContainer.querySelectorAll('.user');
-//   const userOrder = Array.from(users).map(user => user.getAttribute('id')); // Collect user IDs in order
-//   openUserListDatabase().then(db => {
-//     const transaction = db.transaction("userOrder", "readwrite");
-//     const store = transaction.objectStore("userOrder");
-//     const orderData = { id: "order", order: userOrder };
-//     store.put(orderData);
-//   }).catch(error => {
-//     console.error("Error saving user order:", error);
-//   });
-// }
-
-// function loadUserOrder() {
-//   openUserListDatabase().then(db => {
-//     const transaction = db.transaction("userOrder", "readonly");
-//     const store = transaction.objectStore("userOrder");
-
-//     const request = store.get("order");
-//     request.onsuccess = event => {
-//       const savedOrder = event.target.result?.order; // Retrieve saved order
-//       if (savedOrder) {
-//         const userListContainer = document.querySelector('.user-list-container');
-//         const users = Array.from(userListContainer.querySelectorAll('.user'));
-//         savedOrder.forEach(userId => {
-//           const userElement = users.find(user => user.getAttribute('id') === userId);
-//           if (userElement) {
-//             userListContainer.appendChild(userElement); // Append in the saved order
-//           }
-//         });
-//       }
-//     };
-//     request.onerror = event => {
-//       console.error("Error loading user order:", event.target.errorCode);
-//     };
-//   }).catch(error => {
-//     console.error("Error opening database:", error);
-//   });
-// }
 
 

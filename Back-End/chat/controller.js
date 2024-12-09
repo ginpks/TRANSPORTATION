@@ -63,7 +63,7 @@ export const getChatHistory = async (req, res) => {
   };
 
   export const getUserList = async (req, res) => {
-    const { currentUserId, postOwnerId } = req.body;
+    const { currentUserId} = req.body;
     try{
       const sessions = await Session.findAll({
         where:{
@@ -77,10 +77,6 @@ export const getChatHistory = async (req, res) => {
           ? session.user2_id
           : session.user1_id;
       });
-
-      if (postOwnerId && !userList.includes(postOwnerId)) {
-        userList.unshift(postOwnerId); 
-      }
       res.status(200).json({ success: true, data: userList });
     }catch(error){
       console.error("Error in getUserList:", error);
