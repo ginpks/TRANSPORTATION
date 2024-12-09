@@ -2,48 +2,103 @@
 const params = new URLSearchParams(window.location.search);
 let user = document.querySelector('.current-user');
 user.innerHTML = `${params.get('id')}`;
-// **FOLLOWING CODE IS FOR DEMONSTRATIONAL PURPOSES ONLY**
+const sessionId = params.get('session_id');
+const currentUserId = params.get('currentUserId');
+const postOwnerId = params.get('postOwnerId');
 
-// creates a message element and prepends it the inbox.
-function sendMessage() { 
-  const inbox = document.querySelector('.inbox');
-  const chatInput = document.querySelector('#chatInput');
-  const messageToSend = chatInput.value;
-  if (messageToSend === "") {
-    return;
+// Connect to the WebSocket server 
+const socket = io();
+
+socket.on('connect', () => {
+  console.log(`user ${currentUserId} connected`);
+})
+
+if (sessionId) {
+  // joining the chatroom with corresponding sessionId
+  socket.emit('joinSession', sessionId);
+
+  // Function to send messages
+  // creates a message element and prepends it the inbox.
+  function sendMessage() { 
+    const inbox = document.querySelector('.inbox');
+    const chatInput = document.querySelector('#chatInput');
+    const messageToSend = chatInput.value;
+    if (messageToSend === "") {
+      return;
+    }
+    chatInput.value = "";
+    const sendMessageContainer = document.createElement('div');
+    sendMessageContainer.classList.add('sent-message');
+    const messageContent = document.createElement('p');
+    messageContent.textContent = messageToSend;
+    sendMessageContainer.appendChild(messageContent);
+    inbox.prepend(sendMessageContainer);
+
+    //store the message into database 
+    // openDatabase().then((db) => {
+    //   const transaction = db.transaction("messages", "readwrite");
+    //   const store = transaction.objectStore("messages");
+    //   const message = {
+    //       content: messageToSend,
+    //       timestamp: Date.now(),
+    //       senderId: "currentUserId",  // Replace with actual current user ID
+    //       receiverId: "otherUserId"   // Replace with actual recipient ID
+    //   };
+    //   store.add(message);
+    // }).catch((error) => {
+    //   console.error("Error saving message:", error);
+    // });
+
+    // send message user types back to the server
+    socket.emit('sendMessage', { sessionId, message: messageToSend, senderId: currentUserId });
   }
-  chatInput.value = "";
-  const sendMessageContainer = document.createElement('div');
-  sendMessageContainer.classList.add('sent-message');
-  const messageContent = document.createElement('p');
-  messageContent.textContent = messageToSend;
-  sendMessageContainer.appendChild(messageContent);
-  inbox.prepend(sendMessageContainer);
 
-  //store the message into database 
-  openDatabase().then((db) => {
-    const transaction = db.transaction("messages", "readwrite");
-    const store = transaction.objectStore("messages");
-    const message = {
-        content: messageToSend,
-        timestamp: Date.now(),
-        senderId: "currentUserId",  // Replace with actual current user ID
-        receiverId: "otherUserId"   // Replace with actual recipient ID
-    };
-    store.add(message);
-  }).catch((error) => {
-    console.error("Error saving message:", error);
+  // adding event listers to input box and send button
+  document.querySelector('.send-button').addEventListener('click', sendMessage);
+  document.querySelector('#chatInput').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      sendMessage();
+    }
+  });
+
+  // when a message is received back from the server (user you are chatting with)
+  // create a received message element and display it in the chatbox
+  socket.on('receiveMessage', (data) => {
+    const { message, senderId } = data;
+
+    if (senderId !== currentUserId) { // making sure the message you send is not sent back to you by checking your ID against the sender's ID.
+      const inbox = document.querySelector('.inbox');
+      const receivedMessageContainer = document.createElement('div');
+      receivedMessageContainer.classList.add('received-message');
+      const messageContent = document.createElement('p');
+      messageContent.textContent = message;
+      receivedMessageContainer.appendChild(messageContent);
+      inbox.prepend(receivedMessageContainer);
+    }
   });
 }
 
-// adding event listers to input box and send button
-document.querySelector('.send-button').addEventListener('click', sendMessage);
-document.querySelector('#chatInput').addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') {
-    event.preventDefault();
-    sendMessage();
+// when a user clicks on a post, they are redirected to the chat page where the owner
+// of said post is added to the list of chatters
+document.addEventListener('DOMContentLoaded', () => {
+  if (sessionId) {
+    // creating the userlist element to append it to the list of users
+    const userList = document.querySelector('.user-list-container');
+    const driverDiv = document.createElement('div');
+    const postOwnerId = 2; // hardcoded for testing (Replace with actual post owner ID)
+
+
+    driverDiv.className = 'user';
+    driverDiv.setAttribute('id', postOwnerId);
+    driverDiv.innerHTML = `
+      <div class="user-pic">D</div>
+      <span class="user-name">Driver ${postOwnerId}</span> 
+    `; // replace postOwnerId with actual driver name somehow.
+    userList.appendChild(driverDiv);
   }
 });
+
 
 //search function
 const searchInput = document.querySelector('#searchInput'); 

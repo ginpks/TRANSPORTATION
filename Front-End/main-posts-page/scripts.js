@@ -427,3 +427,44 @@ function loadPostsFromServer(filterCriteria = {}) {
             console.error('Error fetching posts from server:', error);
         });
 }
+
+// adding event listener to postings that directs you to the chat page and creates a chat session between the 
+// corresponding users.
+document.addEventListener('DOMContentLoaded', () => {
+    // Assuming posts are dynamically added, use event delegation
+    const postsContainer = document.querySelector('.posts-list');
+  
+    postsContainer.addEventListener('click', async (event) => {
+      // Check if a post element is clicked
+      const post = event.target.closest('.posts');
+      if (post) {
+        // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
+        const currentUserId = 3; // hardcoded for testing (Replace with actual current user ID)
+        const postOwnerId = 2; // hardcoded for testing (Replace with actual post owner ID)
+        
+        try {
+          // Call backend to get or create a session
+          const response = await fetch('http://localhost:3000/api/chat/session', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ currentUserId, postOwnerId })
+          });
+  
+          const result = await response.json();
+          if (result.success) {
+
+            // Redirect to the chat page with the session ID 
+            window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
+            console.log("successfully redirected");
+          } else {
+            console.error('Failed to create or retrieve session');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+    });
+  });
+  

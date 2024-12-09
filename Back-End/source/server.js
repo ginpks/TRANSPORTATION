@@ -10,8 +10,13 @@ import cors from 'cors';
 import passport from 'passport';
 import '../authentication/passport.js'; 
 import {isAuthenticated} from '../authentication/authMiddleware.js'
+import http from 'http';
+import { Server as SocketIOServer } from 'socket.io';
 
 const app = express();
+const server = http.createServer(app);
+const io = new SocketIOServer(server);
+console.log('Socket.IO initialized');
 
 // serve Front-End files
 app.use(express.static('Front-End'));
@@ -46,7 +51,7 @@ Promise.all([
   .then(() => {
     console.log("All databases synced successfully!");
     const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`Server is running on http://localhost:${PORT}`);
     });
   })
@@ -54,6 +59,24 @@ Promise.all([
     console.error("Unable to sync databases or start the server:", error);
     process.exit(1);
   });
+
+// Socket.io connection
+io.on('connection', (socket) => { 
+  socket.on('joinSession', (sessionId) => { 
+    socket.join(sessionId); 
+    console.log(`User joined session: ${sessionId}`);
+  }); 
+  
+  socket.on('sendMessage', (data) => { 
+    const { sessionId, message, senderId } = data; 
+    io.to(sessionId).emit('receiveMessage', { message, senderId });
+  }); 
+  
+  socket.on('disconnect', () => { 
+    console.log('user disconnected'); 
+  }); 
+});
+
 
   // Global error handler
 app.use((err, req, res, next) => {
