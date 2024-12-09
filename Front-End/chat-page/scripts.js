@@ -33,7 +33,6 @@ if (sessionId) {
     sendMessageContainer.appendChild(messageContent);
     inbox.prepend(sendMessageContainer);
 
-
     // send message user types back to the server
     socket.emit('sendMessage', { sessionId, message: messageToSend, senderId: currentUserId });
   }
