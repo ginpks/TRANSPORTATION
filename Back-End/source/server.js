@@ -100,4 +100,14 @@ app.use((err, req, res, next) => {
   if(!req.session){
     return res.status(401).json({ error: "Session timed out or expired. Reload or Log in again."})
   }
+
+  app.post('/logout', (req, res) => {
+    req.logout(function (err) {
+        if (err) {
+            console.error("Error during logout:", err);
+            return res.status(500).json({ message: "Logout failed" });
+        }
+        res.status(200).json({ message: "Logged out successfully" });
+    });
+});
 });
