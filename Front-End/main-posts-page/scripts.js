@@ -142,6 +142,47 @@ sortDropdown.addEventListener('change', function () {
 });
 
 
+// Formatting date and time - Lana
+function getCombinedDateTime(dateString, timeString) {
+    if (!dateString || !timeString) {
+        console.error("Invalid date or time input:", { dateString, timeString });
+        return null;
+    }
+    return `${dateString}T${timeString}`;
+}
+
+function updateFilterCriteria() {
+    const startDate = document.getElementById('start-date').value;
+    const startTime = document.getElementById('start-time').value;
+    const endDate = document.getElementById('end-date').value;
+    const endTime = document.getElementById('end-time').value;
+
+    if (!startDate || !startTime || !endDate || !endTime) {
+        console.warn("All date and time inputs must be filled.");
+        filterCriteria.startTime = null;
+        filterCriteria.endTime = null;
+        return;
+    }
+
+    const startDateTime = getCombinedDateTime(startDate, startTime);
+    const endDateTime = getCombinedDateTime(endDate, endTime);
+
+    if (startDateTime && endDateTime) {
+        filterCriteria.startTime = new Date(startDateTime).toISOString();
+        filterCriteria.endTime = new Date(endDateTime).toISOString();
+    } else {
+        filterCriteria.startTime = null;
+        filterCriteria.endTime = null;
+    }
+
+    console.log('Updated filterCriteria:', filterCriteria);
+}
+
+document.getElementById('start-time').addEventListener('change', updateFilterCriteria);
+document.getElementById('start-date').addEventListener('change', updateFilterCriteria);
+document.getElementById('end-time').addEventListener('change', updateFilterCriteria);
+document.getElementById('end-date').addEventListener('change', updateFilterCriteria);
+
 
 // Search feature - Lana
 // Select the search input and posts container
@@ -230,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   searchBox.addListener('places_changed', () => {
   //     const places = searchBox.getPlaces();
   //     if (places.length === 0) return;
-  //     console.log('Selected Place:', places[0].name);
+  //     console.log('Selected Place:', places[ 0].name);
   //   });
   // }
 });
@@ -346,10 +387,26 @@ function loadPostsFromDB(filterCriteria = {}) {
                 }
 
                 if (filterCriteria.startTime && filterCriteria.endTime) {
-                    const postTime = new Date(`${post.date} ${post.time}`).getTime();
+                    console.log('Filtering by time:');
+                    console.log('Raw startTime:', filterCriteria.startTime);
+                    console.log('Raw endTime:', filterCriteria.endTime);
+            
                     const startTime = new Date(filterCriteria.startTime).getTime();
                     const endTime = new Date(filterCriteria.endTime).getTime();
-
+            
+                    if (isNaN(startTime) || isNaN(endTime)) {
+                        console.error("Invalid start or end time format:", { startTime, endTime });
+                        return false;
+                    }
+            
+                    const postTimeString = `${post.date}T${post.time}`;
+                    const postTime = new Date(postTimeString).getTime();
+            
+                    if (isNaN(postTime)) {
+                        console.error("Invalid post time format:", { date: post.date, time: post.time });
+                        return false;
+                    }
+            
                     if (postTime < startTime || postTime > endTime) {
                         console.log("Post excluded by time range filter");
                         match = false;
@@ -412,6 +469,50 @@ function loadPostsFromServer(filterCriteria = {}) {
                     let match = true;
                     // Apply filters (e.g., type, time range, required seats, luggage, etc.)
                     // Filtering logic goes here (similar to existing filter logic)
+                    if (filterCriteria.type && filterCriteria.type !== 'all' && post.type !== filterCriteria.type) {
+                        console.log("Post excluded by type filter");
+                        match = false;
+                    }
+    
+                    if (filterCriteria.startTime && filterCriteria.endTime) {
+                        console.log('Filtering by time:');
+                        console.log('Raw startTime:', filterCriteria.startTime);
+                        console.log('Raw endTime:', filterCriteria.endTime);
+                    
+                        // Parse ISO 8601 datetime strings into timestamps
+                        const startTime = new Date(filterCriteria.startTime).getTime();
+                        const endTime = new Date(filterCriteria.endTime).getTime();
+                    
+                        if (isNaN(startTime) || isNaN(endTime)) {
+                            console.error("Invalid start or end time format:", { startTime, endTime });
+                            return false; // Skip filtering if times are invalid
+                        }
+                    
+                        // Parse post datetime into a timestamp
+                        const postTime = new Date(`${post.date}T${post.time}`).getTime();
+                    
+                        if (isNaN(postTime)) {
+                            console.error("Invalid post time format:", { date: post.date, time: post.time });
+                            return false; // Skip filtering if post datetime is invalid
+                        }
+                    
+                        // Compare postTime against the range
+                        if (postTime < startTime || postTime > endTime) {
+                            console.log("Post excluded by time range filter");
+                            match = false;
+                        }
+                    }
+                                 
+    
+                    if (filterCriteria.requiredSeats && parseInt(post.people) < parseInt(filterCriteria.requiredSeats)) {
+                        console.log("Post excluded by required seats filter");
+                        match = false;
+                    }
+    
+                    if (filterCriteria.availableLuggage && parseInt(post.luggage) < parseInt(filterCriteria.availableLuggage)) {
+                        console.log("Post excluded by luggage filter");
+                        match = false;
+                    }
                     return match;
                 });
 
