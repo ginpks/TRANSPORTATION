@@ -326,6 +326,10 @@ function createPost(post) {
           // const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
           let postOwnerId = post.userId;
           console.log(post.userId)
+          if (currentUserId === postOwnerId) {
+            alert("You posted it!");
+            return; 
+        }
           try {
             // Call backend to get or create a session
             const response = await fetch('http://localhost:3000/api/chat/session', {
