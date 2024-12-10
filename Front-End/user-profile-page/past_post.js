@@ -40,13 +40,8 @@ function loadPostsFromServer() {
         if (postsList) {
             postsList.innerHTML = '';
 
-<<<<<<< Updated upstream
-            const currentUser = window.currentUserUsername; 
-            const filteredPosts = posts.filter(post => post.username === currentUser);            
-=======
             const currentUser = localStorage.getItem('loggedInUsername'); 
-            const filteredPosts = posts.filter(post => post.username === getuserid());            
->>>>>>> Stashed changes
+            const filteredPosts = posts.filter(post => post.userId === getuserid());            
 
             console.log(filteredPosts);
             return filteredPosts;
