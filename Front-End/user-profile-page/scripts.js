@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
     async function logout() {
         try {
             const response = await fetch("http://localhost:3000/api/auth/logout", { method: "GET", credentials: "include" });
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 alert(data.message);
-                localStorage.removeItem('loggedInUsername');
+                localStorage.clear();
                 window.location.href = "../login/LoginPage.html"; 
 
             } else {

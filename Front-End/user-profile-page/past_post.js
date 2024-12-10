@@ -1,4 +1,29 @@
 //M4: Load posts from server and filter them by the current user
+    //get userid
+async function getuserid(){
+        try {
+            // request for current user info
+            const response = await fetch('http://localhost:3000/api/auth/current-user', {
+                method: 'GET',
+                credentials: 'include',
+            });
+    
+            if (response.ok) {
+                const data = await response.json(); //get json data
+                // get username
+                currentUserId = data.user.username;
+                console.log(currentUserId);
+                return currentUserId;
+            } else {
+                console.error('Failed to fetch current user. Status:', response.status);
+                // alert('You are not logged in. Redirecting to login page.');
+            }
+        } catch (error) {
+            console.error('Error fetching current user:', error);
+            alert('An error occurred.');
+        }
+}
+    
 function loadPostsFromServer() {
     const url = 'http://localhost:3000/api/posts';
 
@@ -16,10 +41,11 @@ function loadPostsFromServer() {
             postsList.innerHTML = '';
 
             const currentUser = localStorage.getItem('loggedInUsername'); 
-            const filteredPosts = posts.filter(post => post.username === currentUser);            
+            const filteredPosts = posts.filter(post => post.userId === getuserid());            
 
-            // Create posts
-            filteredPosts.forEach(post => createPost(post));
+
+            console.log(filteredPosts);
+            return filteredPosts;
         } else {
             console.error('Cannot find .posts-list element');
         }
