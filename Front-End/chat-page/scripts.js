@@ -88,9 +88,17 @@ if (sessionId) {
 // when a user clicks on a post, they are redirected to the chat page where the owner
 // of said post is added to the list of chatters
 document.addEventListener('DOMContentLoaded', () => {
-   //fetch all userList from the back-end when the page is loaded 
+   // Display the current user's information
    if (sessionId) {
-    loadChatHistory(sessionId); // Load chat history for the current session
+    const username = document.querySelector('.username');
+    const icon = document.querySelector('.profileIcon');
+    username.textContent = currentUserId;
+    icon.textContent = currentUserId.charAt(0).toUpperCase();
+
+    // Load chat history for the current session
+    loadChatHistory(sessionId); 
+
+    // Fetch the user list from the backend for the current user
     fetch("http://localhost:3000/api/chat/userlist",{
       method: "POST",
       headers:{
@@ -108,12 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
           userListContainer.innerHTML = "";
           selectedUserPic.textContent = postOwnerId.charAt(0).toUpperCase();
           selectedUserName.textContent = postOwnerId;
-  
+      
+          // Populate user list with each user's info
           userList.forEach((userName, index) => {
             const userElement = document.createElement("div");
             userElement.className = "user";
             userElement.setAttribute("id", userName);
-  
+             // Highlight the person to whom the user talks, which should be at the top of the user list
             if (index === 0 && userName === postOwnerId) {
               userElement.classList.add("selected");
             }
@@ -122,11 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="user-pic">${userName.charAt(0).toUpperCase()}</div>
             <span class="user-name">${userName}</span>
           `;
+
             userElement.addEventListener("click", async () => {
+              // Skip action if the user is already in the wanted session
               if (selectedUserName.textContent === userName) {
-                console.log("User is already selected. No action needed.");
+                console.log("User is already in this session. No action needed.");
                 return;
               }
+              //navigate to the another session where the user can talk to that person
               const target_sessionID = await getSession(currentUserId, userName);
               updateInteraction(target_sessionID);
               window.location.href = `/chat-page/index.html?session_id=${target_sessionID}&currentUserId=${currentUserId}&postOwnerId=${userName}`;
@@ -140,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
    }
 });
 
-
+// Fetch a session for the given user pair
 async function getSession(currentUserId, postOwnerId) {
   try {
     const response = await fetch("http://localhost:3000/api/chat/session", {
@@ -166,7 +178,7 @@ async function getSession(currentUserId, postOwnerId) {
 }
 
 
-// Function to load chat history
+// Load the chat history for the given session
 async function loadChatHistory(sessionId) {
   try {
     const response = await fetch(`http://localhost:3000/api/chat/messages/${sessionId}`, {
@@ -181,7 +193,7 @@ async function loadChatHistory(sessionId) {
 
       result.data.forEach((message) => {
         const messageContainer = document.createElement('div');
-
+        // Differentiate between sent and received messages
         if (message.sender_id === currentUserId) {
           // If the message is sent by the current user
           messageContainer.classList.add('sent-message');
@@ -202,6 +214,7 @@ async function loadChatHistory(sessionId) {
   }
 }
 
+// Update the interaction timestamp for the given session
 async function updateInteraction(sessionId) {
   try {
     const response = await fetch("http://localhost:3000/api/chat/session/update-interaction", {

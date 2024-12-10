@@ -26,6 +26,7 @@ const chatDatabase = new Sequelize({
     last_interaction: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
   });
 
+  //Defind Message model
   const ChatMessage = chatDatabase.define("ChatMessage", {
     session_id: {
       type: DataTypes.INTEGER,
