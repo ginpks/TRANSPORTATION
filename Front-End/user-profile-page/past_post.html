@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    <title>Past Posts</title>
+</head>
+<body>
+    <script>
+        // Retrieve the username from localStorage
+        const currentUserUsername = localStorage.getItem('loggedInUsername');
+        window.currentUserUsername = currentUserUsername;
+    </script>
+
+    <div class="past-posts-container">
+        <div class="posts-header">
+            <h2>Your Past Posts</h2>
+        </div>
+        <div class="posts-list">
+            <!-- Posts will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script src="./past_post.js"></script>
+</body>
+</html>

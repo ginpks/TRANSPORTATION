@@ -20,3 +20,7 @@
 ## Dec 5, 2024
 - Created user log out functionality
 - Commit link: (https://github.com/ginpks/TRANSPORTATION/commit/7693aebcc4b6573fd4cddc73de24402d3f262977)
+
+## Dec 9, 2024
+- Fixed user profile UI and insert past posts from database
+- Commit link: (https://github.com/ginpks/TRANSPORTATION/pull/100/commits/cf7cb3b9a36319f77ef7dc972ec1b4b3dc9641e6)
