@@ -44,7 +44,8 @@ app.use(cors({
 app.use(session({
   secret: 'your-secret-key',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: false, maxAge: 3600000 }
 }));
 
 // Initial Passport
