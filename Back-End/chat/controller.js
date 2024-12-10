@@ -23,7 +23,9 @@ export const getSession = async(req, res)=>{
       });
       console.log('New session created:', session.toJSON());
     } else {
-      console.log('Existing session found:', session.toJSON());
+      session.last_interaction = new Date();
+      await session.save(); 
+      console.log("Existing session found and updated:", session.toJSON());
     }
     res.status(200).json({
       success: true,
