@@ -301,9 +301,30 @@ function createPost(post) {
         // const post = event.target.closest('.posts');
         if (post) {
           // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
-          const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
+          // const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
+          let currentUserId = "Tom";
+          try {
+            // request for current user info
+            const response = await fetch('http://localhost:3000/api/auth/current-user', {
+                method: 'GET',
+                credentials: 'include',
+            });
+    
+            if (response.ok) {
+                const data = await response.json(); //get json data
+                // get username
+                currentUserId = data.user.username;
+                console.log(currentUserId);
+            } else {
+                console.error('Failed to fetch current user. Status:', response.status);
+                // alert('You are not logged in. Redirecting to login page.');
+            }
+        } catch (error) {
+            console.error('Error fetching current user:', error);
+            alert('An error occurred.');
+        }
           // const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
-          const postOwnerId = post.userId;
+          let postOwnerId = post.userId;
           console.log(post.userId)
           try {
             // Call backend to get or create a session

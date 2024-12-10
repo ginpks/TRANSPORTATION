@@ -58,14 +58,30 @@ export const login = async (req, res, next) => {
 };
 
 //logout
+// export const logout = (req, res) => {
+//     req.logout(function (err) {
+//         if (err) {
+//             res.json(factoryResponse(500, "Logout failed"));
+//             return;
+//         }
+//         res.json(factoryResponse(200, "Logout successful! See you."));
+//     });
+// };
 export const logout = (req, res) => {
-    req.logout(function (err) {
-        if (err) {
-            res.json(factoryResponse(500, "Logout failed"));
-            return;
-        }
-        res.json(factoryResponse(200, "Logout successful! See you."));
-    });
+  req.logout((err) => {
+      if (err) {
+          console.error('Logout error:', err);
+          return res.status(500).json({ error: 'Logout failed' });
+      }
+      req.session.destroy((err) => {
+          if (err) {
+              console.error('Session destruction error:', err);
+              return res.status(500).json({ error: 'Session destruction failed' });
+          }
+          res.clearCookie('connect.sid');
+          res.status(200).json({ message: 'Logged out successfully' });
+      });
+  });
 };
 
 

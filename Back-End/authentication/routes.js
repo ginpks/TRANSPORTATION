@@ -14,11 +14,12 @@ router.post('/register', registerUser);
 // router.post("/login", login);
 
 // Using middleware-passport
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/success',
-  failureRedirect: '/login',
-  failureMessage: true
-}),
+// router.post('/login', passport.authenticate('local', {
+//   successRedirect: '/success',
+//   failureRedirect: '/login',
+//   failureMessage: true
+// }),
+router.post('/login', passport.authenticate('local'),
 (req, res) => {
   // Check if authentication was successful
   if (!req.user) {
@@ -26,6 +27,7 @@ router.post('/login', passport.authenticate('local', {
   }
   // Login successful
   res.status(200).json({ message: 'Login successful', user: req.user });
+  console.error('Login successful');
 });
 // router.post('/login', passport.authenticate('local'), (req, res) => {
 //   // Check if authentication was successful
@@ -35,6 +37,16 @@ router.post('/login', passport.authenticate('local', {
 //   // Login successful
 //   res.status(200).json({ message: 'Login successful', user: req.user });
 // });
+router.get('/current-user', (req, res) => {
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
+      return res.status(401).json({ error: 'Not authenticated' });
+  }
+
+  // return current user name
+  res.status(200).json({
+      user: req.user,
+  });
+});
 
 
 router.get("/logout", logout);

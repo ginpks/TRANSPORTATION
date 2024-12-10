@@ -11,12 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function logout() {
         try {
-            const response = await fetch("/logout", { method: "POST", credentials: "include" });
+            const response = await fetch("http://localhost:3000/api/auth/logout", { method: "GET", credentials: "include" });
             const data = await response.json();
 
             if (response.ok) {
                 alert(data.message);
-                window.location.href = "LoginPage.html"; 
+
+                window.location.href = "../login/LoginPage.html"; 
+
             } else {
                 alert(data.message || "Logout failed. Please try again.");
             }
@@ -26,7 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const logoutButton = document.getElementById('logoutButton');
+
+    const logoutButton = document.querySelector('#logoutButton');
+
     if (logoutButton) {
         logoutButton.addEventListener('click', logout);
     }
