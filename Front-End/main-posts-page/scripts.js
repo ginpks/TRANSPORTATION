@@ -46,24 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filterButton) {
         filterButton.addEventListener('click', () => {
             const filterType = document.querySelector('.type-selection .selected')?.id;
-            const startTime = document.getElementById('start-time').value;
-            const endTime = document.getElementById('end-time').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
             const requiredSeats = document.getElementById('seats-range').value;
             const availableLuggage = document.getElementById('luggage-range').value;
 
             // Log filter criteria
             console.log("Filter applied with criteria:", {
                 type: filterType,
-                startTime: startTime,
-                endTime: endTime,
+                startDate: startDate,
+                endDate: endDate,
                 requiredSeats: requiredSeats,
                 availableLuggage: availableLuggage
             });
 
             const filterCriteria = {
                 type: filterType,
-                startTime: startTime,
-                endTime: endTime,
+                startDate: startDate,
+                endDate: endDate,
                 requiredSeats: requiredSeats,
                 availableLuggage: availableLuggage
             };
@@ -101,6 +101,7 @@ function selectType(type) {
         }
     }
 }
+window.selectType = selectType;
 
 // Sort feature - Lana
 // Select the sort dropdown
@@ -141,6 +142,33 @@ sortDropdown.addEventListener('change', function () {
     sortedPosts.forEach((post) => postsList.appendChild(post)); // Append sorted posts
 });
 
+
+// Formatting date and time - Lana
+// function getCombinedDateTime(dateInputId, timeInputId) {
+//     const date = document.getElementById(dateInputId).value;
+//     const time = document.getElementById(timeInputId).value;
+
+//     if (!date || !time) {
+//         console.error("Invalid date or time input:", { date, time });
+//         return null;
+//     }
+
+//     return new Date(`${date}T${time}`).toISOString();  // Returns an ISO string.
+// }
+// function updateFilterCriteria() {
+//     filterCriteria.startTime = getCombinedDateTime('start-date', 'start-time');
+//     filterCriteria.endTime = getCombinedDateTime('end-date', 'end-time');
+
+//     if (filterCriteria.startTime && filterCriteria.endTime) {
+//         console.log('Start Time:', filterCriteria.startTime);
+//         console.log('End Time:', filterCriteria.endTime);
+//     }
+// }
+
+// document.getElementById('start-time').addEventListener('change', updateFilterCriteria);
+// document.getElementById('start-date').addEventListener('change', updateFilterCriteria);
+// document.getElementById('end-time').addEventListener('change', updateFilterCriteria);
+// document.getElementById('end-date').addEventListener('change', updateFilterCriteria);
 
 
 // Search feature - Lana
@@ -183,15 +211,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filterButton) {
         filterButton.addEventListener('click', () => {
             const filterType = document.querySelector('.type-selection .selected')?.id;
-            const startTime = document.getElementById('start-time').value;
-            const endTime = document.getElementById('end-time').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
             const requiredSeats = document.getElementById('seats-range').value;
             const availableLuggage = document.getElementById('luggage-range').value;
 
             const filterCriteria = {
                 type: filterType,
-                startTime: startTime,
-                endTime: endTime,
+                startDate: startDate,
+                endDate: endDate,
                 requiredSeats: requiredSeats,
                 availableLuggage: availableLuggage
             };
@@ -230,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //   searchBox.addListener('places_changed', () => {
   //     const places = searchBox.getPlaces();
   //     if (places.length === 0) return;
-  //     console.log('Selected Place:', places[0].name);
+  //     console.log('Selected Place:', places[ 0].name);
   //   });
   // }
 });
@@ -291,9 +319,72 @@ function createPost(post) {
     postDiv.appendChild(thirdLineDiv);
 
     //add redirect link
-    postDiv.addEventListener('click', ()=>{
-        window.location.href = `../chat-page/index.html?id=${post.id}`;
-    })
+    // postDiv.addEventListener('click', ()=>{
+    //     window.location.href = `../chat-page/index.html?id=${post.id}`;
+    // })
+
+    postDiv.addEventListener('click', async (event) => {
+        // Check if a post element is clicked
+        // const post = event.target.closest('.posts');
+        if (post) {
+          // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
+          // const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
+          let currentUserId = "Tom";
+          try {
+            // request for current user info
+            const response = await fetch('http://localhost:3000/api/auth/current-user', {
+                method: 'GET',
+                credentials: 'include',
+            });
+    
+            if (response.ok) {
+                const data = await response.json(); //get json data
+                // get username
+                currentUserId = data.user.username;
+                console.log(currentUserId);
+            } else {
+                console.error('Failed to fetch current user. Status:', response.status);
+                // alert('You are not logged in. Redirecting to login page.');
+            }
+        } catch (error) {
+            console.error('Error fetching current user:', error);
+            alert('An error occurred.');
+        }
+          // const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
+          let postOwnerId = post.userId;
+          console.log(post.userId)
+          if (currentUserId === postOwnerId) {
+            alert("You posted it!");
+            return; 
+        }
+          try {
+            // Call backend to get or create a session
+            const response = await fetch('http://localhost:3000/api/chat/session', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ currentUserId, postOwnerId })
+            });
+    
+            const result = await response.json();
+            if (result.success) {
+  
+              // Redirect to the chat page with the session ID 
+              window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
+              console.log("successfully redirected");
+            } else {
+              console.error('Failed to create or retrieve session');
+              window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        }
+      });
+
+
+
 
     //append posts to posts-list
     const postsList = document.querySelector('.posts-list');
@@ -319,7 +410,7 @@ function createCustomPostDetail(className, title, detail, detailClass = 'custom-
     return containerDiv;
 }
 
-
+/*
 function loadPostsFromDB(filterCriteria = {}) {
   console.log("Loading posts from the database with filter criteria:", filterCriteria);
   openDatabase().then((db) => {
@@ -346,10 +437,26 @@ function loadPostsFromDB(filterCriteria = {}) {
                 }
 
                 if (filterCriteria.startTime && filterCriteria.endTime) {
-                    const postTime = new Date(`${post.date} ${post.time}`).getTime();
+                    console.log('Filtering by time:');
+                    console.log('Raw startTime:', filterCriteria.startTime);
+                    console.log('Raw endTime:', filterCriteria.endTime);
+            
                     const startTime = new Date(filterCriteria.startTime).getTime();
                     const endTime = new Date(filterCriteria.endTime).getTime();
-
+            
+                    if (isNaN(startTime) || isNaN(endTime)) {
+                        console.error("Invalid start or end time format:", { startTime, endTime });
+                        return false;
+                    }
+            
+                    const postTimeString = `${post.date}T${post.time}`;
+                    const postTime = new Date(postTimeString).getTime();
+            
+                    if (isNaN(postTime)) {
+                        console.error("Invalid post time format:", { date: post.date, time: post.time });
+                        return false;
+                    }
+            
                     if (postTime < startTime || postTime > endTime) {
                         console.log("Post excluded by time range filter");
                         match = false;
@@ -385,6 +492,7 @@ function loadPostsFromDB(filterCriteria = {}) {
       };
   });
 }
+*/
 
 //Milestone 4: Load posts from the server
 function loadPostsFromServer(filterCriteria = {}) {
@@ -412,6 +520,31 @@ function loadPostsFromServer(filterCriteria = {}) {
                     let match = true;
                     // Apply filters (e.g., type, time range, required seats, luggage, etc.)
                     // Filtering logic goes here (similar to existing filter logic)
+                    if (filterCriteria.type && filterCriteria.type !== 'all' && post.type !== filterCriteria.type) {
+                        console.log("Post excluded by type filter");
+                        match = false;
+                    }
+
+
+                    if (filterCriteria.startDate && filterCriteria.endDate) {
+                        const postDate = post.date;  // e.g., '2024-04-01'
+                        
+                        if (postDate < filterCriteria.startDate || postDate > filterCriteria.endDate) {
+                            console.log("Post excluded by date filter");
+                            match = false;
+                        }
+                    }
+                                 
+    
+                    if (filterCriteria.requiredSeats && parseInt(post.people) < parseInt(filterCriteria.requiredSeats)) {
+                        console.log("Post excluded by required seats filter");
+                        match = false;
+                    }
+    
+                    if (filterCriteria.availableLuggage && parseInt(post.luggage) < parseInt(filterCriteria.availableLuggage)) {
+                        console.log("Post excluded by luggage filter");
+                        match = false;
+                    }
                     return match;
                 });
 
@@ -434,37 +567,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Assuming posts are dynamically added, use event delegation
     const postsContainer = document.querySelector('.posts-list');
   
-    postsContainer.addEventListener('click', async (event) => {
-      // Check if a post element is clicked
-      const post = event.target.closest('.posts');
-      if (post) {
-        // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
-        const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
-        const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
-        
-        try {
-          // Call backend to get or create a session
-          const response = await fetch('http://localhost:3000/api/chat/session', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ currentUserId, postOwnerId })
-          });
+    // postsContainer.addEventListener('click', async (event) => {
+    //   // Check if a post element is clicked
+    //   const post = event.target.closest('.posts');
+    //   if (post) {
+    //     // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
+    //     const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
+    //     // const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
+    //     const postOwnerId = post.userId;
+    //     console.log(post.userId)
+    //     try {
+    //       // Call backend to get or create a session
+    //       const response = await fetch('http://localhost:3000/api/chat/session', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ currentUserId, postOwnerId })
+    //       });
   
-          const result = await response.json();
-          if (result.success) {
+    //       const result = await response.json();
+    //       if (result.success) {
 
-            // Redirect to the chat page with the session ID 
-            window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
-            console.log("successfully redirected");
-          } else {
-            console.error('Failed to create or retrieve session');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      }
-    });
+    //         // Redirect to the chat page with the session ID 
+    //         window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
+    //         console.log("successfully redirected");
+    //       } else {
+    //         console.error('Failed to create or retrieve session');
+    //       }
+    //     } catch (error) {
+    //       console.error('Error:', error);
+    //     }
+    //   }
+    // });
   });
   

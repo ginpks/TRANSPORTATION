@@ -19,7 +19,30 @@ function switchTab(tab) {
         passengerForm.style.display = 'none';
     }
 }
+let currentUserId = "Timi";
 
+document.addEventListener('DOMContentLoaded', async() => {
+    try {
+        // request for current user info
+        const response = await fetch('http://localhost:3000/api/auth/current-user', {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        if (response.ok) {
+            const data = await response.json(); //get json data
+            // get username
+            currentUserId = data.user.username;
+            console.log(currentUserId);
+        } else {
+            console.error('Failed to fetch current user. Status:', response.status);
+            // alert('You are not logged in. Redirecting to login page.');
+        }
+    } catch (error) {
+        console.error('Error fetching current user:', error);
+        alert('An error occurred.');
+    }
+});
 // Modify savePost function to store data in IndexedDB
 export function savePost(type) {
     let postData;
@@ -36,7 +59,7 @@ export function savePost(type) {
             extraInfo: document.getElementById('extraInfo').value.trim() === '' ? 'No additional comment' : document.getElementById('extraInfo').value,
             username: localStorage.getItem('loggedInUsername'),
             // User ID
-            userId: 'Eric' // use example to replace real authentication 
+            userId: currentUserId // use example to replace real authentication 
         };
     } else if (type === 'driver') {
         postData = {
@@ -50,7 +73,7 @@ export function savePost(type) {
             luggage: document.getElementById('availableLuggage').value,
             extraInfo: document.getElementById('extraInfoDriver').value.trim() === '' ? 'No additional comment' : document.getElementById('extraInfoDriver').value,
             // User ID
-            userId: 'Eric' // use example to replace real authentication 
+            userId: currentUserId // use example to replace real authentication 
         };
     }
 

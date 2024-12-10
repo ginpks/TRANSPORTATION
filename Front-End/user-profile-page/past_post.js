@@ -43,6 +43,7 @@ function loadPostsFromServer() {
             const currentUser = localStorage.getItem('loggedInUsername'); 
             const filteredPosts = posts.filter(post => post.userId === getuserid());            
 
+
             console.log(filteredPosts);
             return filteredPosts;
         } else {

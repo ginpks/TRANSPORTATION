@@ -35,7 +35,7 @@ loginButton.addEventListener("click", async (event) => {
 
         if (response.ok) {
             // Navigate to main page on successful login
-            window.location.href = "/mainpage.html"; // Adjust the path if necessary
+            window.location.href = "../main-posts-page/index.html"; // Adjust the path if necessary
         } else {
             // Display error message
             alert(result.message || "Login failed. Please try again.");

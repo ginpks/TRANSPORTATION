@@ -35,11 +35,17 @@ console.log("Serving static files from:", path.join(__dirname, "../../Front-End"
 
 // Middleware setup
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
+
 app.use(session({
   secret: 'your-secret-key',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: { secure: false, maxAge: 3600000 }
 }));
 
 // Initial Passport
@@ -95,4 +101,14 @@ app.use((err, req, res, next) => {
   if(!req.session){
     return res.status(401).json({ error: "Session timed out or expired. Reload or Log in again."})
   }
+
+  app.post('/logout', (req, res) => {
+    req.logout(function (err) {
+        if (err) {
+            console.error("Error during logout:", err);
+            return res.status(500).json({ message: "Logout failed" });
+        }
+        res.status(200).json({ message: "Logged out successfully" });
+    });
+});
 });

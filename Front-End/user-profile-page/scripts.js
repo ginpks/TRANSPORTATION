@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function logout() {
         try {
-            const response = await fetch("/logout", { method: "POST", credentials: "include" });
+            const response = await fetch("http://localhost:3000/api/auth/logout", { method: "GET", credentials: "include" });
             const data = await response.json();
 
             if (response.ok) {
@@ -29,7 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const logoutButton = document.querySelector('button[onclick="logout()"]');
+
+    const logoutButton = document.querySelector('#logoutButton');
+
     if (logoutButton) {
         logoutButton.addEventListener('click', logout);
     }
@@ -74,11 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Display Feedback
 async function displayFeedback() {
-    const feedbackList = await getFeedback();
+    const feedbackList = await fetchFeedback();
     const feedbackContainer = document.getElementById('feedbackList');
-    feedbackContainer.innerHTML = ''; // Clear existing content
+    feedbackContainer.innerHTML = '';
 
-    if (feedbackList.length === 0) {
+    if (!feedbackList || feedbackList.length === 0) {
         feedbackContainer.innerHTML = '<p>No feedback submitted yet.</p>';
         return;
     }
@@ -86,8 +88,8 @@ async function displayFeedback() {
     feedbackList.forEach((feedback) => {
         const feedbackItem = document.createElement('div');
         feedbackItem.innerHTML = `
-            Rating  : ${feedback.rating} <br>
-            Comments: ${feedback.comments} <br>
+            <p>Rating: ${feedback.rating}</p>
+            <p>Comment: ${feedback.comment}</p>
         `;
         feedbackContainer.appendChild(feedbackItem);
     });
@@ -110,70 +112,102 @@ async function displayFeedback() {
     });
 });
 
+async function submitFeedback(userId, rating, comment) {
+    try {
+        const response = await fetch('http://localhost:3000/api/feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId, rating, comment }),
+        });
 
-// // IndexedDB setup
-function openDatabase() {
-    return new Promise((resolve, reject) => {
-        const request = indexedDB.open('FeedbackDB', 1);
+        if (!response.ok) {
+            throw new Error(`Failed to submit feedback: ${response.statusText}`);
+        }
 
-        request.onupgradeneeded = (event) => {
-            const db = event.target.result;
-            // Create an object store for feedback
-            if (!db.objectStoreNames.contains('feedback')) {
-                db.createObjectStore('feedback', { keyPath: 'id', autoIncrement: true });
-            }
-        };
-
-        request.onsuccess = (event) => {
-            resolve(event.target.result);
-        };
-
-        request.onerror = (event) => {
-            reject(`Database error: ${event.target.errorCode}`);
-        };
-    });
+        const data = await response.json();
+        console.log('Feedback submitted successfully:', data);
+    } catch (error) {
+        console.error('Error submitting feedback:', error);
+    }
 }
-async function saveFeedback(rating, comments) {
-    const db = await openDatabase();
+async function fetchFeedback() {
+    try {
+        const response = await fetch('http://localhost:3000/api/feedback');
+        if (!response.ok) {
+            throw new Error(`Failed to fetch feedback: ${response.statusText}`);
+        }
 
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction('feedback', 'readwrite');
-        const store = transaction.objectStore('feedback');
-
-        const feedback = {
-            rating: rating,
-            comments: comments,
-            timestamp: new Date().toISOString(),
-        };
-
-        const request = store.add(feedback);
-
-        request.onsuccess = () => {
-            resolve('Feedback saved successfully');
-        };
-
-        request.onerror = (event) => {
-            reject(`Failed to save feedback: ${event.target.errorCode}`);
-        };
-    });
+        const feedbackList = await response.json();
+        console.log('Feedback fetched successfully:', feedbackList);
+        return feedbackList;
+    } catch (error) {
+        console.error('Error fetching feedback:', error);
+    }
 }
-async function getFeedback() {
-    const db = await openDatabase();
 
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction('feedback', 'readonly');
-        const store = transaction.objectStore('feedback');
+// // // IndexedDB setup
+// function openDatabase() {
+//     return new Promise((resolve, reject) => {
+//         const request = indexedDB.open('FeedbackDB', 1);
 
-        const request = store.getAll();
+//         request.onupgradeneeded = (event) => {
+//             const db = event.target.result;
+//             // Create an object store for feedback
+//             if (!db.objectStoreNames.contains('feedback')) {
+//                 db.createObjectStore('feedback', { keyPath: 'id', autoIncrement: true });
+//             }
+//         };
 
-        request.onsuccess = (event) => {
-            resolve(event.target.result);
-        };
+//         request.onsuccess = (event) => {
+//             resolve(event.target.result);
+//         };
 
-        request.onerror = (event) => {
-            reject(`Failed to retrieve feedback: ${event.target.errorCode}`);
-        };
-    });
-}
+//         request.onerror = (event) => {
+//             reject(`Database error: ${event.target.errorCode}`);
+//         };
+//     });
+// }
+// async function saveFeedback(rating, comments) {
+//     const db = await openDatabase();
+
+//     return new Promise((resolve, reject) => {
+//         const transaction = db.transaction('feedback', 'readwrite');
+//         const store = transaction.objectStore('feedback');
+
+//         const feedback = {
+//             rating: rating,
+//             comments: comments,
+//             timestamp: new Date().toISOString(),
+//         };
+
+//         const request = store.add(feedback);
+
+//         request.onsuccess = () => {
+//             resolve('Feedback saved successfully');
+//         };
+
+//         request.onerror = (event) => {
+//             reject(`Failed to save feedback: ${event.target.errorCode}`);
+//         };
+//     });
+// }
+// async function getFeedback() {
+//     const db = await openDatabase();
+
+//     return new Promise((resolve, reject) => {
+//         const transaction = db.transaction('feedback', 'readonly');
+//         const store = transaction.objectStore('feedback');
+
+//         const request = store.getAll();
+
+//         request.onsuccess = (event) => {
+//             resolve(event.target.result);
+//         };
+
+//         request.onerror = (event) => {
+//             reject(`Failed to retrieve feedback: ${event.target.errorCode}`);
+//         };
+//     });
+// }
 
 
