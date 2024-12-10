@@ -54,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
  // Feedback form submission
  document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-
+    const userId = 'test-user'; // I need to replace with actual user ID
     const rating = document.getElementById('rating').value;
     const comments = document.getElementById('comments').value;
 
     try {
-        await saveFeedback(rating, comments); // Save to IndexedDB
+        await submitFeedback(userId, rating, comments); //save feedback to DB
         console.log('Feedback saved successfully!');
         e.target.reset(); // Clear the form
         displayFeedback(); // Refresh the feedback list
@@ -106,7 +106,7 @@ async function displayFeedback() {
         }
     });
 });
-
+// send feedback to db
 async function submitFeedback(userId, rating, comment) {
     try {
         const response = await fetch('http://localhost:3000/api/feedback', {
@@ -125,6 +125,7 @@ async function submitFeedback(userId, rating, comment) {
         console.error('Error submitting feedback:', error);
     }
 }
+//get feedback from db
 async function fetchFeedback() {
     try {
         const response = await fetch('http://localhost:3000/api/feedback');

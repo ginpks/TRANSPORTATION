@@ -14,6 +14,7 @@ import http from 'http';
 import { Server as SocketIOServer } from 'socket.io';
 import path from "path";
 import { fileURLToPath } from "url";
+import feedbackRoutes from '../feedback/routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -52,6 +53,7 @@ app.use('/api/auth', authRoutes);
 // Set up post and chat related routes
 app.use('/api/posts', postRoutes);
 app.use("/api/chat", chatRoutes); //for testing stage, exclude isAuthenticated now
+app.use('/api/', feedbackRoutes);// using /api/ because api/feedback breaks it
 
 //Sync Databases and start server
 Promise.all([
