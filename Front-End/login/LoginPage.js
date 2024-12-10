@@ -26,6 +26,8 @@ signInButton.addEventListener('click', async function (event) {
     if (response.ok) {
       const data = await response.json();
       alert('Login successful');
+      // Save it in local storage such that it can be used for user profile page
+      localStorage.setItem('loggedInUsername', username);
       // Redirect to the user profile or main page
       window.location.href = '../user-profile-page/index.html';
     } else {
