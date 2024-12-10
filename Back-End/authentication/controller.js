@@ -8,6 +8,12 @@ export const registerUser = async (req, res) => {
     try {
       const { username, email, password } = req.body;
   
+      // Check if all fields are there
+      if(!username || !email || !password){
+        return res.status(400).json({ error:"all fields are required"});
+      }
+
+  
       // Check if the user already exists
       const existingUser = await User.findOne({ where: { username } });
       if (existingUser) {
@@ -35,6 +41,10 @@ export const registerUser = async (req, res) => {
 export const login = async (req, res, next) => {
     try{
         const { username, password } = req.body;
+        if(!username || !password){
+          return res.status(400).json({ error:"both username and password are required"});
+        }
+
         const user = await User.findOne({ where: { username } });
         if (!user || !(await bcrypt.compare(password, user.password))) {
         return res.status(401).json(factoryResponse(401, "Invalid credentials"));
