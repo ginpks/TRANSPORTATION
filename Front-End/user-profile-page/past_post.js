@@ -15,7 +15,7 @@ function loadPostsFromServer() {
         if (postsList) {
             postsList.innerHTML = '';
 
-            const currentUser = window.currentUserUsername; 
+            const currentUser = localStorage.getItem('loggedInUsername'); 
             const filteredPosts = posts.filter(post => post.username === currentUser);            
 
             // Create posts
