@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 const signInButton = document.getElementById('SignIn');
 const invalidUser = /[^ \w@.]/;
 
@@ -28,7 +29,7 @@ signInButton.addEventListener('click', async function (event) {
       // Save it in local storage such that it can be used for user profile page
       localStorage.setItem('loggedInUsername', username);
       // Redirect to the user profile or main page
-      window.location.href = 'user-profile-page/index.html';
+      window.location.href = '../user-profile-page/index.html';
     } else {
       const error = await response.json();
       alert(error.message || 'Login failed');
@@ -37,4 +38,5 @@ signInButton.addEventListener('click', async function (event) {
     console.error('Error:', error);
     alert('An error occurred. Please try again.');
   }
+});
 });

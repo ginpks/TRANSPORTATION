@@ -89,6 +89,8 @@ if (sessionId) {
 // of said post is added to the list of chatters
 document.addEventListener('DOMContentLoaded', () => {
    //fetch all userList from the back-end when the page is loaded 
+   if (sessionId) {
+    loadChatHistory(sessionId); // Load chat history for the current session
     fetch("http://localhost:3000/api/chat/userlist",{
       method: "POST",
       headers:{
@@ -135,6 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
           console.error("Failed to fetch user list:", result.error);
         }
       }).catch((error)=> console.error("Error fetching user list:", error));
+   }
 });
 
 
@@ -162,6 +165,42 @@ async function getSession(currentUserId, postOwnerId) {
   }
 }
 
+
+// Function to load chat history
+async function loadChatHistory(sessionId) {
+  try {
+    const response = await fetch(`http://localhost:3000/api/chat/messages/${sessionId}`, {
+      method: "GET",
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      const inbox = document.querySelector('.inbox');
+      inbox.innerHTML = ""; 
+
+      result.data.forEach((message) => {
+        const messageContainer = document.createElement('div');
+
+        if (message.sender_id === currentUserId) {
+          // If the message is sent by the current user
+          messageContainer.classList.add('sent-message');
+        } else {
+          // If the message is received
+          messageContainer.classList.add('received-message');
+        }
+        const messageContent = document.createElement('p');
+        messageContent.textContent = message.message; // Append the message text
+        messageContainer.appendChild(messageContent);
+        inbox.prepend(messageContainer); // Append to chat inbox
+      });
+    } else {
+      console.error("Failed to load chat history:", result.error);
+    }
+  } catch (error) {
+    console.error("Error fetching chat history:", error);
+  }
+}
 
 async function updateInteraction(sessionId) {
   try {

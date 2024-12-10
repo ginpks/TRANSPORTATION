@@ -1,8 +1,15 @@
 import { Sequelize, DataTypes } from "@sequelize/core";
 
+// Solving db path issue
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const chatDatabase = new Sequelize({
     dialect: "sqlite", 
-    storage: "chat.sqlite", 
+    // storage: "chat.sqlite", 
+    storage: path.resolve(__dirname, '../source/chat.sqlite'), // Solving db path issue
     logging: console.log,
   });
 

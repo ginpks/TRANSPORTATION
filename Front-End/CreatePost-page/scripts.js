@@ -35,6 +35,8 @@ export function savePost(type) {
             luggage: document.getElementById('luggage').value,
             extraInfo: document.getElementById('extraInfo').value.trim() === '' ? 'No additional comment' : document.getElementById('extraInfo').value,
             username: localStorage.getItem('loggedInUsername'),
+            // User ID
+            userId: 'Eric' // use example to replace real authentication 
         };
     } else if (type === 'driver') {
         postData = {
@@ -46,7 +48,9 @@ export function savePost(type) {
             date: document.getElementById('dateDriver').value,
             people: document.getElementById('availableSeats').value,
             luggage: document.getElementById('availableLuggage').value,
-            extraInfo: document.getElementById('extraInfoDriver').value.trim() === '' ? 'No additional comment' : document.getElementById('extraInfoDriver').value
+            extraInfo: document.getElementById('extraInfoDriver').value.trim() === '' ? 'No additional comment' : document.getElementById('extraInfoDriver').value,
+            // User ID
+            userId: 'Eric' // use example to replace real authentication 
         };
     }
 
