@@ -34,6 +34,7 @@ createAccountButton.addEventListener('click', async function (event) {
         window.location.href = 'LoginPage.html';
       } else {
         const error = await response.json();
+        console.error('Server error:', error);
         alert(error.error || 'Registration failed');
       }
     } catch (error) {

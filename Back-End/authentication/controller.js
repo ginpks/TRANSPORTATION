@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 // import dotenv from "dotenv";
 import User from "../authentication/user.js";
-
+import passport from 'passport';
 
 // Handle user registration
 export const registerUser = async (req, res) => {
@@ -22,8 +22,12 @@ export const registerUser = async (req, res) => {
   
       res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
+      console.error('Registration Error:', error);
+      if (error.name === 'SequelizeValidationError') {
+          return res.status(400).json({ error: 'Validation error', details: error.errors });
+      }
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
   };
   
 
