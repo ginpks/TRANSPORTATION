@@ -34,7 +34,7 @@ export function savePost(type) {
             people: document.getElementById('people').value,
             luggage: document.getElementById('luggage').value,
             extraInfo: document.getElementById('extraInfo').value.trim() === '' ? 'No additional comment' : document.getElementById('extraInfo').value,
-            
+            username: localStorage.getItem('loggedInUsername'),
             // User ID
             userId: 'Eric' // use example to replace real authentication 
         };

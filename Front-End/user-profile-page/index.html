@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URide</title>
     <link rel="stylesheet" href="style.css">
     <script src="scripts.js" type="module"></script>
-    <title>URide</title>
 </head>
 
 <body>
@@ -16,9 +16,6 @@
             <div class="webLogo">
                 <span class="web-name"> URide logo </span>
             </div>
-            <!-- <div class="Logo">
-                <span>  profile image  </span>
-            </div> -->
         </div>
     </header>
 
@@ -27,10 +24,7 @@
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <ul>
-                <li><a href="personal-info.html">Personal Information</a></li>
-                <li><a href="history-trip.html">History Trip</a></li>
                 <li><button id="toggleFeedbackButton" class="sidebar-button">Your Feedback</button></li>
-                <li><a href="setting-help.html">Settings & Help</a></li>
                 <button id="logoutButton">Logout</button>
             </ul>
         </nav>
@@ -44,66 +38,57 @@
                 </div>
                 <div class="profile-details">
                     <h2>Profile Information</h2>
-                    <p><strong>Name:</strong> John Doe</p>
-                    <p><strong>Email:</strong> john.doe@example.com</p>
-                    <p><strong>Year in School:</strong> Junior</p>
+                    <p><strong>User name:</strong> <span id="username-display"></span></p>
                 </div>
             </div>
 
             <!-- Posts and Chat Section -->
             <div class="sections-container">
-                <div class="posts-section">
-                    <h3>Past Posts</h3>
-                    <div class="post">Post 1</div>
-                    <div class="post">Post 2</div>
-                </div>
-                <div class="chat-section">
-                    <h3>Chat Box</h3>
-                    <iframe src="../chat-page/index.html" class="chat-iframe" frameborder="0"></iframe>
-                </div>
+                <iframe src="./past_post.html" class="chat-iframe" frameborder="0"></iframe>
             </div>
 
-
-                <!-- Feedback Box -->
-                <div id="feedbackBox" style="display: none;">
-                    <div class="feedback-container">
-                        <!-- Feedback Form -->
-                        <div class="feedback-form">
-                            <h3>Your Feedback</h3>
-                            <form id="feedbackForm">
-                                <label for="rating">Rate your experience:</label>
-                                <select id="rating">
-                                    <option value="5">★★★★★ - Excellent</option>
-                                    <option value="4">★★★★☆ - Good</option>
-                                    <option value="3">★★★☆☆ - Average</option>
-                                    <option value="2">★★☆☆☆ - Poor</option>
-                                    <option value="1">★☆☆☆☆ - Terrible</option>
-                                </select>
-                
-                                <label for="comments">Comments:</label>
-                                <textarea id="comments" rows="3" placeholder="Your feedback..."></textarea>
-                
-                                <button type="submit">Submit</button>
-                            </form>
-                        </div>
-                
-                        <!-- Retrieved Feedback -->
-                        <div class="feedback-list">
-                            <h3>Previous Feedback</h3>
-                            <div id="feedbackList">
-                                <p>No feedback submitted yet.</p>
-                            </div>
-                        </div>
-                    
+            <!-- Feedback Box -->
+            <div id="feedbackBox" style="display: none;">
+                <div class="feedback-container">
+                    <!-- Feedback Form -->
+                    <div class="feedback-form">
+                        <h3>Your Feedback</h3>
+                        <form id="feedbackForm">
+                            <label for="rating">Rate your experience:</label>
+                            <select id="rating">
+                                <option value="5">★★★★★ - Excellent</option>
+                                <option value="4">★★★★☆ - Good</option>
+                                <option value="3">★★★☆☆ - Average</option>
+                                <option value="2">★★☆☆☆ - Poor</option>
+                                <option value="1">★☆☆☆☆ - Terrible</option>
+                            </select>
+            
+                            <label for="comments">Comments:</label>
+                            <textarea id="comments" rows="3" placeholder="Your feedback..."></textarea>
+            
+                            <button type="submit">Submit</button>
+                        </form>
                     </div>
-                </div>
+            
+                    <!-- Retrieved Feedback -->
+                    <div class="feedback-list">
+                        <h3>Previous Feedback</h3>
+                        <div id="feedbackList">
+                            <p>No feedback submitted yet.</p>
+                        </div>
+                    </div>
                 
-
+                </div>
+            </div>
 
         </div>
     </div>
 
-
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('loggedInUsername');
+            document.getElementById('username-display').innerText = username || 'N/A (username not retrieved from localStorage)';
+        });
+    </script>
 </body>
-
 </html>
