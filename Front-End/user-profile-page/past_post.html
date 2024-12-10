@@ -4,6 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
     <title>Past Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .past-posts-container {
+            margin: 20px;
+        }
+        .posts-header h2 {
+            margin-bottom: 10px;
+        }
+        .posts-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .posts-list li {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .posts-list li strong {
+            display: inline-block;
+            width: 100px;
+        }
+        .posts-list li small {
+            display: block;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -17,7 +47,9 @@
             <h2>Your Past Posts</h2>
         </div>
         <div class="posts-list">
-            <!-- Posts will be dynamically inserted here -->
+            <ul>
+                <!-- Posts will be dynamically inserted here as <li> elements -->
+            </ul>
         </div>
     </div>
 

@@ -36,6 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutButton.addEventListener('click', logout);
     }
 
+    async function chatroom(){
+        window.location.href = '../chat-page/index.html';
+    }
+
+    const chatRoomButton = document.querySelector('#chat-room');
+    if (chatRoomButton){
+        chatRoomButton.addEventListener('click', chatroom)
+    }
+
     function navigateToPage(pageName) {
         alert(`Navigating to ${pageName}...`);
         window.location.href = `${pageName.toLowerCase().replace(/ /g, '-')}.html`;
