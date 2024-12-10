@@ -16,11 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 alert(data.message);
-<<<<<<< Updated upstream
-
-=======
                 localStorage.removeItem('loggedInUsername');
->>>>>>> Stashed changes
                 window.location.href = "../login/LoginPage.html"; 
 
             } else {
