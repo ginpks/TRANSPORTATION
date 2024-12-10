@@ -69,3 +69,25 @@ export const deletePost = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+//feedback controller
+
+//Submit feedback
+export const  SubmitFeedback = async (req, res) => {
+    try{
+        const  { userid, rating, comment } = req.body;
+        const feedback = await FeedBack.create({ userid, rating, comment });
+        res.status(201).json(feedback);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to submit feedback' , details: error.message });
+    }
+};
+//get all feedback
+export const getAllFeedback = async (req, res) => {
+    try {
+        const feedback = await FeedBack.findAll();
+        res.json(feedback);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to retrieve feedback', details: error.message});
+    }
+};

@@ -6,6 +6,7 @@ const router = express.Router();
 import { createPost, getAllPosts, getPostById, updatePost, deletePost } from './controller.js';
 import { isAuthenticated } from '../authentication/authMiddleware.js';
 
+import { SubmitFeedback, getAllFeedback } from './controller.js';
 
 //A series of Routes
 // Create Posts
@@ -25,6 +26,10 @@ router.put('/:id', isAuthenticated, updatePost);
 // Delete post
 router.delete('/:id', isAuthenticated, deletePost);
 // router.delete('/:id', deletePost);
+
+//Routes for Feedback
+router.post('/feedback', isAuthenticated, SubmitFeedback); // Submit feedback
+router.get('/feedback', getAllFeedback); // Get all feedback
 
 // module.exports = router;
 export default router;

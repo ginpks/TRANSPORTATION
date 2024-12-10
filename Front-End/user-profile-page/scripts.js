@@ -107,70 +107,96 @@ async function displayFeedback() {
     });
 });
 
-
-// // IndexedDB setup
-function openDatabase() {
-    return new Promise((resolve, reject) => {
-        const request = indexedDB.open('FeedbackDB', 1);
-
-        request.onupgradeneeded = (event) => {
-            const db = event.target.result;
-            // Create an object store for feedback
-            if (!db.objectStoreNames.contains('feedback')) {
-                db.createObjectStore('feedback', { keyPath: 'id', autoIncrement: true });
-            }
-        };
-
-        request.onsuccess = (event) => {
-            resolve(event.target.result);
-        };
-
-        request.onerror = (event) => {
-            reject(`Database error: ${event.target.errorCode}`);
-        };
-    });
+//Feedback DB
+async function submitFeedback(rating, comments) {
+    try {
+      const response = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: 1, rating, comments }), 
+      });
+      if (!response.ok) throw new Error('Failed to submit feedback');
+      const data = await response.json();
+      console.log('Feedback submitted:', data);
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+    }
 }
-async function saveFeedback(rating, comments) {
-    const db = await openDatabase();
-
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction('feedback', 'readwrite');
-        const store = transaction.objectStore('feedback');
-
-        const feedback = {
-            rating: rating,
-            comments: comments,
-            timestamp: new Date().toISOString(),
-        };
-
-        const request = store.add(feedback);
-
-        request.onsuccess = () => {
-            resolve('Feedback saved successfully');
-        };
-
-        request.onerror = (event) => {
-            reject(`Failed to save feedback: ${event.target.errorCode}`);
-        };
-    });
+async function fetchFeedback() {
+    try {
+      const response = await fetch('/api/posts/feedback');
+      if (!response.ok) throw new Error('Failed to fetch feedback');
+      const feedbackList = await response.json();
+      return feedbackList;
+    } catch (error) {
+      console.error('Error fetching feedback:', error);
+    }
 }
-async function getFeedback() {
-    const db = await openDatabase();
 
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction('feedback', 'readonly');
-        const store = transaction.objectStore('feedback');
+// Previous individual DB for feedback
+// // // IndexedDB setup
+// function openDatabase() {
+//     return new Promise((resolve, reject) => {
+//         const request = indexedDB.open('FeedbackDB', 1);
 
-        const request = store.getAll();
+//         request.onupgradeneeded = (event) => {
+//             const db = event.target.result;
+//             // Create an object store for feedback
+//             if (!db.objectStoreNames.contains('feedback')) {
+//                 db.createObjectStore('feedback', { keyPath: 'id', autoIncrement: true });
+//             }
+//         };
 
-        request.onsuccess = (event) => {
-            resolve(event.target.result);
-        };
+//         request.onsuccess = (event) => {
+//             resolve(event.target.result);
+//         };
 
-        request.onerror = (event) => {
-            reject(`Failed to retrieve feedback: ${event.target.errorCode}`);
-        };
-    });
-}
+//         request.onerror = (event) => {
+//             reject(`Database error: ${event.target.errorCode}`);
+//         };
+//     });
+// }
+// async function saveFeedback(rating, comments) {
+//     const db = await openDatabase();
+
+//     return new Promise((resolve, reject) => {
+//         const transaction = db.transaction('feedback', 'readwrite');
+//         const store = transaction.objectStore('feedback');
+
+//         const feedback = {
+//             rating: rating,
+//             comments: comments,
+//             timestamp: new Date().toISOString(),
+//         };
+
+//         const request = store.add(feedback);
+
+//         request.onsuccess = () => {
+//             resolve('Feedback saved successfully');
+//         };
+
+//         request.onerror = (event) => {
+//             reject(`Failed to save feedback: ${event.target.errorCode}`);
+//         };
+//     });
+// }
+// async function getFeedback() {
+//     const db = await openDatabase();
+
+//     return new Promise((resolve, reject) => {
+//         const transaction = db.transaction('feedback', 'readonly');
+//         const store = transaction.objectStore('feedback');
+
+//         const request = store.getAll();
+
+//         request.onsuccess = (event) => {
+//             resolve(event.target.result);
+//         };
+
+//         request.onerror = (event) => {
+//             reject(`Failed to retrieve feedback: ${event.target.errorCode}`);
+//         };
+//     });
+// }
 
 
