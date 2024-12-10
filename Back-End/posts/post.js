@@ -56,41 +56,6 @@ const Post = postDatabase.define('Post', {
     }
 });
 
-// Defining the Feedback model
-const FeedBack = postDatabase.define('Feedback', {
-    userid: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-    rating: {
-       type: DataTypes.INTEGER,
-       allowNull: false,
-       validate: {
-        min: 1,
-        max: 5
-       }
-   },
-    comment: {
-         type: DataTypes.STRING,
-         allowNull: false
-    },
-    timestamp: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
-    },
-    // postId: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false, // Feedback must always belong to a post
-    //     references: {
-    //       model: Post, // This references the Post model
-    //       key: 'id',   // Specifically the id column in Post
-    //     }
-    // }
-});
-// //post can have multiple feedbacks and feedback belongs to a single post
-// Post.hasMany(FeedBack, { foreignKey: 'postId' });
-// FeedBack.belongsTo(Post, { foreignKey: 'postId' });
-
 // Create the table if it doesn't exist or update existing table to match model definition above
 // await postDatabase.sync();
 
@@ -106,4 +71,4 @@ export default postDatabase;
 
 // Export the User model to make database accessible for other components of our app.
 // module.exports = { postDatabase, Post };
-export { postDatabase, Post, FeedBack }; //ES Module
+export { postDatabase, Post }; //ES Module

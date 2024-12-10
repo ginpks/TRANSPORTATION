@@ -71,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Display Feedback
 async function displayFeedback() {
-    const feedbackList = await getFeedback();
+    const feedbackList = await fetchFeedback();
     const feedbackContainer = document.getElementById('feedbackList');
-    feedbackContainer.innerHTML = ''; // Clear existing content
+    feedbackContainer.innerHTML = '';
 
-    if (feedbackList.length === 0) {
+    if (!feedbackList || feedbackList.length === 0) {
         feedbackContainer.innerHTML = '<p>No feedback submitted yet.</p>';
         return;
     }
@@ -83,8 +83,8 @@ async function displayFeedback() {
     feedbackList.forEach((feedback) => {
         const feedbackItem = document.createElement('div');
         feedbackItem.innerHTML = `
-            Rating  : ${feedback.rating} <br>
-            Comments: ${feedback.comments} <br>
+            <p>Rating: ${feedback.rating}</p>
+            <p>Comment: ${feedback.comment}</p>
         `;
         feedbackContainer.appendChild(feedbackItem);
     });
@@ -107,33 +107,39 @@ async function displayFeedback() {
     });
 });
 
-//Feedback DB
-async function submitFeedback(rating, comments) {
+async function submitFeedback(userId, rating, comment) {
     try {
-      const response = await fetch('/api/feedback', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: 1, rating, comments }), 
-      });
-      if (!response.ok) throw new Error('Failed to submit feedback');
-      const data = await response.json();
-      console.log('Feedback submitted:', data);
+        const response = await fetch('http://localhost:3000/api/feedback', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId, rating, comment }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to submit feedback: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        console.log('Feedback submitted successfully:', data);
     } catch (error) {
-      console.error('Error submitting feedback:', error);
+        console.error('Error submitting feedback:', error);
     }
 }
 async function fetchFeedback() {
     try {
-      const response = await fetch('/api/posts/feedback');
-      if (!response.ok) throw new Error('Failed to fetch feedback');
-      const feedbackList = await response.json();
-      return feedbackList;
+        const response = await fetch('http://localhost:3000/api/feedback');
+        if (!response.ok) {
+            throw new Error(`Failed to fetch feedback: ${response.statusText}`);
+        }
+
+        const feedbackList = await response.json();
+        console.log('Feedback fetched successfully:', feedbackList);
+        return feedbackList;
     } catch (error) {
-      console.error('Error fetching feedback:', error);
+        console.error('Error fetching feedback:', error);
     }
 }
 
-// Previous individual DB for feedback
 // // // IndexedDB setup
 // function openDatabase() {
 //     return new Promise((resolve, reject) => {
