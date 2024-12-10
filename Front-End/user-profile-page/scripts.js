@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+
     async function logout() {
         try {
             const response = await fetch("/logout", { method: "POST", credentials: "include" });
@@ -16,7 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 alert(data.message);
+<<<<<<< Updated upstream
                 window.location.href = "Front-End/login/LoginPage.html"; 
+=======
+                localStorage.clear();
+                window.location.href = "../login/LoginPage.html"; 
+
+>>>>>>> Stashed changes
             } else {
                 alert(data.message || "Logout failed. Please try again.");
             }
