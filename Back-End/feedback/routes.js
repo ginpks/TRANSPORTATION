@@ -10,3 +10,5 @@ router.post('/feedback', submitFeedback);
 router.get('/feedback', getAllFeedback);
 
 export default router;
+
+export const feedbackRoutes = router;
