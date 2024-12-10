@@ -16,17 +16,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 alert(data.message);
-                window.location.href = "Front-End/login/LoginPage.html"; 
+                window.location.href = "/login/LoginPage.html"; 
             } else {
                 alert(data.message || "Logout failed. Please try again.");
             }
         } catch (error) {
-            console.error("Error during logout:", error);
             alert("An error occurred. Please try again.");
         }
     }
 
-    const logoutButton = document.querySelector('button[onclick="logout()"]');
+    const logoutButton = document.getElementById('logoutButton');
     if (logoutButton) {
         logoutButton.addEventListener('click', logout);
     }
@@ -36,12 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = `${pageName.toLowerCase().replace(/ /g, '-')}.html`;
     }
 
-    function logoutUser() {
-        if (confirm('Are you sure you want to log out?')) {
-            alert('Logging out...');
-            window.location.href = 'logout.html';
-        }
-    }
+    // function logoutUser() {
+    //     if (confirm('Are you sure you want to log out?')) {
+    //         alert('Logging out...');
+    //         window.location.href = 'logout.html';
+    //     }
+    // }
 
     const chatBox = document.querySelector('.chat-box');
     if (chatBox) {

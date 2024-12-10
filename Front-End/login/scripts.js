@@ -22,7 +22,7 @@ loginButton.addEventListener("click", async (event) => {
 
     try {
         // Send login data to the server
-        const response = await fetch(`${BASE_API_URL}/auth/login`, {
+        const response = await fetch(`/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -42,7 +42,7 @@ loginButton.addEventListener("click", async (event) => {
         }
     } catch (error) {
         console.error("Error logging in:", error);
-        alert("An error occurred. Please try again later.");
+        alert("An error occurred. qPlease try again later.");
     }
 });
 

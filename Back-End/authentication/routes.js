@@ -15,8 +15,8 @@ router.post('/register', registerUser);
 
 // Using middleware-passport
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/success',
-  failureRedirect: '/login',
+  successRedirect: '/user-profile-page/index.html',
+  failureRedirect: '/login/LoginPage.html',
   failureMessage: true
 }),
 (req, res) => {

@@ -16,7 +16,7 @@ signInButton.addEventListener('click', async function (event) {
 
   try {
     // Send login request to the back-end
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
