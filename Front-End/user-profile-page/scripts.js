@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 alert(data.message);
+
                 window.location.href = "../login/LoginPage.html"; 
+
             } else {
                 alert(data.message || "Logout failed. Please try again.");
             }
@@ -26,7 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+
     const logoutButton = document.querySelector('#logoutButton');
+
     if (logoutButton) {
         logoutButton.addEventListener('click', logout);
     }
