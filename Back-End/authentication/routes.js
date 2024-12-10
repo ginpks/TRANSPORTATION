@@ -27,6 +27,15 @@ router.post('/login', passport.authenticate('local', {
   // Login successful
   res.status(200).json({ message: 'Login successful', user: req.user });
 });
+// router.post('/login', passport.authenticate('local'), (req, res) => {
+//   // Check if authentication was successful
+//   if (!req.user) {
+//     return res.status(401).json({ error: 'Login failed.' });
+//   }
+//   // Login successful
+//   res.status(200).json({ message: 'Login successful', user: req.user });
+// });
+
 
 router.get("/logout", logout);
 

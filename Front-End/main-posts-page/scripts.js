@@ -101,6 +101,7 @@ function selectType(type) {
         }
     }
 }
+window.selectType = selectType;
 
 // Sort feature - Lana
 // Select the sort dropdown
@@ -291,9 +292,47 @@ function createPost(post) {
     postDiv.appendChild(thirdLineDiv);
 
     //add redirect link
-    postDiv.addEventListener('click', ()=>{
-        window.location.href = `../chat-page/index.html?id=${post.id}`;
-    })
+    // postDiv.addEventListener('click', ()=>{
+    //     window.location.href = `../chat-page/index.html?id=${post.id}`;
+    // })
+
+    postDiv.addEventListener('click', async (event) => {
+        // Check if a post element is clicked
+        // const post = event.target.closest('.posts');
+        if (post) {
+          // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
+          const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
+          // const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
+          const postOwnerId = post.userId;
+          console.log(post.userId)
+          try {
+            // Call backend to get or create a session
+            const response = await fetch('http://localhost:3000/api/chat/session', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ currentUserId, postOwnerId })
+            });
+    
+            const result = await response.json();
+            if (result.success) {
+  
+              // Redirect to the chat page with the session ID 
+              window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
+              console.log("successfully redirected");
+            } else {
+              console.error('Failed to create or retrieve session');
+              window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
+            }
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        }
+      });
+
+
+
 
     //append posts to posts-list
     const postsList = document.querySelector('.posts-list');
@@ -407,13 +446,40 @@ function loadPostsFromServer(filterCriteria = {}) {
             if (postsList) {
                 postsList.innerHTML = ''; // Clear current posts
                 
-                // Apply filter to posts if needed (optional, based on filterCriteria)
-                const filteredPosts = posts.filter((post) => {
-                    let match = true;
-                    // Apply filters (e.g., type, time range, required seats, luggage, etc.)
-                    // Filtering logic goes here (similar to existing filter logic)
-                    return match;
-                });
+//apply filter to posts
+const filteredPosts = posts.filter((post) => {
+    console.log("Post being checked for filtering:", post);
+
+    let match = true;
+    // Apply filters (debugging each criteria separately)
+    if (filterCriteria.type && filterCriteria.type !== 'all' && post.type !== filterCriteria.type) {
+        console.log("Post excluded by type filter");
+        match = false;
+    }
+
+    if (filterCriteria.startTime && filterCriteria.endTime) {
+        const postTime = new Date(`${post.date} ${post.time}`).getTime();
+        const startTime = new Date(filterCriteria.startTime).getTime();
+        const endTime = new Date(filterCriteria.endTime).getTime();
+
+        if (postTime < startTime || postTime > endTime) {
+            console.log("Post excluded by time range filter");
+            match = false;
+        }
+    }
+
+    if (filterCriteria.requiredSeats && parseInt(post.people) < parseInt(filterCriteria.requiredSeats)) {
+        console.log("Post excluded by required seats filter");
+        match = false;
+    }
+
+    if (filterCriteria.availableLuggage && parseInt(post.luggage) < parseInt(filterCriteria.availableLuggage)) {
+        console.log("Post excluded by luggage filter");
+        match = false;
+    }
+
+    return match;
+  });
 
                 // Create posts that fit the conditions
                 filteredPosts.forEach((post) => {
@@ -434,37 +500,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // Assuming posts are dynamically added, use event delegation
     const postsContainer = document.querySelector('.posts-list');
   
-    postsContainer.addEventListener('click', async (event) => {
-      // Check if a post element is clicked
-      const post = event.target.closest('.posts');
-      if (post) {
-        // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
-        const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
-        const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
-        
-        try {
-          // Call backend to get or create a session
-          const response = await fetch('http://localhost:3000/api/chat/session', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ currentUserId, postOwnerId })
-          });
+    // postsContainer.addEventListener('click', async (event) => {
+    //   // Check if a post element is clicked
+    //   const post = event.target.closest('.posts');
+    //   if (post) {
+    //     // const postId = post.getAttribute('id'); // Assuming post ID is stored in the post element's id attribute?
+    //     const currentUserId = "Tom"; // hardcoded for testing (Replace with actual current user ID)
+    //     // const postOwnerId = "Jerry"; // hardcoded for testing (Replace with actual post owner ID)
+    //     const postOwnerId = post.userId;
+    //     console.log(post.userId)
+    //     try {
+    //       // Call backend to get or create a session
+    //       const response = await fetch('http://localhost:3000/api/chat/session', {
+    //         method: 'POST',
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({ currentUserId, postOwnerId })
+    //       });
   
-          const result = await response.json();
-          if (result.success) {
+    //       const result = await response.json();
+    //       if (result.success) {
 
-            // Redirect to the chat page with the session ID 
-            window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
-            console.log("successfully redirected");
-          } else {
-            console.error('Failed to create or retrieve session');
-          }
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      }
-    });
+    //         // Redirect to the chat page with the session ID 
+    //         window.location.href = `../chat-page/index.html?session_id=${result.session_id}&postOwnerId=${postOwnerId}&currentUserId=${currentUserId}`;
+    //         console.log("successfully redirected");
+    //       } else {
+    //         console.error('Failed to create or retrieve session');
+    //       }
+    //     } catch (error) {
+    //       console.error('Error:', error);
+    //     }
+    //   }
+    // });
   });
   

@@ -35,7 +35,12 @@ console.log("Serving static files from:", path.join(__dirname, "../../Front-End"
 
 // Middleware setup
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
+
 app.use(session({
   secret: 'your-secret-key',
   resave: false,
