@@ -33,7 +33,8 @@ export function savePost(type) {
             date: document.getElementById('date').value,
             people: document.getElementById('people').value,
             luggage: document.getElementById('luggage').value,
-            extraInfo: document.getElementById('extraInfo').value.trim() === '' ? 'No additional comment' : document.getElementById('extraInfo').value
+            extraInfo: document.getElementById('extraInfo').value.trim() === '' ? 'No additional comment' : document.getElementById('extraInfo').value,
+            username: localStorage.getItem('loggedInUsername'),
         };
     } else if (type === 'driver') {
         postData = {
