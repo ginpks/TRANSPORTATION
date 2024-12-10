@@ -46,24 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filterButton) {
         filterButton.addEventListener('click', () => {
             const filterType = document.querySelector('.type-selection .selected')?.id;
-            const startTime = document.getElementById('start-time').value;
-            const endTime = document.getElementById('end-time').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
             const requiredSeats = document.getElementById('seats-range').value;
             const availableLuggage = document.getElementById('luggage-range').value;
 
             // Log filter criteria
             console.log("Filter applied with criteria:", {
                 type: filterType,
-                startTime: startTime,
-                endTime: endTime,
+                startDate: startDate,
+                endDate: endDate,
                 requiredSeats: requiredSeats,
                 availableLuggage: availableLuggage
             });
 
             const filterCriteria = {
                 type: filterType,
-                startTime: startTime,
-                endTime: endTime,
+                startDate: startDate,
+                endDate: endDate,
                 requiredSeats: requiredSeats,
                 availableLuggage: availableLuggage
             };
@@ -143,45 +143,31 @@ sortDropdown.addEventListener('change', function () {
 
 
 // Formatting date and time - Lana
-function getCombinedDateTime(dateString, timeString) {
-    if (!dateString || !timeString) {
-        console.error("Invalid date or time input:", { dateString, timeString });
-        return null;
-    }
-    return `${dateString}T${timeString}`;
-}
+// function getCombinedDateTime(dateInputId, timeInputId) {
+//     const date = document.getElementById(dateInputId).value;
+//     const time = document.getElementById(timeInputId).value;
 
-function updateFilterCriteria() {
-    const startDate = document.getElementById('start-date').value;
-    const startTime = document.getElementById('start-time').value;
-    const endDate = document.getElementById('end-date').value;
-    const endTime = document.getElementById('end-time').value;
+//     if (!date || !time) {
+//         console.error("Invalid date or time input:", { date, time });
+//         return null;
+//     }
 
-    if (!startDate || !startTime || !endDate || !endTime) {
-        console.warn("All date and time inputs must be filled.");
-        filterCriteria.startTime = null;
-        filterCriteria.endTime = null;
-        return;
-    }
+//     return new Date(`${date}T${time}`).toISOString();  // Returns an ISO string.
+// }
+// function updateFilterCriteria() {
+//     filterCriteria.startTime = getCombinedDateTime('start-date', 'start-time');
+//     filterCriteria.endTime = getCombinedDateTime('end-date', 'end-time');
 
-    const startDateTime = getCombinedDateTime(startDate, startTime);
-    const endDateTime = getCombinedDateTime(endDate, endTime);
+//     if (filterCriteria.startTime && filterCriteria.endTime) {
+//         console.log('Start Time:', filterCriteria.startTime);
+//         console.log('End Time:', filterCriteria.endTime);
+//     }
+// }
 
-    if (startDateTime && endDateTime) {
-        filterCriteria.startTime = new Date(startDateTime).toISOString();
-        filterCriteria.endTime = new Date(endDateTime).toISOString();
-    } else {
-        filterCriteria.startTime = null;
-        filterCriteria.endTime = null;
-    }
-
-    console.log('Updated filterCriteria:', filterCriteria);
-}
-
-document.getElementById('start-time').addEventListener('change', updateFilterCriteria);
-document.getElementById('start-date').addEventListener('change', updateFilterCriteria);
-document.getElementById('end-time').addEventListener('change', updateFilterCriteria);
-document.getElementById('end-date').addEventListener('change', updateFilterCriteria);
+// document.getElementById('start-time').addEventListener('change', updateFilterCriteria);
+// document.getElementById('start-date').addEventListener('change', updateFilterCriteria);
+// document.getElementById('end-time').addEventListener('change', updateFilterCriteria);
+// document.getElementById('end-date').addEventListener('change', updateFilterCriteria);
 
 
 // Search feature - Lana
@@ -224,15 +210,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filterButton) {
         filterButton.addEventListener('click', () => {
             const filterType = document.querySelector('.type-selection .selected')?.id;
-            const startTime = document.getElementById('start-time').value;
-            const endTime = document.getElementById('end-time').value;
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
             const requiredSeats = document.getElementById('seats-range').value;
             const availableLuggage = document.getElementById('luggage-range').value;
 
             const filterCriteria = {
                 type: filterType,
-                startTime: startTime,
-                endTime: endTime,
+                startDate: startDate,
+                endDate: endDate,
                 requiredSeats: requiredSeats,
                 availableLuggage: availableLuggage
             };
@@ -360,7 +346,7 @@ function createCustomPostDetail(className, title, detail, detailClass = 'custom-
     return containerDiv;
 }
 
-
+/*
 function loadPostsFromDB(filterCriteria = {}) {
   console.log("Loading posts from the database with filter criteria:", filterCriteria);
   openDatabase().then((db) => {
@@ -442,6 +428,7 @@ function loadPostsFromDB(filterCriteria = {}) {
       };
   });
 }
+*/
 
 //Milestone 4: Load posts from the server
 function loadPostsFromServer(filterCriteria = {}) {
@@ -473,32 +460,13 @@ function loadPostsFromServer(filterCriteria = {}) {
                         console.log("Post excluded by type filter");
                         match = false;
                     }
-    
-                    if (filterCriteria.startTime && filterCriteria.endTime) {
-                        console.log('Filtering by time:');
-                        console.log('Raw startTime:', filterCriteria.startTime);
-                        console.log('Raw endTime:', filterCriteria.endTime);
-                    
-                        // Parse ISO 8601 datetime strings into timestamps
-                        const startTime = new Date(filterCriteria.startTime).getTime();
-                        const endTime = new Date(filterCriteria.endTime).getTime();
-                    
-                        if (isNaN(startTime) || isNaN(endTime)) {
-                            console.error("Invalid start or end time format:", { startTime, endTime });
-                            return false; // Skip filtering if times are invalid
-                        }
-                    
-                        // Parse post datetime into a timestamp
-                        const postTime = new Date(`${post.date}T${post.time}`).getTime();
-                    
-                        if (isNaN(postTime)) {
-                            console.error("Invalid post time format:", { date: post.date, time: post.time });
-                            return false; // Skip filtering if post datetime is invalid
-                        }
-                    
-                        // Compare postTime against the range
-                        if (postTime < startTime || postTime > endTime) {
-                            console.log("Post excluded by time range filter");
+
+
+                    if (filterCriteria.startDate && filterCriteria.endDate) {
+                        const postDate = post.date;  // e.g., '2024-04-01'
+                        
+                        if (postDate < filterCriteria.startDate || postDate > filterCriteria.endDate) {
+                            console.log("Post excluded by date filter");
                             match = false;
                         }
                     }
