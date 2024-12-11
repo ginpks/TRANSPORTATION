@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     async function chatroom(){
-        window.location.href = '../chat-page/index.html';
+        const userName = document.querySelector('#username-display');
+        window.location.href = `../chat-page/index.html?session_id=${null}&currentUserId=${userName.textContent}&postOwnerId=${null}`;
     }
 
     const chatRoomButton = document.querySelector('#chat-room');

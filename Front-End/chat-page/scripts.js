@@ -4,6 +4,7 @@ user.innerHTML = `${params.get('id')}`;
 const sessionId = params.get('session_id');
 const currentUserId = params.get('currentUserId');
 const postOwnerId = params.get('postOwnerId');
+console.log(`The session ID after coming from chat page: ${sessionId}`);
 
 // Connect to the WebSocket server 
 const socket = io();
@@ -83,7 +84,8 @@ if (sessionId) {
       inbox.prepend(receivedMessageContainer);
     }
   });
-}
+} 
+
 
 // when a user clicks on a post, they are redirected to the chat page where the owner
 // of said post is added to the list of chatters
@@ -207,6 +209,13 @@ async function loadChatHistory(sessionId) {
         inbox.prepend(messageContainer); // Append to chat inbox
       });
     } else {
+      // remove selected user above chatbox (???)
+      const userPic = document.querySelector('.user-pic');
+      const username = document.querySelector('.dropdown');
+      userPic.style.display = 'none';
+      username.style.display = 'none';
+
+      
       console.error("Failed to load chat history:", result.error);
     }
   } catch (error) {
