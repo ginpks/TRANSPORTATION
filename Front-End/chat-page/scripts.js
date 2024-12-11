@@ -207,6 +207,13 @@ async function loadChatHistory(sessionId) {
         inbox.prepend(messageContainer); // Append to chat inbox
       });
     } else {
+
+      // remove selected user above chatbox (???)
+      const userPic = document.querySelector('.user-pic');
+      const username = document.querySelector('.dropdown');
+      userPic.style.display = 'none';
+      username.style.display = 'none';
+      
       console.error("Failed to load chat history:", result.error);
     }
   } catch (error) {
