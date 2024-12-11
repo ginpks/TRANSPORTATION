@@ -126,11 +126,18 @@ h1 {
 }
 
 .profile-picture .picture-placeholder {
-    width: 80px;
-    height: 80px;
-    background-color: #881c1c;
+    width: 50px;
+    height: 50px;
+    background-color: #800000; 
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
-    margin-right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); 
 }
 
 .profile-details h2 {

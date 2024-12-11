@@ -19,9 +19,10 @@ function switchTab(tab) {
         passengerForm.style.display = 'none';
     }
 }
-let currentUserId = "Timi";
+//let currentUserId = "Timi";
 
 document.addEventListener('DOMContentLoaded', async() => {
+    let currentUserId = await getUserName();
     try {
         // request for current user info
         const response = await fetch('http://localhost:3000/api/auth/current-user', {
@@ -42,7 +43,41 @@ document.addEventListener('DOMContentLoaded', async() => {
         console.error('Error fetching current user:', error);
         alert('An error occurred.');
     }
+    
+    if (currentUserId) {
+        // Add first letter of username to profile icon
+        const profileIcons = document.getElementsByClassName("profile-icon");
+        if (profileIcons.length > 0) {
+            const firstLetter = currentUserId.charAt(0).toUpperCase();
+            profileIcons[0].textContent = firstLetter;
+        } else {
+            console.warn("No element found with class 'profile-icon'");
+        }
+    }
 });
+// get current username/ID
+async function getUserName() {
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/current-user', {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            console.error('Failed to fetch current user. Status:', response.status);
+            return null;
+        }
+
+        const data = await response.json();
+        const currentUserId = data.user.username;
+        console.log('Current User ID:', currentUserId);
+        return currentUserId;
+
+    } catch (error) {
+        console.error('Error fetching current user:', error);
+        return null;
+    }
+}
 // Modify savePost function to store data in IndexedDB
 export function savePost(type) {
     let postData;

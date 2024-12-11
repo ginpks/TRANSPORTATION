@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     console.log('User profile page scripts loaded');
     const links = document.querySelectorAll('.sidebar ul li a');
     links.forEach(link => {
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
  // Feedback form submission
  document.getElementById('feedbackForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const userId = 'test-user'; // I need to replace with actual user ID
+    const userId = await getUserName(); 
     const rating = document.getElementById('rating').value;
     const comments = document.getElementById('comments').value;
 
@@ -119,6 +119,20 @@ async function displayFeedback() {
             console.log('Feedback box is now hidden');
         }
     });
+        // Fetch current user info and update UI
+        const currentUserId = await getUserName();
+        if (currentUserId) {
+            document.getElementById('username-display').innerText = currentUserId;
+    
+            // Add first letter of username to profile icon
+            const profileIcons = document.getElementsByClassName("picture-placeholder");
+            if (profileIcons.length > 0) {
+                const firstLetter = currentUserId.charAt(0).toUpperCase();
+                profileIcons[0].textContent = firstLetter;
+            } else {
+                console.warn("No element found with class 'picture-placeholder'");
+            }
+        }
 });
 // send feedback to db
 async function submitFeedback(userId, rating, comment) {
@@ -154,7 +168,29 @@ async function fetchFeedback() {
         console.error('Error fetching feedback:', error);
     }
 }
+//get current username/id
+async function getUserName() {
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/current-user', {
+            method: 'GET',
+            credentials: 'include',
+        });
 
+        if (!response.ok) {
+            console.error('Failed to fetch current user. Status:', response.status);
+            return null;
+        }
+
+        const data = await response.json();
+        const currentUserId = data.user.username;
+        console.log('Current User ID:', currentUserId);
+        return currentUserId;
+
+    } catch (error) {
+        console.error('Error fetching current user:', error);
+        return null;
+    }
+}
 // // // IndexedDB setup
 // function openDatabase() {
 //     return new Promise((resolve, reject) => {

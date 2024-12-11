@@ -63,10 +63,10 @@ body {
     margin: 0.5vw 3vw 0 1vw;
     border-radius: 50%;
     background-color: #881c1c;
-    color: #881c1c;
+    color: #fff;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 25px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.45);
     cursor: pointer;
 }

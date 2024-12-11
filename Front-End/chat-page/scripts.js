@@ -138,6 +138,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }).catch((error)=> console.error("Error fetching user list:", error));
    }
+   if (currentUserId) {
+    // Add first letter of username to profile icon
+    const profileIcons = document.getElementsByClassName("profileIcon");
+    if (profileIcons.length > 0) {
+        const firstLetter = currentUserId.charAt(0).toUpperCase();
+        profileIcons[0].textContent = firstLetter;
+    } else {
+        console.warn("No element found with class 'profileIcon'");
+    }
+}
 });
 
 
