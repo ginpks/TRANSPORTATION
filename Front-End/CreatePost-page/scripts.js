@@ -19,30 +19,64 @@ function switchTab(tab) {
         passengerForm.style.display = 'none';
     }
 }
-let currentUserId = "Timi";
+let currentUserId = "";
 
-document.addEventListener('DOMContentLoaded', async() => {
+async function getUserId() {
     try {
-        // request for current user info
         const response = await fetch('http://localhost:3000/api/auth/current-user', {
             method: 'GET',
             credentials: 'include',
         });
 
-        if (response.ok) {
-            const data = await response.json(); //get json data
-            // get username
-            currentUserId = data.user.username;
-            console.log(currentUserId);
-        } else {
+        if (!response.ok) {
             console.error('Failed to fetch current user. Status:', response.status);
-            // alert('You are not logged in. Redirecting to login page.');
+            return null;
         }
+
+        const data = await response.json();
+        const currentUserId = data.user.username;
+        console.log('Current User ID:', currentUserId);
+        return currentUserId;
+
     } catch (error) {
         console.error('Error fetching current user:', error);
-        alert('An error occurred.');
+        console.error('Please try to login again.');
+        return null;
     }
-});
+}
+const userName = document.querySelector('.username');
+  const icon = document.querySelector('.profile-icon');
+
+  getUserId().then(userid => {
+    if (userid) {
+        currentUserId = userid;
+        userName.textContent = userid;
+        icon.textContent = userid.charAt(0).toUpperCase();
+        userName.addEventListener('click', () => {
+            window.location.href = '../user-profile-page/index.html'; // Redirect to user profile page
+        });
+        // Event listener for profile icon click
+        if (icon) {
+            icon.addEventListener('click', () => {
+                window.location.href = '../user-profile-page/index.html'; // Redirect to user profile page
+            });
+        }
+    }
+    else {
+        userName.textContent = "Guest";
+        icon.textContent = "Guest".charAt(0).toUpperCase();
+        userName.addEventListener('click', () => {
+            window.location.href = '../login/LoginPage.html'; // Redirect to user profile page
+        });
+        // Event listener for profile icon click
+        if (icon) {
+            icon.addEventListener('click', () => {
+                window.location.href = '../login/LoginPage.html'; // Redirect to user profile page
+            });
+        }
+    }
+    });
+
 // Modify savePost function to store data in IndexedDB
 export function savePost(type) {
     let postData;
