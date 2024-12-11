@@ -6,6 +6,7 @@ import passport from 'passport';
 // Handle user registration
 export const registerUser = async (req, res) => {
     try {
+      console.log('Received Data:', req.body);
       const { username, email, password } = req.body;
   
       // Check if all fields are there
@@ -15,12 +16,14 @@ export const registerUser = async (req, res) => {
 
   
       // Check if the user already exists
+      console.log('Checking if user exists...');
       const existingUser = await User.findOne({ where: { username } });
       if (existingUser) {
         return res.status(400).json({ error: 'Username already exists' });
       }
   
       // Hash the password
+      console.log("Hasing user's password");
       const hashedPassword = await bcrypt.hash(password, 10);
   
       // Create the user
@@ -28,7 +31,7 @@ export const registerUser = async (req, res) => {
   
       res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
-      console.error('Registration Error:', error);
+      console.error('Registration Error:', error.stack);
       if (error.name === 'SequelizeValidationError') {
           return res.status(400).json({ error: 'Validation error', details: error.errors });
       }
