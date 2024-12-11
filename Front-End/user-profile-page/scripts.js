@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     getUserId().then(useid => {currentUserId = useid;});
 
     async function chatroom(){
-
+        const userName = document.querySelector('#username-display');
+        window.location.href = `../chat-page/index.html?session_id=${null}&currentUserId=${userName.textContent}&postOwnerId=${null}`;
     }
 
     const chatRoomButton = document.querySelector('#chat-room');
