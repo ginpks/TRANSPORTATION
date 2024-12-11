@@ -410,7 +410,7 @@ function createCustomPostDetail(className, title, detail, detailClass = 'custom-
     return containerDiv;
 }
 
-/*
+
 function loadPostsFromDB(filterCriteria = {}) {
   console.log("Loading posts from the database with filter criteria:", filterCriteria);
   openDatabase().then((db) => {
@@ -492,7 +492,7 @@ function loadPostsFromDB(filterCriteria = {}) {
       };
   });
 }
-*/
+
 
 //Milestone 4: Load posts from the server
 function loadPostsFromServer(filterCriteria = {}) {
