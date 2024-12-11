@@ -53,25 +53,35 @@ async function loadPostsFromServer() {
 
         postsList.innerHTML = '';
         
-        // Filter posts by the current user
-        const filteredPosts = posts.filter(post => post.userId === userId);
-        console.log('Filtered Posts:', filteredPosts);
+  
 
-        filteredPosts.forEach(post => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <strong>From:</strong> ${post.from}<br>
-                <strong>Destination:</strong> ${post.destination}<br>
-                <strong>Type:</strong> ${post.type}<br>
-                <strong>Date:</strong> ${post.date || 'Not specified'}<br>
-                <strong>Time:</strong> ${post.time || 'Not specified'}<br>
-                <strong>Luggage:</strong> ${post.luggage || 'None'}<br>
-                <strong>People:</strong> ${post.people || 'Not specified'}<br>
-                <strong>Extra Info:</strong> ${post.extraInfo || 'No additional info'}<br>
-                <small>Posted on: ${new Date(post.createdAt).toLocaleString()}</small>
-            `;
-            postsList.appendChild(listItem);
-        });
+            // Filter posts by the current user
+            const filteredPosts = posts.filter(post => post.userId === userId);
+            console.log('Filtered Posts:', filteredPosts);
+
+            if(filteredPosts.length === 0) {
+                const notice = document.createElement('div');
+                notice.classList.add("history-post-notice");
+                notice.textContent = "No history post."
+                postsList.appendChild(notice);
+            }
+
+            filteredPosts.forEach(post => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <strong>From:</strong> ${post.from}<br>
+                    <strong>Destination:</strong> ${post.destination}<br>
+                    <strong>Type:</strong> ${post.type}<br>
+                    <strong>Date:</strong> ${post.date || 'Not specified'}<br>
+                    <strong>Time:</strong> ${post.time || 'Not specified'}<br>
+                    <strong>Luggage:</strong> ${post.luggage || 'None'}<br>
+                    <strong>People:</strong> ${post.people || 'Not specified'}<br>
+                    <strong>Extra Info:</strong> ${post.extraInfo || 'No additional info'}<br>
+                    <small>Posted on: ${new Date(post.createdAt).toLocaleString()}</small>
+                `;
+                postsList.appendChild(listItem);
+            });
+
 
 
     } catch (error) {

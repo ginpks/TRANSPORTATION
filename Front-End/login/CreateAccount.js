@@ -1,7 +1,8 @@
-const createAccountButton = document.getElementById('createAccbutt');
+const createAccountButton = document.querySelector('#createAccbutt');
 const invalidUser = /[^ \w@.]/;
 
-createAccountButton.addEventListener('click', async function (event) {
+createAccountButton.addEventListener('click', async(event)=>{
+  createAccountButton.disabled = true;
     event.preventDefault();
   
     const username = document.getElementById('crusr').value.trim();
@@ -28,7 +29,7 @@ createAccountButton.addEventListener('click', async function (event) {
       });
   
       if (response.ok) {
-        const data = await response.json();
+        // const data = await response.json();
         alert('Account created successfully');
         // Redirect to the main page or login page
         window.location.href = 'LoginPage.html';
