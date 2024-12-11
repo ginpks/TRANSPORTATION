@@ -24,9 +24,12 @@
         <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <ul>
-                <li><button id="toggleFeedbackButton" class="sidebar-button">Your Feedback</button></li>
-                <button id='chat-room' class="sidebar-button">Chat Room</button>
-                <button id="logoutButton" class="sidebar-button">Logout</button>
+                <li>
+                    <button id="toggleFeedbackButton" class="sidebar-button">Your Feedback</button>
+                    <button id='chat-room' class="sidebar-button">Chat Room</button>
+                    <button id="logoutButton" class="sidebar-button">Logout</button>
+                </li>
+
             </ul>
         </nav>
 
@@ -93,24 +96,34 @@
                         method: 'GET',
                         credentials: 'include',
                     });
-            
+
                     if (!response.ok) {
                         console.error('Failed to fetch current user. Status:', response.status);
                         return null;
                     }
-            
+
                     const data = await response.json();
                     const currentUserId = data.user.username;
                     console.log('Current User ID:', currentUserId);
-                    document.getElementById('username-display').innerText = currentUserId || 'N/A ';
                     return currentUserId;
-            
+
                 } catch (error) {
                     console.error('Error fetching current user:', error);
                     return null;
                 }
             }
-            getUserId();
+            const userName = document.querySelector('#username-display');
+            const icon = document.querySelector('.picture-placeholder');
+            getUserId().then(userid => {
+                if (userid) {
+                    userName.textContent = userid;
+                    icon.textContent = userid.charAt(0).toUpperCase();
+                }
+                else {
+                    userName.textContent = "Guest";
+                    icon.textContent = "Guest".charAt(0).toUpperCase();
+                }
+            });
         });
     </script>
 </body>

@@ -200,6 +200,28 @@ searchInput.addEventListener('input', function () {
 });
 
 //main function - Jinghao
+async function getUserId() {
+    try {
+        const response = await fetch('http://localhost:3000/api/auth/current-user', {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            console.error('Failed to fetch current user. Status:', response.status);
+            return null;
+        }
+
+        const data = await response.json();
+        const currentUserId = data.user.username;
+        console.log('Current User ID:', currentUserId);
+        return currentUserId;
+
+    } catch (error) {
+        console.error('Error fetching current user:', error);
+        return null;
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -230,19 +252,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-  // Event listener for profile icon click
-  const profileIcon = document.querySelector('.profile-icon');
-  if (profileIcon) {
-    profileIcon.addEventListener('click', () => {
-      window.location.href = '../user-profile-page/index.html'; // Redirect to user profile page
-    });
-  }
+
   const userName = document.querySelector('.username');
-  if (userName) {
-    userName.addEventListener('click', () => {
-      window.location.href = '../user-profile-page/index.html'; // Redirect to user profile page
+  const icon = document.querySelector('.profile-icon');
+
+  getUserId().then(userid => {
+    if (userid) {
+        userName.textContent = userid;
+        icon.textContent = userid.charAt(0).toUpperCase();
+        userName.addEventListener('click', () => {
+            window.location.href = '../user-profile-page/index.html'; // Redirect to user profile page
+        });
+        // Event listener for profile icon click
+        if (icon) {
+            icon.addEventListener('click', () => {
+                window.location.href = '../user-profile-page/index.html'; // Redirect to user profile page
+            });
+        }
+    }
+    else {
+        userName.textContent = "Guest";
+        icon.textContent = "Guest".charAt(0).toUpperCase();
+        userName.addEventListener('click', () => {
+            window.location.href = '../login/LoginPage.html'; // Redirect to user profile page
+        });
+        // Event listener for profile icon click
+        if (icon) {
+            icon.addEventListener('click', () => {
+                window.location.href = '../login/LoginPage.html'; // Redirect to user profile page
+            });
+        }
+    }
     });
-  }
+    
   // Event listener for post button click
   const postButton = document.querySelector('.post-button');
   if (postButton) {
