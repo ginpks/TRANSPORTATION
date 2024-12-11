@@ -39,3 +39,22 @@
 - **Task**: Finished search and sort implementation
 - **Details**: Added JS implementation for search and sort features
 - **Link to Commit**: [Commit on main-post-page](https://github.com/ginpks/TRANSPORTATION/pull/36/commits/7ade4939fc82d3cabce9842fdb3b129bd8e55db5)
+
+### December 5, 2024
+- **Task**: Draft for authentication
+- **Details**: Attempted to draft the log in and registration functionality, but it didn't fully work 
+- **Link to Commit**: [Commit on controller.js](https://github.com/ginpks/URide/commit/d5bb1834af542cb12a54c9f6322e511c25c94dcd) 
+- **
+- **Task**: Redid login page front end
+- **Details**: Completely redid the front end for log in and sign in pages
+- **Link to Commit**: [Commit on login-page](https://github.com/ginpks/URide/commit/cede3766ab2be1bae96647da6278ba924b4bc3e4#diff-87bfb9bc6f6207aa5b7d5c7f602409ddf1a500f15cffd521ef7dd06588dfe301L17)
+
+### December 6, 2024
+- **Task**: Finishing up front end for login and sign in pages
+- **Details**: Made sure everything coordinated with each other, added logo for consistency
+- **Link to Commit**: [Commit on login-page](https://github.com/ginpks/URide/commit/6716c8ff7da114e1f7d8ee323963aabe69fe59ac)
+
+### December 10, 2024
+- **Task**: Fixed filter implementation for server data
+- **Details**: Made sure filter works for all the posts after getting data from the server 
+- **Link to Commit**: [Commit on main-post-page](https://github.com/ginpks/URide/commit/5c20ee0fc839d450eab63adf3a40dc3933b621d7) 
