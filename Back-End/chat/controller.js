@@ -71,9 +71,11 @@ export const getChatHistory = async (req, res) => {
         where:{
           [Op.or]: [{ user1_id: currentUserId }, { user2_id: currentUserId }],
         },
+        // Order sessions by the last interaction time, most recent first
         order: [["last_interaction", "DESC"]]
       });
 
+      // Map the sessions to extract the other user's ID for each session
       const userList = sessions.map((session) => {
         return session.user1_id === currentUserId
           ? session.user2_id
@@ -85,7 +87,8 @@ export const getChatHistory = async (req, res) => {
       res.status(500).json({ success: false, error: error.message });
     }
   }
-
+  
+  //update the interaction timestamp for a given session
   export const updateInteraction = async (req, res) => {
     try {
       const { session_id } = req.body;
