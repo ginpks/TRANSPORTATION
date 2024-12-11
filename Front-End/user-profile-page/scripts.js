@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutButton) {
         logoutButton.addEventListener('click', logout);
     }
-    let currentUserId;
-    getUserId().then(useid => {currentUserId = useid;});
+
 
     async function chatroom(){
-        window.location.href = `/chat-page/index.html?currentUserId=${currentUserId}`;
+        const userName = document.querySelector('#username-display');
+        window.location.href = `../chat-page/index.html?session_id=${null}&currentUserId=${userName.textContent}&postOwnerId=${null}`;
     }
 
     const chatRoomButton = document.querySelector('#chat-room');
@@ -85,28 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-async function getUserId() {
-    try {
-        const response = await fetch('http://localhost:3000/api/auth/current-user', {
-            method: 'GET',
-            credentials: 'include',
-        });
 
-        if (!response.ok) {
-            console.error('Failed to fetch current user. Status:', response.status);
-            return null;
-        }
-
-        const data = await response.json();
-        const currentUserId = data.user.username;
-        console.log('Current User ID:', currentUserId);
-        return currentUserId;
-
-    } catch (error) {
-        console.error('Error fetching current user:', error);
-        return null;
-    }
-}
 
 // Display Feedback
 async function displayFeedback() {
