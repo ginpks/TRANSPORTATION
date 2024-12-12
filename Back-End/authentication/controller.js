@@ -29,14 +29,14 @@ export const registerUser = async (req, res) => {
       // Create the user
       const newUser = await User.create({ username, email, password: hashedPassword });
   
-      res.status(201).json({ message: 'User registered successfully', user: newUser });
+      return res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (error) {
       console.error('Registration Error:', error.stack);
       if (error.name === 'SequelizeValidationError') {
           return res.status(400).json({ error: 'Validation error', details: error.errors });
       }
-      res.status(500).json({ error: 'Internal Server Error' });
-  }
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
   };
   
 
