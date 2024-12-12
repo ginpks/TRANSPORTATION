@@ -1,4 +1,4 @@
-const createAccountButton = document.querySelector('#createAccbutt');
+const createAccountButton = document.getElementById('createAccbutt');
 const invalidUser = /[^ \w@.]/;
 
 createAccountButton.addEventListener('click', async(event)=>{
@@ -9,7 +9,7 @@ createAccountButton.addEventListener('click', async(event)=>{
     const email = document.getElementById('userEmail').value.trim();
     const password = document.getElementById('inipsw').value.trim();
     const confirmPassword = document.getElementById('confpsw').value.trim();
-  
+    
     if (!username || !email || !password || !confirmPassword) {
       alert('Please fill in all fields.');
       return;
@@ -42,4 +42,4 @@ createAccountButton.addEventListener('click', async(event)=>{
       console.error('Error:', error);
       alert('An error occurred. Please try again.');
     }
-  });
+  },{once: true});
