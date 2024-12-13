@@ -11,3 +11,13 @@ november 17,
 task: implement login pages
 details: pulled all 7 files, unsure how to link the commits
 https://github.com/ginpks/TRANSPORTATION/pull/41
+
+december 5
+did routing for registration
+
+December 7,8,9,10
+Task attempt to debug authentication folder
+details: 3 failed attempts
+
+December 11
+made video and cleaned up code
