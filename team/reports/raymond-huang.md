@@ -13,7 +13,7 @@ details: pulled all 7 files, unsure how to link the commits
 https://github.com/ginpks/TRANSPORTATION/pull/41
 
 december 5
-did routing for registration
+did routing for registration, found out it was already done
 
 December 7,8,9,10
 Task attempt to debug authentication folder
