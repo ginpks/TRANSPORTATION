@@ -32,4 +32,6 @@ Once the express server is up and running, navigate to this link to begin using 
 
 ### Additional notes on our back end design
 
-If you take a look at our back-end directory, you'll notice that we've designed a scalable and modular architecture that prioritizes clarity, ease of maintenance, and efficient scaling. We’ve utilized controllers to handle business logic, ensuring that our routes are clean and straightforward. The routing structure provides a clear path for managing user authentication, session handling, and messaging (using an express server in conjunction with the Socket.IO library). Additionally, our database files like `chatDB.js`, `user.js`, and `routes.js` are organized to maintain separation of concerns, making it easier to manage and extend the application while adhering to core software engineering principles.
+If you take a look at our back-end directory, you'll notice that we've designed a scalable and modular architecture that prioritizes clarity, ease of maintenance, and efficient scaling. We’ve utilized controllers to handle business logic, ensuring that our routes are clean and straightforward. The routing structure provides a clear path for managing user authentication, session handling, and messaging (using an express server in conjunction with the Socket.IO library).
+
+Additionally, our database files like `chatDB.js`, `user.js`, and `routes.js` are organized to maintain separation of concerns, making it easier to manage and extend the application while adhering to core software engineering principles.
